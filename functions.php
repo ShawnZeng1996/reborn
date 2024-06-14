@@ -70,3 +70,37 @@ function getGravatarUrl($email, $size = 80, $default = 'mm', $rating = 'g'): str
     return "https://cravatar.cn/avatar/$hash?s=$size&d=$default&r=$rating";
 }
 
+/**
+ * 输出相对时间
+ *
+ * @param int $time 时间戳
+ * @return string 相对时间字符串
+ */
+
+
+if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+function timeAgo($time)
+{
+    $currentTime = time();
+    $timeDifference = $currentTime - $time;
+
+    $units = array(
+        _t('年') => 29030400, // 60 * 60 * 24 * 336
+        _t('月') => 2419200,  // 60 * 60 * 24 * 28
+        _t('周') => 604800,   // 60 * 60 * 24 * 7
+        _t('天') => 86400,    // 60 * 60 * 24
+        _t('小时') => 3600,   // 60 * 60
+        _t('分钟') => 60,
+        _t('秒') => 1,
+    );
+
+    foreach ($units as $unit => $value) {
+        if ($timeDifference >= $value) {
+            $result = floor($timeDifference / $value);
+            return $result . ' ' . $unit . _t('前');
+        }
+    }
+
+    return _t('刚刚');
+}

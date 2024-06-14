@@ -84,6 +84,7 @@ body {
       width: 100%;
       color: #808080;
       margin-top: 25px;
+      padding-right: 10px;
     }
   }
   a {
@@ -118,13 +119,36 @@ body {
         }
       }
       .post-content {
-        margin: auto;
+        flex: 1;
         padding: 10px;
         .post-author {
           color: #576b95;
         }
         img {
           max-width: 100%;
+        }
+        .post-location {
+          color: #9ca3af;
+        }
+        .post-meta-2 {
+          display: flex;
+          justify-content: space-between;
+          .post-publish-time {
+            color: #9ca3af;
+            vertical-align: middle;
+          }
+          .post-more {
+            display: inline-block;
+            width: 30px;
+            height: 20px;
+            line-height: 20px;
+            background-color: #f7f7f7;
+            color: #9ca3af;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 3px;
+            vertical-align: middle;
+          }
         }
       }
     }

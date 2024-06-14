@@ -70,7 +70,8 @@ body {
     #header #site-info #site-description {
       width: 100%;
       color: #808080;
-      margin-top: 25px; }
+      margin-top: 25px;
+      padding-right: 10px; }
   #header a {
     color: #FFFFFF;
     text-decoration: none;
@@ -98,12 +99,31 @@ body {
           height: 40px;
           border-radius: 4px; }
       .content .main-content .post-type .post-content {
-        margin: auto;
+        flex: 1;
         padding: 10px; }
         .content .main-content .post-type .post-content .post-author {
           color: #576b95; }
         .content .main-content .post-type .post-content img {
           max-width: 100%; }
+        .content .main-content .post-type .post-content .post-location {
+          color: #9ca3af; }
+        .content .main-content .post-type .post-content .post-meta-2 {
+          display: flex;
+          justify-content: space-between; }
+          .content .main-content .post-type .post-content .post-meta-2 .post-publish-time {
+            color: #9ca3af;
+            vertical-align: middle; }
+          .content .main-content .post-type .post-content .post-meta-2 .post-more {
+            display: inline-block;
+            width: 30px;
+            height: 20px;
+            line-height: 20px;
+            background-color: #f7f7f7;
+            color: #9ca3af;
+            cursor: pointer;
+            text-align: center;
+            border-radius: 3px;
+            vertical-align: middle; }
   .content .sidebar {
     width: 33.3333%;
     float: left; }

@@ -1,8 +1,8 @@
 @font-face {
   font-family: "reborn"; /* Project id 4221380 */
-  src: url('iconfont.woff2?t=1718356910448') format('woff2'),
-       url('iconfont.woff?t=1718356910448') format('woff'),
-       url('iconfont.ttf?t=1718356910448') format('truetype');
+  src: url('iconfont.woff2?t=1718370709906') format('woff2'),
+       url('iconfont.woff?t=1718370709906') format('woff'),
+       url('iconfont.ttf?t=1718370709906') format('truetype');
 }
 
 .reborn {
@@ -13,15 +13,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.rb-shuji:before {
+.rb-books:before {
   content: "\e6b7";
 }
 
-.rb-pinglun:before {
+.rb-comments:before {
   content: "\e603";
 }
 
-.rb-shanchu:before {
+.rb-delete:before {
   content: "\e64f";
 }
 
@@ -33,11 +33,11 @@
   content: "\e66b";
 }
 
-.rb-lianggedian:before {
+.rb-twodots:before {
   content: "\e601";
 }
 
-.rb-wodeVIP:before {
+.rb-vip:before {
   content: "\e632";
 }
 
