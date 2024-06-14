@@ -12,7 +12,7 @@
                             <img src="<?php echo getGravatarUrl($this->author->mail, 80); ?>" alt="<?php $this->author(); ?>" class="author-avatar" />
                         <?php endif; ?>
                     </div>
-                    <div class="post-content">
+                    <div class="post-content flex-1">
                         <div class="post-author"><?php $this->author(); ?></div>
                         <div><?php $this->content(); ?></div>
                         <?php if ($this->fields->location != ''): ?>
@@ -21,7 +21,10 @@
                         <div class="post-meta-2 relative">
                             <time class="post-publish-time" datetime="<?php $this->date('c'); ?>"><?php echo timeAgo($this->created); ?></time>
                             <span class="reborn rb-twodots post-more"></span>
-                            <div class="post-action absolute"></div>
+                            <div class="post-action absolute flex">
+                                <a class="post-like flex-1" data-cid="<?php echo $this->cid; ?>"><span class="reborn rb-heart-o"></span> <span class="underline">赞</span></a>
+                                <a class="post-comment flex-1" data-cid="<?php echo $this->cid; ?>"><span class="reborn rb-comments"></span> <span class="underline">评论</span></a>
+                            </div>
                         </div>
                     </div>
                 </div>

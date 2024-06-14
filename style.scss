@@ -38,6 +38,14 @@ body {
   display: flex;
 }
 
+.flex-1 {
+  flex: 1;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
 #header {
   background-color: #333333;
   color: #FFFFFF;
@@ -119,7 +127,6 @@ body {
         }
       }
       .post-content {
-        flex: 1;
         padding: 10px;
         .post-author {
           color: #576b95;
@@ -149,6 +156,24 @@ body {
             border-radius: 3px;
             vertical-align: middle;
           }
+          .post-action {
+            right: 40px;
+            bottom: -6px;
+            width: 160px;
+            height: 36px;
+            line-height: 36px;
+            background-color: #606060;
+            border-radius: 4px;
+            color: #FFFFFF;
+            a {
+              display: block;
+              text-align: center;
+              .rb-heart-o:before,
+              .rb-comments:before {
+                font-size: 14px;
+              }
+            }
+          }
         }
       }
     }
@@ -163,4 +188,15 @@ body {
   text-align: center;
   padding: 10px;
   margin-top: 20px;
+}
+
+@media (min-width: 1140px) {
+  .content {
+    .main-content {
+      width: 100%;
+    }
+    .sidebar {
+      display: none;
+    }
+  }
 }
