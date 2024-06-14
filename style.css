@@ -1,0 +1,116 @@
+@charset "UTF-8";
+/* 主题名称: reborn
+ * 描述: 一个简单的Typecho主题
+ * 版本: 1.0
+ * 作者: Shawn
+ * 许可证: MIT
+ */
+html, body, * {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility; }
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+  background-color: #FFFFFF; }
+
+.relative {
+  position: relative; }
+
+.absolute {
+  position: absolute; }
+
+.clear-both {
+  clear: both; }
+
+.flex {
+  display: flex; }
+
+#header {
+  background-color: #333333;
+  color: #FFFFFF;
+  min-height: 70px; }
+  #header #nav {
+    margin: 0;
+    padding: 0;
+    background-color: #444444; }
+    #header #nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: center; }
+      #header #nav ul li {
+        display: inline;
+        padding: 0 20px; }
+        #header #nav ul li a {
+          color: #FFFFFF;
+          text-decoration: none;
+          text-transform: uppercase;
+          font-size: 16px; }
+    #header #nav .container {
+      text-align: left;
+      margin: 0 auto; }
+  #header #site-info {
+    text-align: right;
+    padding-top: 50px; }
+    #header #site-info #site-logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      right: 10px;
+      bottom: -20px; }
+    #header #site-info #site-title {
+      margin-right: 100px; }
+    #header #site-info #site-description {
+      width: 100%;
+      color: #808080;
+      margin-top: 25px; }
+  #header a {
+    color: #FFFFFF;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px; }
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto; }
+
+.content {
+  margin-top: 80px; }
+  .content .main-content {
+    width: 66.6667%;
+    float: left;
+    padding: 20px; }
+    .content .main-content .post-type {
+      margin: 10px auto;
+      border-bottom: 1px solid rgba(153, 153, 153, 0.24); }
+      .content .main-content .post-type .post-author-avatar {
+        width: 60px;
+        padding: 10px 8px 12px 10px; }
+        .content .main-content .post-type .post-author-avatar img {
+          width: 40px;
+          height: 40px;
+          border-radius: 4px; }
+      .content .main-content .post-type .post-content {
+        margin: auto;
+        padding: 10px; }
+        .content .main-content .post-type .post-content .post-author {
+          color: #576b95; }
+        .content .main-content .post-type .post-content img {
+          max-width: 100%; }
+  .content .sidebar {
+    width: 33.3333%;
+    float: left; }
+
+#footer {
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px; }
+
+/*# sourceMappingURL=style.css.map */
