@@ -1,55 +1,187 @@
-$(document).ready(function() {
-    $('.post-more').on('click', function() {
-        var $postAction = $(this).siblings('.post-action-container').find('.post-action');
-        if ($postAction.hasClass('show')) {
-            $postAction.removeClass('show');
-        } else {
-            $('.post-action').removeClass('show'); // 关闭所有其他打开的post-action
-            $postAction.addClass('show');
-        }
-    });
-    $(document).on('click', function(e) {
-        if (!$(e.target).closest('.post-meta-2').length) {
-            $('.post-action').removeClass('show');
-        }
-    });
-
-    $('.post-like').on('click', function(e) {
-        e.preventDefault();
-        var $this = $(this);
-        var cid = $this.data('cid');
-        var isLiked = $this.find('.rb-heart').length > 0;
-        $('.post-action').removeClass('show');
-        console.log('Sending AJAX request: cid=' + cid + ', action=' + (isLiked ? 'unlike' : 'like'));
-
-        $.ajax({
-            url: themeUrl + '/like.php',
-            type: 'POST',
-            data: {
-                cid: cid,
-                action: isLiked ? 'unlike' : 'like'
-            },
-            success: function(data) {
-                console.log('AJAX success: ', data); // 输出服务器返回的数据
-                if (data.success) {
-                    if (isLiked) {
-                        $this.html('<span class="reborn rb-heart-o"></span>&nbsp;<span class="underline">赞</span>');
-                    } else {
-                        $this.html('<span class="reborn rb-heart"></span>&nbsp;<span class="underline">取消</span>');
-                    }
-                    $('#post-like-area-'+cid).toggleClass('hidden', data.likes == 0).html('<span class="reborn rb-heart-o"></span>&nbsp;' + data.likes + '人喜欢');
+(function($) {
+    const App = {
+        // 点击展开点赞/评论
+        postMetaExpand: function () {
+            $('.post-more').on('click', function () {
+                var $postAction = $(this).siblings('.post-action-container').find('.post-action');
+                if ($postAction.hasClass('show')) {
+                    $postAction.removeClass('show');
                 } else {
-                    alert('操作失败，请稍后再试。');
-                    console.error('操作失败: ', data.message); // 输出错误信息
+                    $('.post-action').removeClass('show'); // 关闭所有其他打开的post-action
+                    $postAction.addClass('show');
                 }
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                alert('操作失败，请稍后再试。');
-                console.error('AJAX error: ' + textStatus, errorThrown); // 输出错误信息
-            }
-        });
+            });
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.post-meta-2').length) {
+                    $('.post-action').removeClass('show');
+                }
+            });
+        },
+        // 内容点赞
+        postLike: function () {
+            $('.post-like').on('click', function (e) {
+                e.preventDefault();
+                const $this = $(this);
+                const cid = $this.data('cid');
+                const isLiked = $this.find('.rb-heart').length > 0;
+                $('.post-action').removeClass('show');
+                $.ajax({
+                    url: themeUrl + '/like.php',
+                    type: 'POST',
+                    data: {
+                        cid: cid,
+                        action: isLiked ? 'unlike' : 'like'
+                    },
+                    success: function (data) {
+                        console.log('AJAX success: ', data); // 输出服务器返回的数据
+                        if (data.success) {
+                            if (isLiked) {
+                                $this.html('<span class="reborn rb-heart-o"></span>&nbsp;<span class="underline">赞</span>');
+                            } else {
+                                $this.html('<span class="reborn rb-heart"></span>&nbsp;<span class="underline">取消</span>');
+                            }
+                            $('#post-like-area-' + cid).toggleClass('hidden', data.likes === 0).html('<span class="reborn rb-heart-o"></span>&nbsp;' + data.likes + '人喜欢');
+                        } else {
+                            alert('操作失败，请稍后再试。');
+                            console.error('操作失败: ', data.message); // 输出错误信息
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('操作失败，请稍后再试。');
+                        console.error('AJAX error: ' + textStatus, errorThrown); // 输出错误信息
+                    }
+                });
+            });
+        },
+        // 评论
+        postComment: function () {
+            // 评论框显示逻辑
+            $(".post-comment").on('click', function (e) {
+                $('.post-action').removeClass('show');
+                let cid = $(this).data('cid');
+                let coid = $(this).data('coid');
+                let name = $(this).data('name');
+                // 显示评论区域
+                $('#post-comment-area-' + cid).removeClass('hidden');
+                let $commentForm = $(".comment-form");
+                // 获取现有评论框的数据
+                var existsCommentFormCoid = $commentForm.data("coid");
+                var existsCommentFormCid = $commentForm.data("cid");
+                // 检查是否已有评论表单
+                var hasCommentForm = $commentForm.length > 0;
+                // 移除所有评论表单
+                $commentForm.remove();
+                // 如果现有评论表单的 `coid` 和 `cid` 与当前点击的相同，则不再继续
+                if (hasCommentForm && existsCommentFormCoid === coid && existsCommentFormCid === cid) {
+                    return;
+                }
+                // 根据是否有 `coid` 决定插入表单的位置
+                if (coid === undefined) {
+                    $('#comments-cid-' + cid).prepend(getCommentFormHtml(cid));
+                } else {
+                    $('#comment-coid-' + coid).after(getCommentFormHtml(cid, coid, name));
+                }
+            });
+            // 评论提交逻辑
+            $(document).on('click', '.comment-btn', function () {
+                console.log('click');
+                const $this = $(this);
+                let cid = $this.data('cid');
+                let coid = $this.data('coid');
+                let author = $('.comment-input.comment-author').val();
+                let mail = $('.comment-input.comment-email').val();
+                let url = $('.comment-input.comment-url').val();
+                let text = $('.comment-textarea.comment-text').val();
+                let param = {
+                    cid: cid,
+                    parent: coid,
+                    author: author,
+                    mail: mail,
+                    url: url,
+                    text: text,
+                };
+                if (param.author === '') {
+                    alert('昵称不能为空');
+                    return;
+                }
+                if (commentsRequireMail === 1 && param.mail === '') {
+                    alert('邮件不能为空');
+                    return;
+                }
+                if (commentsRequireURL === 1 && param.url === '') {
+                    alert('网址不能为空');
+                    return;
+                }
+                if (param.text === '') {
+                    alert('评论内容不能为空');
+                    return;
+                }
+                // 记录信息到localStorage
+                window.localStorage.setItem('author', author);
+                window.localStorage.setItem('mail', mail);
+                window.localStorage.setItem('url', url);
+                $.ajax({
+                    url: themeUrl + '/comment.php',
+                    type: 'POST',
+                    data: param,
+                    success: function (data) {
+                        if (data.success) {
+                            // 处理成功的响应
+                            alert('评论成功');
+                            // location.reload(); // 刷新页面以显示新评论
+                        } else {
+                            alert('操作失败，请稍后再试。');
+                            console.error('操作失败: ', data.message); // 输出错误信息
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('操作失败，请稍后再试。');
+                        console.error('AJAX error: ' + textStatus, errorThrown); // 输出错误信息
+                    }
+                });
+            });
+        },
+    };
+    $(document).ready(function() {
+        App.postMetaExpand();
+        App.postLike();
+        App.postComment();
     });
+})(jQuery);
 
-});
-
-
+function getCommentFormHtml(cid, coid, name) {
+    let author = window.localStorage.getItem('author');
+    let mail = window.localStorage.getItem('mail');
+    let url = window.localStorage.getItem('url');
+    if (author == null) author = '';
+    if (mail == null) mail = '';
+    if (url == null) url = '';
+    let loginClass = '';
+    if (isLogin) {
+        author = userName;
+        mail = userEmail;
+        url = userUrl;
+        loginClass = ' hidden';
+    }
+    let placeHolder = '回复内容';
+    if (coid) {
+        placeHolder = '回复@' + name;
+    } else {
+        coid = 0;
+    }
+    return `
+        <div class="comment-form" data-cid="${cid}" data-coid="${coid}">
+            <div class="flex comment-meta${loginClass}">
+                <input placeholder="昵称*" type="text" class="comment-input comment-author" value="${author}"/>
+                <input placeholder="邮箱*" type="text" class="comment-input comment-email" value="${mail}"/>
+                <input placeholder="网址 " type="text" class="comment-input comment-url" value="${url}" />
+            </div>
+            <div class="comment-area">
+                <textarea placeholder="${placeHolder}" class="comment-textarea comment-text"></textarea>
+            </div>
+            <div class="comment-footer">
+                <button class="comment-btn underline" data-cid="${cid}" data-coid="${coid}">回复</button>
+            </div>
+        </div>
+    `;
+}

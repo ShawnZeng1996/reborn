@@ -34,9 +34,9 @@
                         </div>
                         <div class="post-meta-3">
                             <div id="post-like-area-<?php echo $this->cid; ?>" class="post-like-area<?php echo $likes ? '' : ' hidden'; ?>"><span class="reborn rb-heart-o"></span>&nbsp;<?php echo $likes; ?>人喜欢</div>
-                            <div class="post-comment-area<?php if(!hasComments($this->cid)) echo ' hidden'; ?>">
+                            <div id="post-comment-area-<?php echo $this->cid; ?>"  class="post-comment-area<?php if(!hasComments($this->cid)) echo ' hidden'; ?>">
                                 <!-- 评论列表 -->
-                                <ul id="comments-<?php echo $this->cid; ?>">
+                                <ul id="comments-cid-<?php echo $this->cid; ?>">
                                     <?php
                                     $comments = getCommentsWithReplies($this->cid, 0, 6); // 这里的 10 表示获取最多 10 条顶级评论
                                     if ($comments) {

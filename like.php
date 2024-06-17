@@ -10,7 +10,6 @@ header('Content-Type: application/json');
 // error_log('like.php has been called'); // 添加一个日志记录，用于验证日志输出
 $response = array('success' => false, 'likes' => 0, 'message' => '操作失败');
 
-
 try {
     // 检查请求方法是否为 POST
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
