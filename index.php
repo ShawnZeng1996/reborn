@@ -9,20 +9,7 @@
                 <?php $this->need('/modules/shuoshuo-item.php'); ?>
             <?php else: ?>
                 <!-- 文章 -->
-                <div class="post post-type flex">
-                    <div class="post-author-avatar">
-                        <?php if ($this->author->mail): ?>
-                            <img src="<?php echo getGravatarUrl($this->author->mail, 80); ?>" alt="<?php $this->author(); ?>" class="author-avatar" />
-                        <?php endif; ?>
-                    </div>
-                    <div class="post-content">
-                        <div class="post-author"><?php $this->author(); ?></div>
-                        <div><?php $this->content(); ?></div>
-                        <div class="post-meta">
-                            <time class="post-publish-time" datetime="<?php $this->date('c'); ?>"><?php echo timeAgo($this->created); ?></time>
-                        </div>
-                    </div>
-                </div>
+                <?php $this->need('/modules/post-item.php'); ?>
             <?php endif; ?>
         <?php endwhile; ?>
 

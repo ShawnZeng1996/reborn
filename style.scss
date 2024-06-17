@@ -5,7 +5,8 @@
  * 许可证: MIT
  */
 
-$global_font_size: 16px;
+$global_font_size: 14px;
+$default_font_family: Arial, sans-serif;
 
 html, body, * {
   margin: 0;
@@ -16,7 +17,7 @@ html, body, * {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: $default_font_family;
   font-size: $global_font_size;
   line-height: 1.6;
   padding: 0;
@@ -153,6 +154,21 @@ ul, ol, li {
         .post-author {
           color: #576b95;
           font-weight: bold;
+          margin-bottom: 5px;
+        }
+        .post-item {
+          display: flex;
+          padding: 5px;
+          background-color: #F6F6F6;
+          border-radius: 2px;
+          text-decoration: none;
+          color: black;
+          line-height: 40px;
+          .post-thumbnail {
+            width: 40px;
+            height: 40px;
+            margin-right: 5px;
+          }
         }
         div, img {
           max-width: 100%;
@@ -253,9 +269,17 @@ ul, ol, li {
               text-decoration: none;
             }
             .comment-form {
+              border: 1px solid #FFFFFF;
               background-color: #FFFFFF;
               padding: 5px;
               margin: 5px 0;
+              border-radius: 2px;
+            }
+            .comment-form.focus {
+              border: 1px solid #04c160;
+              .comment-textarea {
+                min-height: 100px;
+              }
             }
             .comment-meta {
               display: flex;
@@ -264,6 +288,7 @@ ul, ol, li {
               .comment-input {
                 background-color: #F6F6F6;
                 padding: 5px;
+                font-family: $default_font_family;
                 font-size: $global_font_size;
                 border-radius: 2px;
                 outline: none;
@@ -288,6 +313,7 @@ ul, ol, li {
                 min-height: 80px;
                 resize: none;
                 padding: 5px;
+                font-family: $default_font_family;
                 font-size: $global_font_size;
               }
             }

@@ -82,16 +82,24 @@
                     $('#comment-coid-' + coid).after(getCommentFormHtml(cid, coid, name));
                 }
             });
+            $(document).on('click', '.comment-form', function () {
+                $(this).addClass('focus');
+            });
+            $(document).on('click', function (e) {
+                if (!$(e.target).closest('.comment-form').length) {
+                    $('.comment-form').removeClass('focus');
+                }
+            });
             // 评论提交逻辑
-            $(document).on('click', '.comment-btn', function () {
-                console.log('click');
+            $(document).on('click', '.comment-btn', function (e) {
+                e.stopPropagation();
                 const $this = $(this);
                 let cid = $this.data('cid');
                 let coid = $this.data('coid');
-                let author = $('.comment-input.comment-author').val();
-                let mail = $('.comment-input.comment-email').val();
-                let url = $('.comment-input.comment-url').val();
-                let text = $('.comment-textarea.comment-text').val();
+                let author = $('.comment-input.comment-input-author').val();
+                let mail = $('.comment-input.comment-input-email').val();
+                let url = $('.comment-input.comment-input-url').val();
+                let text = $('.comment-textarea.comment-input-text').val();
                 let param = {
                     cid: cid,
                     parent: coid,
@@ -99,6 +107,7 @@
                     mail: mail,
                     url: url,
                     text: text,
+                    uid: userId
                 };
                 if (param.author === '') {
                     alert('昵称不能为空');
@@ -128,6 +137,7 @@
                         if (data.success) {
                             // 处理成功的响应
                             alert('评论成功');
+                            $(".comment-form").remove();
                             // location.reload(); // 刷新页面以显示新评论
                         } else {
                             alert('操作失败，请稍后再试。');
@@ -172,12 +182,12 @@ function getCommentFormHtml(cid, coid, name) {
     return `
         <div class="comment-form" data-cid="${cid}" data-coid="${coid}">
             <div class="flex comment-meta${loginClass}">
-                <input placeholder="昵称*" type="text" class="comment-input comment-author" value="${author}"/>
-                <input placeholder="邮箱*" type="text" class="comment-input comment-email" value="${mail}"/>
-                <input placeholder="网址 " type="text" class="comment-input comment-url" value="${url}" />
+                <input placeholder="昵称" type="text" class="comment-input comment-input-author" name="comment-author" value="${author}"/>
+                <input placeholder="邮箱" type="text" class="comment-input comment-input-email" name="comment-email" value="${mail}"/>
+                <input placeholder="网址" type="text" class="comment-input comment-input-url" name="comment-url" value="${url}" />
             </div>
             <div class="comment-area">
-                <textarea placeholder="${placeHolder}" class="comment-textarea comment-text"></textarea>
+                <textarea placeholder="${placeHolder}" class="comment-textarea comment-input-text" name="comment-text"></textarea>
             </div>
             <div class="comment-footer">
                 <button class="comment-btn underline" data-cid="${cid}" data-coid="${coid}">回复</button>

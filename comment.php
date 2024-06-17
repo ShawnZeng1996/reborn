@@ -17,6 +17,7 @@ $response = array('success' => false, 'message' => '操作失败');
 try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cid = isset($_POST['cid']) ? intval($_POST['cid']) : 0;
+        $uid = isset($_POST['uid']) ? intval($_POST['uid']) : 0;
         $parent = isset($_POST['parent']) ? intval($_POST['parent']) : 0;
         $author = isset($_POST['author']) ? trim($_POST['author']) : '';
         $mail = isset($_POST['mail']) ? trim($_POST['mail']) : '';
@@ -37,13 +38,19 @@ try {
         $clientIp = $_SERVER['REMOTE_ADDR'];
         // 获取客户端 User-Agent
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
+        if ( $ownerId['authorId'] === $uid ) {
+            $status = 'approved';
+        } else {
+            $status = $commentsRequireModeration['value'] ? 'approved' : 'waiting';
+        }
+
 
         // 插入评论
         $comment = array(
             'cid' => $cid,
             'created' => time(),
             'author' => $author,
-            'authorId' => 0,
+            'authorId' => $uid,
             'ownerId' => $ownerId['authorId'],
             'mail' => $mail,
             'url' => $url,
@@ -51,7 +58,7 @@ try {
             'agent' => $userAgent,
             'text' => $text,
             'type' => 'comment',
-            'status' => $commentsRequireModeration['value'] ? 'approved' : 'waiting',
+            'status' => $status,
             'parent' => $parent,
         );
 
@@ -65,7 +72,7 @@ try {
                 'author' => $author,
                 'text' => $text,
                 'url' => $url,
-                'status' => $commentsRequireModeration['value'] ? 'approved' : 'waiting',
+                'status' => $status,
             );
         } else {
             $response['message'] = '评论失败，请稍后再试';

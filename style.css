@@ -14,7 +14,7 @@ html, body, * {
 
 body {
   font-family: Arial, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.6;
   padding: 0;
   margin: 0;
@@ -129,7 +129,20 @@ ul, ol, li {
         overflow: hidden; }
         .content .main-content .post-type .post-content .post-author {
           color: #576b95;
-          font-weight: bold; }
+          font-weight: bold;
+          margin-bottom: 5px; }
+        .content .main-content .post-type .post-content .post-item {
+          display: flex;
+          padding: 5px;
+          background-color: #F6F6F6;
+          border-radius: 2px;
+          text-decoration: none;
+          color: black;
+          line-height: 40px; }
+          .content .main-content .post-type .post-content .post-item .post-thumbnail {
+            width: 40px;
+            height: 40px;
+            margin-right: 5px; }
         .content .main-content .post-type .post-content div, .content .main-content .post-type .post-content img {
           max-width: 100%; }
         .content .main-content .post-type .post-content .post-meta-1.post-location {
@@ -178,7 +191,7 @@ ul, ol, li {
               .content .main-content .post-type .post-content .post-meta-2 .post-action a .rb-heart:before,
               .content .main-content .post-type .post-content .post-meta-2 .post-action a .rb-heart-o:before,
               .content .main-content .post-type .post-content .post-meta-2 .post-action a .rb-comments:before {
-                font-size: 16px; }
+                font-size: 14px; }
               .content .main-content .post-type .post-content .post-meta-2 .post-action a .rb-heart:before {
                 color: red; }
             .content .main-content .post-type .post-content .post-meta-2 .post-action .post-like:before {
@@ -204,7 +217,7 @@ ul, ol, li {
             color: #576b95;
             font-weight: 600; }
             .content .main-content .post-type .post-content .post-meta-3 .post-like-area .rb-heart-o:before {
-              font-size: 16px; }
+              font-size: 14px; }
           .content .main-content .post-type .post-content .post-meta-3 .post-comment-area {
             padding: 5px 10px; }
             .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-author {
@@ -212,9 +225,15 @@ ul, ol, li {
               font-weight: 600;
               text-decoration: none; }
             .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-form {
+              border: 1px solid #FFFFFF;
               background-color: #FFFFFF;
               padding: 5px;
-              margin: 5px 0; }
+              margin: 5px 0;
+              border-radius: 2px; }
+            .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-form.focus {
+              border: 1px solid #04c160; }
+              .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-form.focus .comment-textarea {
+                min-height: 100px; }
             .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-meta {
               display: flex;
               align-items: center;
@@ -222,7 +241,8 @@ ul, ol, li {
               .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-meta .comment-input {
                 background-color: #F6F6F6;
                 padding: 5px;
-                font-size: 16px;
+                font-family: Arial, sans-serif;
+                font-size: 14px;
                 border-radius: 2px;
                 outline: none;
                 transition: all .3s;
@@ -242,7 +262,8 @@ ul, ol, li {
               min-height: 80px;
               resize: none;
               padding: 5px;
-              font-size: 16px; }
+              font-family: Arial, sans-serif;
+              font-size: 14px; }
             .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-footer {
               background-color: #F6F6F6;
               padding: 5px;
@@ -252,7 +273,7 @@ ul, ol, li {
                 color: #FFFFFF;
                 padding: 5px 10px;
                 border-radius: 5px;
-                font-size: 16px;
+                font-size: 14px;
                 cursor: pointer; }
   .content .sidebar {
     width: 33.3333%;

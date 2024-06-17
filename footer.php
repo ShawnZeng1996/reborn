@@ -13,14 +13,17 @@
             $name = json_encode($user->screenName); // 用户昵称
             $mail = json_encode($user->mail); // 用户邮箱
             $url = json_encode($user->url); // 用户网址
+            $uid = json_encode($user->uid); // 用户网址
         } else {
             $name = 'null';
             $mail = 'null';
             $url = 'null';
+            $uid = 0;
         } ?>
         var userName = <?php echo $name; ?>;
         var userEmail = <?php echo $mail; ?>;
         var userUrl = <?php echo $url; ?>;
+        var userId = <?php echo $uid; ?>;
         var commentsRequireMail = <?php echo $this->options->commentsRequireMail; ?>;
         var commentsRequireURL = <?php echo $this->options->commentsRequireURL; ?>;
     </script>
