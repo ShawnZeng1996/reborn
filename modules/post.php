@@ -7,9 +7,9 @@ $likes = $likeData['likes'];
 <article class="post post-type">
     <h3 class="post-title"><?php $this->title(); ?></h3>
     <div class="post-meta">
-        <span class="post-author"><?php $this->author(); ?></span>&nbsp;&nbsp;
+        <span class="post-author"><?php $this->author(); ?></span>
         <time class="post-publish-time" datetime="<?php $this->date('c'); ?>">
-            &nbsp;&nbsp;<?php $this->date('Y-m-d H:i'); ?>
+            <?php $this->date('Y-m-d H:i'); ?>
         </time>
         <?php if ($this->fields->location != ''): ?>
             <span class="post-location"><?php echo $this->fields->location; ?></span>

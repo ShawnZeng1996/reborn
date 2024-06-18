@@ -189,17 +189,23 @@ function isLikeByCid($cid)
 function getCommentsWithReplies($cid, $parent = 0, $limit = null)
 {
     $db = Typecho_Db::get();
+    $options = Typecho_Widget::widget('Widget_Options');
+    $commentsOrder = $options->commentsOrder; // 获取评论排序方式
+
     $select = $db->select('coid', 'author', 'authorId', 'ownerId', 'mail', 'text', 'created', 'parent', 'url', 'cid')
         ->from('table.comments')
         ->where('cid = ?', $cid)
         ->where('parent = ?', $parent)
         ->where('type = ?', 'comment')
         ->where('status = ?', 'approved')
-        ->order('created', Typecho_Db::SORT_ASC);
+        ->order('created', $commentsOrder); // 动态设置排序方式
+
     if ($limit !== null) {
         $select->limit($limit);
     }
+
     $comments = $db->fetchAll($select);
+
     foreach ($comments as &$comment) {
         $comment['replies'] = getCommentsWithReplies($cid, $comment['coid']);
     }
@@ -259,6 +265,30 @@ function renderComments($comments, $link, $maxTopLevelComments = 5)
     }
 }
 
+function renderPostComments($comments, $parentAuthor = '') {
+    foreach ($comments as $comment) {
+        echo '<li id="comment-coid-' . $comment['coid'] . '" class="comment-item flex">';
+        echo '<a class="comment-author-avatar" rel="nofollow" target="_blank" href="' . $comment['url'] . '"><img src="' . getGravatarUrl($comment['mail'], 40) . '" alt="' . htmlspecialchars($comment['author']) . '"></a>';
+        echo '<div class="flex flex-1 comment-body">';
+        echo '<div class="flex-1">';
+        echo '<a class="comment-author" rel="nofollow" target="_blank" href="' . $comment['url'] . '">' . htmlspecialchars($comment['author']) . '</a>';
+        if (!empty($parentAuthor)) {
+            echo '回复<span class="comment-author m-l-10">' . htmlspecialchars($parentAuthor) . '</span>';
+        }
+        echo '<time class="comment-time" datetime="' . $comment['created'] . '">' . timeAgo($comment['created']) . '</time>';
+        echo '</div>';
+        echo '<a class="write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">回复</a>';
+        echo '<div class="comment-content write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . htmlspecialchars($comment['text']) . '</div>';
+
+        echo '</div>';
+        if (!empty($comment['replies'])) {
+            echo '<ul class="comment-reply flex">';
+            renderPostComments($comment['replies'], $comment['author']);
+            echo '</ul>';
+        }
+        echo '</li>';
+    }
+}
 
 /**
  * 递归渲染回复评论

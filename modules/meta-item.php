@@ -9,7 +9,7 @@ $likes = $likeData['likes'];
 <?php endif; ?>
 <div class="post-meta-2 relative">
             <span>
-                <time class="post-publish-time" datetime="<?php $this->date('c'); ?>"><?php echo timeAgo($this->created); ?></time>&nbsp;&nbsp;
+                <time class="post-publish-time" datetime="<?php $this->date('c'); ?>"><?php echo timeAgo($this->created); ?></time>
                 <span class="post-view">阅读&nbsp;<span id="post-view-cid-<?php echo $this->cid; ?>"><?php getPostView($this) ?></span></span>
             </span>
     <span class="reborn rb-twodots post-more"></span>

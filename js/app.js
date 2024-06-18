@@ -111,7 +111,19 @@
                     $('#comment-coid-' + coid).after(getCommentFormHtml(cid, coid, name));
                 }
             });
+            $(".write-comment").on('click',function (e) {
+                $('.none-comment').remove();
+                $(".comment-form").remove();
+                let cid = $(this).data('cid');
+                let coid = $(this).data('coid');
+                let name = $(this).data('name');
+                if (coid === undefined) {
+                    $('.form-place').after(getCommentFormHtml(cid));
+                } else {
+                    $('#comment-coid-' + coid).after(getCommentFormHtml(cid, coid, name));
+                }
 
+            });
 
             $(document).on('click', '.comment-form', function () {
                 $(this).addClass('focus');
