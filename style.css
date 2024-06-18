@@ -14,7 +14,7 @@ html, body, * {
 
 body {
   font-family: Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.6;
   padding: 0;
   margin: 0;
@@ -42,7 +42,11 @@ ul, ol, li {
   text-decoration: underline; }
 
 .hidden {
-  display: none; }
+  display: none !important; }
+
+.color-link {
+  color: #576B95;
+  font-weight: 600; }
 
 .unselectable {
   -webkit-user-select: none;
@@ -53,6 +57,11 @@ ul, ol, li {
   /* Internet Explorer/Edge */
   user-select: none;
   /* Non-prefixed version, currently supported by Chrome, Opera and Safari */ }
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
 
 .separator:before {
   content: '：'; }
@@ -115,8 +124,7 @@ ul, ol, li {
     float: left;
     padding: 20px; }
     .content .main-content .post-type {
-      margin: 10px auto;
-      border-bottom: 1px solid rgba(153, 153, 153, 0.24); }
+      margin: 10px auto; }
       .content .main-content .post-type .post-author-avatar {
         width: 60px;
         padding: 10px 8px 12px 10px; }
@@ -126,9 +134,10 @@ ul, ol, li {
           border-radius: 4px; }
       .content .main-content .post-type .post-content {
         padding: 10px;
+        line-height: 1.75em;
         overflow: hidden; }
         .content .main-content .post-type .post-content .post-author {
-          color: #576b95;
+          color: #576B95;
           font-weight: bold;
           margin-bottom: 5px; }
         .content .main-content .post-type .post-content .post-item {
@@ -138,23 +147,32 @@ ul, ol, li {
           border-radius: 2px;
           text-decoration: none;
           color: black;
-          line-height: 40px; }
+          line-height: 50px;
+          cursor: pointer; }
           .content .main-content .post-type .post-content .post-item .post-thumbnail {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             margin-right: 5px; }
+          .content .main-content .post-type .post-content .post-item .post-title {
+            font-weight: normal;
+            font-size: 16px; }
+        .content .main-content .post-type .post-content .shuoshuo-item {
+          display: block;
+          text-decoration: none;
+          color: black;
+          cursor: pointer; }
         .content .main-content .post-type .post-content div, .content .main-content .post-type .post-content img {
           max-width: 100%; }
         .content .main-content .post-type .post-content .post-meta-1.post-location {
-          color: #576b95;
+          color: #576B95;
           margin-top: 5px; }
         .content .main-content .post-type .post-content .post-meta-2 {
           display: flex;
           align-items: center;
           justify-content: space-between;
           margin-top: 5px; }
-          .content .main-content .post-type .post-content .post-meta-2 .post-publish-time {
-            color: #9ca3af;
+          .content .main-content .post-type .post-content .post-meta-2 .post-publish-time, .content .main-content .post-type .post-content .post-meta-2 .post-view {
+            color: rgba(0, 0, 0, 0.3);
             vertical-align: middle; }
           .content .main-content .post-type .post-content .post-meta-2 .post-more {
             display: inline-block;
@@ -162,7 +180,7 @@ ul, ol, li {
             height: 20px;
             line-height: 20px;
             background-color: #f7f7f7;
-            color: #576b95;
+            color: #576B95;
             cursor: pointer;
             text-align: center;
             border-radius: 3px;
@@ -191,7 +209,7 @@ ul, ol, li {
               .content .main-content .post-type .post-content .post-meta-2 .post-action a .rb-heart:before,
               .content .main-content .post-type .post-content .post-meta-2 .post-action a .rb-heart-o:before,
               .content .main-content .post-type .post-content .post-meta-2 .post-action a .rb-comments:before {
-                font-size: 14px; }
+                font-size: 16px; }
               .content .main-content .post-type .post-content .post-meta-2 .post-action a .rb-heart:before {
                 color: red; }
             .content .main-content .post-type .post-content .post-meta-2 .post-action .post-like:before {
@@ -214,14 +232,16 @@ ul, ol, li {
             border-top: none; }
           .content .main-content .post-type .post-content .post-meta-3 .post-like-area {
             padding: 5px 10px;
-            color: #576b95;
+            color: #576B95;
             font-weight: 600; }
             .content .main-content .post-type .post-content .post-meta-3 .post-like-area .rb-heart-o:before {
-              font-size: 14px; }
+              font-size: 16px; }
           .content .main-content .post-type .post-content .post-meta-3 .post-comment-area {
             padding: 5px 10px; }
+            .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .more-comments {
+              color: #576B95; }
             .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-author {
-              color: #576b95;
+              color: #576B95;
               font-weight: 600;
               text-decoration: none; }
             .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-form {
@@ -242,7 +262,7 @@ ul, ol, li {
                 background-color: #F6F6F6;
                 padding: 5px;
                 font-family: Arial, sans-serif;
-                font-size: 14px;
+                font-size: 16px;
                 border-radius: 2px;
                 outline: none;
                 transition: all .3s;
@@ -263,7 +283,7 @@ ul, ol, li {
               resize: none;
               padding: 5px;
               font-family: Arial, sans-serif;
-              font-size: 14px; }
+              font-size: 16px; }
             .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-footer {
               background-color: #F6F6F6;
               padding: 5px;
@@ -273,8 +293,46 @@ ul, ol, li {
                 color: #FFFFFF;
                 padding: 5px 10px;
                 border-radius: 5px;
-                font-size: 14px;
+                font-size: 16px;
                 cursor: pointer; }
+      .content .main-content .post-type > .post-title {
+        font-size: 22px;
+        line-height: 1.4;
+        margin-bottom: 14px;
+        font-weight: 400; }
+      .content .main-content .post-type > .post-meta {
+        font-size: 15px;
+        margin-bottom: 22px;
+        line-height: 20px;
+        word-wrap: break-word; }
+        .content .main-content .post-type > .post-meta .post-author {
+          color: #576B95; }
+        .content .main-content .post-type > .post-meta .post-publish-time, .content .main-content .post-type > .post-meta .post-location {
+          color: rgba(0, 0, 0, 0.3); }
+      .content .main-content .post-type #post-content {
+        padding: 0; }
+      .content .main-content .post-type > .post-footer {
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px; }
+        .content .main-content .post-type > .post-footer .post-view {
+          color: rgba(0, 0, 0, 0.3);
+          font-size: 15px; }
+        .content .main-content .post-type > .post-footer .post-zan {
+          display: inline-block;
+          color: #576B95;
+          cursor: pointer; }
+    .content .main-content .post-type + .post-type {
+      border-top: 1px solid rgba(153, 153, 153, 0.24); }
+    .content .main-content > #comments {
+      border-top: 1px solid rgba(153, 153, 153, 0.24); }
+      .content .main-content > #comments .none-comment {
+        text-align: center;
+        height: 80px;
+        line-height: 80px; }
+        .content .main-content > #comments .none-comment .write-comment {
+          color: #576B95;
+          cursor: pointer; }
   .content .sidebar {
     width: 33.3333%;
     float: left; }

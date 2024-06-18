@@ -20,7 +20,7 @@ try {
         Typecho_Cookie::setPrefix($siteUrl['value']);
         if ($cid > 0 && in_array($action, ['like', 'unlike'])) {
             $prefix = $db->getPrefix();
-            $likeRecording = json_decode(Typecho_Cookie::get('__typechoLikeRecording', '[]'), true);
+            $likeRecording = json_decode(Typecho_Cookie::get('__typecho_post_like', '[]'), true);
             // 查询出点赞数量
             $likes = $db->fetchRow($db->select('likes')->from('table.contents')->where('cid = ?', $cid));
             if ($action === 'like') {
@@ -28,7 +28,7 @@ try {
                     // 执行点赞操作
                     $db->query($db->update($prefix . 'contents')->rows(array('likes' => $likes['likes'] + 1))->where('cid = ?', $cid));
                     $likeRecording[] = $cid;
-                    Typecho_Cookie::set('__typechoLikeRecording', json_encode($likeRecording), time() + 365*24*3600);
+                    Typecho_Cookie::set('__typecho_post_like', json_encode($likeRecording), time() + 365*24*3600);
                     $response['message'] = '点赞成功';
                 } else {
                     $response['message'] = '已经点赞过';
@@ -38,7 +38,7 @@ try {
                     // 执行取消点赞操作
                     unset($likeRecording[$key]);
                     $db->query($db->update($prefix . 'contents')->rows(array('likes' => $likes['likes'] - 1))->where('cid = ?', $cid));
-                    Typecho_Cookie::set('__typechoLikeRecording', json_encode(array_values($likeRecording)));
+                    Typecho_Cookie::set('__typecho_post_like', json_encode(array_values($likeRecording)));
                     $response['message'] = '取消点赞成功';
                 } else {
                     $response['message'] = '尚未点赞';
@@ -48,6 +48,7 @@ try {
             $likes = $db->fetchRow($db->select('likes')->from('table.contents')->where('cid = ?', $cid));
             $response['success'] = true;
             $response['likes'] = $likes['likes'];
+            $response['views'] = getPostView($cid);
         } else {
             $response['message'] = '无效的文章 ID 或操作';
         }
@@ -59,3 +60,32 @@ try {
 }
 echo json_encode($response);
 exit;
+
+function getPostView($cid)
+{
+    $db = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+    $siteUrl = $db->fetchRow($db->select('value')->from('table.options')->where('name = ?', 'siteUrl'));
+    Typecho_Cookie::setPrefix($siteUrl['value']);
+    // 获取当前文章的浏览量
+    $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
+    $views = $row ? (int) $row['views'] : 0;
+
+    // 增加浏览量
+    $cookieViews = Typecho_Cookie::get('__post_views');
+    $viewedPosts = $cookieViews ? explode(',', $cookieViews) : [];
+
+    if (!in_array($cid, $viewedPosts)) {
+        $db->query($db->update('table.contents')->rows(array('views' => $views + 1))->where('cid = ?', $cid));
+        $viewedPosts[] = $cid;
+        Typecho_Cookie::set('__post_views', implode(',', $viewedPosts)); // 记录查看cookie
+        $views++; // 更新本次显示的浏览量
+    }
+    // 格式化浏览量
+    if ($views >= 10000) {
+        $formattedViews = number_format($views / 10000, 1) . '万';
+    } else {
+        $formattedViews = $views;
+    }
+    return $formattedViews;
+}

@@ -14,16 +14,19 @@
             $mail = json_encode($user->mail); // 用户邮箱
             $url = json_encode($user->url); // 用户网址
             $uid = json_encode($user->uid); // 用户网址
+            $avatar = json_encode(getGravatarUrl($user->mail));
         } else {
-            $name = 'null';
-            $mail = 'null';
-            $url = 'null';
+            $name = null;
+            $mail = null;
+            $url = null;
             $uid = 0;
+            $avatar = '';
         } ?>
         var userName = <?php echo $name; ?>;
         var userEmail = <?php echo $mail; ?>;
         var userUrl = <?php echo $url; ?>;
         var userId = <?php echo $uid; ?>;
+        var userAvatar = <?php echo $avatar; ?>;
         var commentsRequireMail = <?php echo $this->options->commentsRequireMail; ?>;
         var commentsRequireURL = <?php echo $this->options->commentsRequireURL; ?>;
     </script>

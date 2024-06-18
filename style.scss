@@ -5,8 +5,10 @@
  * 许可证: MIT
  */
 
-$global_font_size: 14px;
+$global_font_size: 16px;
 $default_font_family: Arial, sans-serif;
+$global_link_color: #576B95;
+$global_grey_color: rgba(0, 0, 0, .3);
 
 html, body, * {
   margin: 0;
@@ -53,7 +55,12 @@ ul, ol, li {
 }
 
 .hidden {
-  display: none;
+  display: none!important;
+}
+
+.color-link {
+  color: $global_link_color;
+  font-weight: 600;
 }
 
 .unselectable {
@@ -61,6 +68,12 @@ ul, ol, li {
   -moz-user-select: none;    /* Firefox */
   -ms-user-select: none;     /* Internet Explorer/Edge */
   user-select: none;         /* Non-prefixed version, currently supported by Chrome, Opera and Safari */
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .separator:before {
@@ -138,7 +151,6 @@ ul, ol, li {
     padding: 20px;
     .post-type {
       margin: 10px auto;
-      border-bottom: 1px solid rgba(153, 153, 153, 0.24);
       .post-author-avatar {
         width: 60px;
         padding: 10px 8px 12px 10px;
@@ -150,9 +162,10 @@ ul, ol, li {
       }
       .post-content {
         padding: 10px;
+        line-height: 1.75em;
         overflow: hidden;
         .post-author {
-          color: #576b95;
+          color: $global_link_color;
           font-weight: bold;
           margin-bottom: 5px;
         }
@@ -163,18 +176,29 @@ ul, ol, li {
           border-radius: 2px;
           text-decoration: none;
           color: black;
-          line-height: 40px;
+          line-height: 50px;
+          cursor: pointer;
           .post-thumbnail {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             margin-right: 5px;
           }
+          .post-title {
+            font-weight: normal;
+            font-size: $global_font_size;
+          }
+        }
+        .shuoshuo-item {
+          display: block;
+          text-decoration: none;
+          color: black;
+          cursor: pointer;
         }
         div, img {
           max-width: 100%;
         }
         .post-meta-1.post-location {
-          color: #576b95;
+          color: $global_link_color;
           margin-top: 5px;
         }
         .post-meta-2 {
@@ -182,8 +206,8 @@ ul, ol, li {
           align-items: center;
           justify-content: space-between;
           margin-top: 5px;
-          .post-publish-time {
-            color: #9ca3af;
+          .post-publish-time, .post-view {
+            color: $global_grey_color;
             vertical-align: middle;
           }
           .post-more {
@@ -192,7 +216,7 @@ ul, ol, li {
             height: 20px;
             line-height: 20px;
             background-color: #f7f7f7;
-            color: #576b95;
+            color: $global_link_color;
             cursor: pointer;
             text-align: center;
             border-radius: 3px;
@@ -255,7 +279,7 @@ ul, ol, li {
           }
           .post-like-area {
             padding: 5px 10px;
-            color: #576b95;
+            color: $global_link_color;
             font-weight: 600;
             .rb-heart-o:before {
               font-size: $global_font_size;
@@ -263,8 +287,11 @@ ul, ol, li {
           }
           .post-comment-area {
             padding: 5px 10px;
+            .more-comments {
+              color: $global_link_color;
+            }
             .comment-author {
-              color: #576b95;
+              color: $global_link_color;
               font-weight: 600;
               text-decoration: none;
             }
@@ -331,6 +358,56 @@ ul, ol, li {
               }
             }
           }
+        }
+      }
+      > .post-title {
+        font-size: 22px;
+        line-height: 1.4;
+        margin-bottom: 14px;
+        font-weight: 400;
+      }
+      > .post-meta {
+        font-size: 15px;
+        margin-bottom: 22px;
+        line-height: 20px;
+        word-wrap: break-word;
+        .post-author {
+          color: $global_link_color;
+        }
+        .post-publish-time, .post-location {
+          color: $global_grey_color;
+        }
+      }
+      #post-content {
+        padding: 0;
+      }
+      > .post-footer {
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 20px;
+        .post-view {
+          color: $global_grey_color;
+          font-size: 15px;
+        }
+        .post-zan {
+          display: inline-block;
+          color: $global_link_color;
+          cursor: pointer;
+        }
+      }
+    }
+    .post-type + .post-type {
+      border-top: 1px solid rgba(153, 153, 153, 0.24);
+    }
+    > #comments {
+      border-top: 1px solid rgba(153, 153, 153, 0.24);
+      .none-comment {
+        text-align: center;
+        height: 80px;
+        line-height: 80px;
+        .write-comment {
+          color: $global_link_color;
+          cursor: pointer;
         }
       }
     }

@@ -2,12 +2,7 @@
 // 包含Typecho的必要文件
 require_once dirname(__FILE__, 4) . DIRECTORY_SEPARATOR . 'config.inc.php';
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-require_once __TYPECHO_ROOT_DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'Typecho' . DIRECTORY_SEPARATOR . 'Common.php';
-require_once __TYPECHO_ROOT_DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'Widget' . DIRECTORY_SEPARATOR . 'Base.php';
-require_once __TYPECHO_ROOT_DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'Widget' . DIRECTORY_SEPARATOR . 'Options.php';
-require_once __TYPECHO_ROOT_DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'Typecho' . DIRECTORY_SEPARATOR . 'Request.php';
 require_once __TYPECHO_ROOT_DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'Typecho' . DIRECTORY_SEPARATOR . 'Cookie.php';
-require_once __TYPECHO_ROOT_DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'Typecho' . DIRECTORY_SEPARATOR . 'Plugin.php';
 require_once __TYPECHO_ROOT_DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'Typecho' . DIRECTORY_SEPARATOR . 'Db.php';
 
 header('Content-Type: application/json');
@@ -67,6 +62,7 @@ try {
         if ($insertId) {
             $response['success'] = true;
             $response['message'] = '评论成功';
+            $response['views'] = getPostView($cid);
             $response['comment'] = array(
                 'coid' => $insertId,
                 'author' => $author,
@@ -87,3 +83,31 @@ try {
 echo json_encode($response);
 exit;
 
+function getPostView($cid)
+{
+    $db = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+    $siteUrl = $db->fetchRow($db->select('value')->from('table.options')->where('name = ?', 'siteUrl'));
+    Typecho_Cookie::setPrefix($siteUrl['value']);
+    // 获取当前文章的浏览量
+    $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
+    $views = $row ? (int) $row['views'] : 0;
+
+    // 增加浏览量
+    $cookieViews = Typecho_Cookie::get('__post_views');
+    $viewedPosts = $cookieViews ? explode(',', $cookieViews) : [];
+
+    if (!in_array($cid, $viewedPosts)) {
+        $db->query($db->update('table.contents')->rows(array('views' => $views + 1))->where('cid = ?', $cid));
+        $viewedPosts[] = $cid;
+        Typecho_Cookie::set('__post_views', implode(',', $viewedPosts)); // 记录查看cookie
+        $views++; // 更新本次显示的浏览量
+    }
+    // 格式化浏览量
+    if ($views >= 10000) {
+        $formattedViews = number_format($views / 10000, 1) . '万';
+    } else {
+        $formattedViews = $views;
+    }
+    return $formattedViews;
+}

@@ -19,6 +19,38 @@
         },
         // 内容点赞
         postLike: function () {
+            $('.post-zan').on('click', function (e) {
+                e.preventDefault();
+                const $this = $(this);
+                const cid = $this.data('cid');
+                const isLiked = $this.find('.rb-like').length > 0;
+                $.ajax({
+                    url: themeUrl + '/like.php',
+                    type: 'POST',
+                    data: {
+                        cid: cid,
+                        action: isLiked ? 'unlike' : 'like'
+                    },
+                    success: function (data) {
+                        console.log('AJAX success: ', data); // 输出服务器返回的数据
+                        if (data.success) {
+                            if (isLiked) {//<span class="reborn rb-like-o"></span>&nbsp;<span class="zan-num"><?php echo $likes; ?></span>
+                                $this.html('<span class="reborn rb-like-o"></span>&nbsp;<span class="zan-num">'+data.likes+'</span>');
+                            } else {
+                                $this.html('<span class="reborn rb-like"></span>&nbsp;<span class="zan-num">'+data.likes+'</span>');
+                            }
+                            $('#post-view-cid-' + cid).text(data.views);
+                        } else {
+                            alert('操作失败，请稍后再试。');
+                            console.error('操作失败: ', data.message); // 输出错误信息
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert('操作失败，请稍后再试。');
+                        console.error('AJAX error: ' + textStatus, errorThrown); // 输出错误信息
+                    }
+                });
+            });
             $('.post-like').on('click', function (e) {
                 e.preventDefault();
                 const $this = $(this);
@@ -41,6 +73,7 @@
                                 $this.html('<span class="reborn rb-heart"></span>&nbsp;<span class="underline">取消</span>');
                             }
                             $('#post-like-area-' + cid).toggleClass('hidden', data.likes === 0).html('<span class="reborn rb-heart-o"></span>&nbsp;' + data.likes + '人喜欢');
+                            $('#post-view-cid-' + cid).text(data.views);
                         } else {
                             alert('操作失败，请稍后再试。');
                             console.error('操作失败: ', data.message); // 输出错误信息
@@ -64,14 +97,10 @@
                 // 显示评论区域
                 $('#post-comment-area-' + cid).removeClass('hidden');
                 let $commentForm = $(".comment-form");
-                // 获取现有评论框的数据
-                var existsCommentFormCoid = $commentForm.data("coid");
-                var existsCommentFormCid = $commentForm.data("cid");
-                // 检查是否已有评论表单
-                var hasCommentForm = $commentForm.length > 0;
-                // 移除所有评论表单
+                let existsCommentFormCoid = $commentForm.data("coid");
+                let existsCommentFormCid = $commentForm.data("cid");
+                let hasCommentForm = $commentForm.length > 0;
                 $commentForm.remove();
-                // 如果现有评论表单的 `coid` 和 `cid` 与当前点击的相同，则不再继续
                 if (hasCommentForm && existsCommentFormCoid === coid && existsCommentFormCid === cid) {
                     return;
                 }
@@ -82,6 +111,8 @@
                     $('#comment-coid-' + coid).after(getCommentFormHtml(cid, coid, name));
                 }
             });
+
+
             $(document).on('click', '.comment-form', function () {
                 $(this).addClass('focus');
             });
@@ -138,6 +169,7 @@
                             // 处理成功的响应
                             alert('评论成功');
                             $(".comment-form").remove();
+                            $('#post-view-cid-' + cid).text(data.views);
                             // location.reload(); // 刷新页面以显示新评论
                         } else {
                             alert('操作失败，请稍后再试。');
@@ -167,11 +199,13 @@ function getCommentFormHtml(cid, coid, name) {
     if (mail == null) mail = '';
     if (url == null) url = '';
     let loginClass = '';
+    let commentMeta = '';
     if (isLogin) {
         author = userName;
         mail = userEmail;
         url = userUrl;
         loginClass = ' hidden';
+        commentMeta = ' 已登录';
     }
     let placeHolder = '回复内容';
     if (coid) {
@@ -181,10 +215,11 @@ function getCommentFormHtml(cid, coid, name) {
     }
     return `
         <div class="comment-form" data-cid="${cid}" data-coid="${coid}">
-            <div class="flex comment-meta${loginClass}">
-                <input placeholder="昵称" type="text" class="comment-input comment-input-author" name="comment-author" value="${author}"/>
-                <input placeholder="邮箱" type="text" class="comment-input comment-input-email" name="comment-email" value="${mail}"/>
-                <input placeholder="网址" type="text" class="comment-input comment-input-url" name="comment-url" value="${url}" />
+            <div class="flex comment-meta">
+                <div><span class="color-link">${author}</span>${commentMeta}</div>
+                <input placeholder="昵称" type="text" class="comment-input comment-input-author${loginClass}" name="comment-author" value="${author}"/>
+                <input placeholder="邮箱" type="text" class="comment-input comment-input-email${loginClass}" name="comment-email" value="${mail}"/>
+                <input placeholder="网址" type="text" class="comment-input comment-input-url${loginClass}" name="comment-url" value="${url}" />
             </div>
             <div class="comment-area">
                 <textarea placeholder="${placeHolder}" class="comment-textarea comment-input-text" name="comment-text"></textarea>
@@ -195,3 +230,4 @@ function getCommentFormHtml(cid, coid, name) {
         </div>
     `;
 }
+

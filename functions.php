@@ -152,14 +152,14 @@ function isLikeByCid($cid)
 {
     try {
         // 获取记录点赞的 Cookie
-        $likeRecording = Typecho_Cookie::get('__typechoLikeRecording');
+        $likeRecording = Typecho_Cookie::get('__typecho_post_like');
 
         if (empty($likeRecording)) {
             // 如果不存在就创建一个新的 Cookie
             $likeRecording = '[]';
 
-            Typecho\Cookie::set('__typechoLikeRecording', $likeRecording, time() + 365 * 24 * 3600); // 设置过期时间为一年
-            error_log('Cookie "__typechoLikeRecording" created with value: ' . $likeRecording); // 调试输出
+            Typecho\Cookie::set('__typecho_post_like', $likeRecording, time() + 365 * 24 * 3600); // 设置过期时间为一年
+            error_log('Cookie "__typecho_post_like" created with value: ' . $likeRecording); // 调试输出
         }
         // URL 解码并将 JSON 字符串转换为 PHP 数组
         $likeRecordingDecode = json_decode(urldecode($likeRecording), true);
@@ -219,8 +219,9 @@ function hasComments($cid)
     $prefix = $db->getPrefix();
     // 查询评论数量
     $comments = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.comments')->where('cid = ?', $cid));
-    return $comments['count'] > 0;
+    return $comments['count'] ;
 }
+
 
 /**
  * 递归渲染评论
@@ -233,9 +234,9 @@ function renderComments($comments, $link, $maxTopLevelComments = 5)
 {
     $commentCount = count($comments);
     $displayCount = 0;
-
+    $showAll = $maxTopLevelComments === 0;
     foreach ($comments as $comment) {
-        if ($displayCount < $maxTopLevelComments) {
+        if ($showAll || $displayCount < $maxTopLevelComments) {
             echo '<li class="comment-item">';
             echo '<a href="' . htmlspecialchars($comment['url']) . '" target="_blank" class="comment-author">' . htmlspecialchars($comment['author']) . '</a>';
             echo '<span id="comment-coid-' . $comment['coid'] . '" class="separator post-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . htmlspecialchars($comment['text']) .'</span>';
@@ -252,10 +253,12 @@ function renderComments($comments, $link, $maxTopLevelComments = 5)
             break;
         }
     }
-    if ($commentCount > $maxTopLevelComments) {
-        echo '<li class="comment-item"><a href="' . $link . '#comments">查看更多</a></li>';
+
+    if (!$showAll && $commentCount > $maxTopLevelComments) {
+        echo '<li class="comment-item"><a class="more-comments" href="' . $link . '#comments">查看更多</a></li>';
     }
 }
+
 
 /**
  * 递归渲染回复评论
@@ -279,4 +282,43 @@ function renderReplies($replies, $parentAuthor)
         echo '</li>';
     }
 }
+
+function getPostView($archive)
+{
+    $cid = $archive->cid;
+    $db = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+
+    // 检查是否存在 views 字段
+    if (!array_key_exists('views', $db->fetchRow($db->select()->from('table.contents')->page(1, 1)))) {
+        $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `views` INT(10) DEFAULT 0;');
+        echo 0;
+        return;
+    }
+    // 获取当前文章的浏览量
+    $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
+    $views = $row ? (int) $row['views'] : 0;
+
+    // 如果是单篇文章页面，则增加浏览量
+    if ($archive->is('single')) {
+        $cookieViews = Typecho_Cookie::get('__post_views');
+        $viewedPosts = $cookieViews ? explode(',', $cookieViews) : [];
+
+        if (!in_array($cid, $viewedPosts)) {
+            $db->query($db->update('table.contents')->rows(array('views' => $views + 1))->where('cid = ?', $cid));
+            $viewedPosts[] = $cid;
+            Typecho_Cookie::set('__post_views', implode(',', $viewedPosts)); // 记录查看cookie
+            $views++; // 更新本次显示的浏览量
+        }
+    }
+    // 格式化浏览量
+    if ($views >= 10000) {
+        $formattedViews = number_format($views / 10000, 1) . '万';
+    } else {
+        $formattedViews = $views;
+    }
+    echo $formattedViews;
+}
+
+
 

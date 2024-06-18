@@ -1,8 +1,8 @@
 @font-face {
   font-family: "reborn"; /* Project id 4221380 */
-  src: url('iconfont.woff2?t=1718370709906') format('woff2'),
-       url('iconfont.woff?t=1718370709906') format('woff'),
-       url('iconfont.ttf?t=1718370709906') format('truetype');
+  src: url('iconfont.woff2?t=1718694719928') format('woff2'),
+       url('iconfont.woff?t=1718694719928') format('woff'),
+       url('iconfont.ttf?t=1718694719928') format('truetype');
 }
 
 .reborn {
@@ -11,6 +11,22 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.rb-like:before {
+  content: "\e83b";
+}
+
+.rb-heart-o:before {
+  content: "\e83c";
+}
+
+.rb-heart:before {
+  content: "\e83d";
+}
+
+.rb-like-o:before {
+  content: "\e83e";
 }
 
 .rb-books:before {
@@ -25,20 +41,8 @@
   content: "\e64f";
 }
 
-.rb-heart:before {
-  content: "\eb40";
-}
-
-.rb-heart-o:before {
-  content: "\e66b";
-}
-
 .rb-twodots:before {
   content: "\e601";
-}
-
-.rb-vip:before {
-  content: "\e632";
 }
 
 .rb-copyright:before {
@@ -73,15 +77,7 @@
   content: "\eb86";
 }
 
-.rb-menpiao:before {
-  content: "\e60c";
-}
-
 .rb-menu:before {
   content: "\e790";
-}
-
-.rb-perfume:before {
-  content: "\e640";
 }
 

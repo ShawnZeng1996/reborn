@@ -1,5 +1,5 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<div class="post post-type flex">
+<div class="shuoshuo post-type flex">
     <div class="post-author-avatar">
         <?php if ($this->author->mail): ?>
             <img src="<?php echo getGravatarUrl($this->author->mail, 80); ?>" alt="<?php $this->author(); ?>" class="author-avatar" />
@@ -7,10 +7,7 @@
     </div>
     <div class="post-content flex-1">
         <div class="post-author"><?php $this->author(); ?></div>
-        <a class="post-item" href="<?php $this->permalink(); ?>">
-            <img src="<?php echo $this->options->themeUrl . '/img/post.webp'; ?>" alt="<?php $this->title(); ?>" class="post-thumbnail" />
-            <h3 class="post-title ellipsis"><?php $this->title(); ?></h3>
-        </a>
+        <div><?php $this->content(); ?></div>
         <?php $this->need('/modules/meta-item.php'); ?>
     </div>
 </div>
