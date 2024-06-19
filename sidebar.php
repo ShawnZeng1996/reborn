@@ -4,8 +4,19 @@
             <section class="widget">
                 <h3 class="widget-title"><?php _e('最新文章'); ?></h3>
                 <ul class="widget-list">
-                    <?php \Widget\Contents\Post\Recent::alloc()
-                        ->parse('<li><a href="{permalink}">{title}</a></li>'); ?>
+                    <?php
+                    // 获取最近的文章
+                    \Widget\Contents\Post\Recent::alloc()->to($posts);
+                    // 循环遍历所有文章
+                    while ($posts->next()):
+                        // 检查文章类型是否为 'post'
+                        if ($posts->fields->postType == 'post'): ?>
+                            <li>
+                                <!-- 输出文章的链接和标题 -->
+                                <a href="<?php $posts->permalink(); ?>"><?php $posts->title(); ?></a>
+                            </li>
+                        <?php endif;
+                    endwhile; ?>
                 </ul>
             </section>
         <?php endif; ?>
@@ -55,7 +66,6 @@
                     <?php endif; ?>
                     <li><a href="<?php $this->options->feedUrl(); ?>"><?php _e('文章 RSS'); ?></a></li>
                     <li><a href="<?php $this->options->commentsFeedUrl(); ?>"><?php _e('评论 RSS'); ?></a></li>
-                    <li><a href="https://typecho.org">Typecho</a></li>
                 </ul>
             </section>
         <?php endif; ?>

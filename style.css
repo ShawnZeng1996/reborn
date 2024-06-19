@@ -282,6 +282,8 @@ ul, ol, li {
           margin-right: 10px; }
       .content .main-content .post-type #post-content {
         padding: 0; }
+        .content .main-content .post-type #post-content h1, .content .main-content .post-type #post-content h2, .content .main-content .post-type #post-content h3, .content .main-content .post-type #post-content h4, .content .main-content .post-type #post-content h5 {
+          margin: 10px 0; }
       .content .main-content .post-type > .post-footer {
         align-items: center;
         justify-content: space-between;

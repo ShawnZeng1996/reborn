@@ -229,7 +229,6 @@ function hasComments($cid)
     return $comments['count'] ;
 }
 
-
 /**
  * 递归渲染评论
  *
@@ -312,7 +311,6 @@ function renderReplies($replies, $parentAuthor)
             renderReplies($reply['replies'], $reply['author']);
             echo '</ul>';
         }
-
         echo '</li>';
     }
 }
