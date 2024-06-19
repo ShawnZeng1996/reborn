@@ -243,8 +243,8 @@ function renderComments($comments, $link, $maxTopLevelComments = 5)
     $showAll = $maxTopLevelComments === 0;
     foreach ($comments as $comment) {
         if ($showAll || $displayCount < $maxTopLevelComments) {
-            echo '<li id="comment-coid-' . $comment['coid'] . '" class="comment-item flex">';
-            echo '<div class="comment-item-header flex">';
+            echo '<li id="comment-coid-' . $comment['coid'] . '" class="comment-item">';
+            echo '<div class="comment-item-header">';
             echo '<a href="' . htmlspecialchars($comment['url']) . '" target="_blank" class="comment-author">' . htmlspecialchars($comment['author']) . '</a>';
             echo '<span class="separator post-comment flex-1" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . htmlspecialchars($comment['text']) .'</span>';
             echo '</div>';
@@ -301,8 +301,8 @@ function renderPostComments($comments, $parentAuthor = '') {
 function renderReplies($replies, $parentAuthor)
 {
     foreach ($replies as $reply) {
-        echo '<li id="comment-coid-' . $reply['coid'] . '" class="comment-item flex">';
-        echo '<div class="comment-item-header flex">';
+        echo '<li id="comment-coid-' . $reply['coid'] . '" class="comment-item">';
+        echo '<div class="comment-item-header">';
         echo '<a href="' . htmlspecialchars($reply['url']) . '" target="_blank" class="comment-author">' . htmlspecialchars($reply['author']) . '</a> 回复 <span class="comment-author">' . htmlspecialchars($parentAuthor) . '</span>';
         echo '<span class="separator post-comment flex-1" data-cid="' . $reply['cid'] . '" data-coid="' . $reply['coid'] . '" data-name="' . $reply['author'] . '">' . htmlspecialchars($reply['text']) .'</span>';
         echo '</div>';

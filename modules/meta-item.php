@@ -33,9 +33,16 @@ $likes = $likeData['likes'];
         <ul id="comments-cid-<?php echo $this->cid; ?>">
             <div id="comments"></div>
             <?php
-            $comments = getCommentsWithReplies($this->cid, 0, 6); // 这里的 10 表示获取最多 10 条顶级评论
-            if ($comments) {
-                renderComments($comments, $this->permalink);
+            if ($this->is('single')) {
+                $comments = getCommentsWithReplies($this->cid, 0);
+                if ($comments) {
+                    renderComments($comments, $this->permalink, 0);
+                }
+            } else {
+                $comments = getCommentsWithReplies($this->cid, 0, 5);
+                if ($comments) {
+                    renderComments($comments, $this->permalink);
+                }
             }
             ?>
         </ul>

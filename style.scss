@@ -306,18 +306,14 @@ ul, ol, li {
             }
 
             .comment-item {
-              flex-direction: column;
               .comment-item-header {
                 width: 100%;
                 .comment-author {
-                  flex: 0 1 auto;
                   color: $global_link_color;
                   font-weight: 600;
                   text-decoration: none;
                 }
                 .post-comment {
-                  display: inline-block;
-                  width: 100%;
                   cursor: pointer;
                 }
               }
