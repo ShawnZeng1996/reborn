@@ -242,4 +242,3 @@ function getCommentFormHtml(cid, coid, name) {
         </div>
     `;
 }
-

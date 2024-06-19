@@ -26,6 +26,13 @@ body {
   margin: 0;
   background-color: #F6F6F6;
 }
+
+div, a, img {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none;
+}
+
 ul, ol, li {
   list-style: none;
 }
@@ -234,6 +241,7 @@ ul, ol, li {
             width: 160px;
             height: 36px;
             overflow: hidden;
+            z-index: 1;
           }
           .post-action {
             right: 0;

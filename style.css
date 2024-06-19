@@ -20,6 +20,11 @@ body {
   margin: 0;
   background-color: #F6F6F6; }
 
+div, a, img {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: none; }
+
 ul, ol, li {
   list-style: none; }
 
@@ -195,7 +200,8 @@ ul, ol, li {
             bottom: -6px;
             width: 160px;
             height: 36px;
-            overflow: hidden; }
+            overflow: hidden;
+            z-index: 1; }
           .content .main-content .post-type .post-content .post-meta-2 .post-action {
             right: 0;
             bottom: 0;
