@@ -7,7 +7,6 @@
     <script type="text/javascript" src="<?php $this->options->themeUrl('js/jquery-3.7.1.min.js'); ?>"></script>
     <script type="text/javascript">
         var themeUrl = '<?php $this->options->themeUrl(); ?>'; // 定义主题URL变量
-        alert(themeUrl);
         var isLogin = <?php echo $this->user->hasLogin() ? 'true' : 'false'; ?>;
         <?php if($this->user->hasLogin()) {
             $user = $this->user;

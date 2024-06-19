@@ -304,10 +304,23 @@ ul, ol, li {
             .more-comments {
               color: $global_link_color;
             }
-            .comment-author {
-              color: $global_link_color;
-              font-weight: 600;
-              text-decoration: none;
+
+            .comment-item {
+              flex-direction: column;
+              .comment-item-header {
+                width: 100%;
+                .comment-author {
+                  flex: 0 1 auto;
+                  color: $global_link_color;
+                  font-weight: 600;
+                  text-decoration: none;
+                }
+                .post-comment {
+                  display: inline-block;
+                  width: 100%;
+                  cursor: pointer;
+                }
+              }
             }
           }
         }
@@ -377,10 +390,13 @@ ul, ol, li {
         margin-left: 40px;
       }
       .comment-item {
-        width: 100%;
-        flex-wrap: wrap;
-        .comment-reply {
+        .comment-item-header {
           width: 100%;
+          flex-wrap: wrap;
+        };
+
+        .comment-reply {
+
         }
       }
       .comment-author-avatar {

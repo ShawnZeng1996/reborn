@@ -108,7 +108,7 @@
                 if (coid === undefined) {
                     $('#comments-cid-' + cid).prepend(getCommentFormHtml(cid));
                 } else {
-                    $('#comment-coid-' + coid).after(getCommentFormHtml(cid, coid, name));
+                    $('#comment-coid-' + coid + '>.comment-item-header').after(getCommentFormHtml(cid, coid, name));
                 }
             });
             $(".write-comment").on('click',function (e) {
@@ -120,7 +120,7 @@
                 if (coid === undefined) {
                     $('.form-place').after(getCommentFormHtml(cid));
                 } else {
-                    $('#comment-coid-' + coid).after(getCommentFormHtml(cid, coid, name));
+                    $('#comment-coid-' + coid + '>.comment-item-header').after(getCommentFormHtml(cid, coid, name));
                 }
 
             });

@@ -251,10 +251,19 @@ ul, ol, li {
             padding: 5px 10px; }
             .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .more-comments {
               color: #576B95; }
-            .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-author {
-              color: #576B95;
-              font-weight: 600;
-              text-decoration: none; }
+            .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-item {
+              flex-direction: column; }
+              .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-item .comment-item-header {
+                width: 100%; }
+                .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-item .comment-item-header .comment-author {
+                  flex: 0 1 auto;
+                  color: #576B95;
+                  font-weight: 600;
+                  text-decoration: none; }
+                .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-item .comment-item-header .post-comment {
+                  display: inline-block;
+                  width: 100%;
+                  cursor: pointer; }
       .content .main-content .post-type > .post-title {
         font-size: 22px;
         line-height: 1.4;
@@ -304,11 +313,9 @@ ul, ol, li {
         font-weight: 600; }
       .content .main-content > #comments > ul > li > .comment-reply {
         margin-left: 40px; }
-      .content .main-content > #comments .comment-item {
+      .content .main-content > #comments .comment-item .comment-item-header {
         width: 100%;
         flex-wrap: wrap; }
-        .content .main-content > #comments .comment-item .comment-reply {
-          width: 100%; }
       .content .main-content > #comments .comment-author-avatar {
         width: 40px;
         padding: 12px 0; }
