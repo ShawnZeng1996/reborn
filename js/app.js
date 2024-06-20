@@ -133,6 +133,10 @@
                     $('.comment-form').removeClass('focus');
                 }
             });
+            $(document).on('click', '.comment-cancel', function () {
+                $('.comment-form').remove();
+            });
+
             // 评论提交逻辑
             $(document).on('click', '.comment-btn', function (e) {
                 e.stopPropagation();
@@ -237,6 +241,7 @@ function getCommentFormHtml(cid, coid, name) {
                 <textarea placeholder="${placeHolder}" class="comment-textarea comment-input-text" name="comment-text"></textarea>
             </div>
             <div class="comment-footer">
+                <button class="comment-cancel">取消</button>
                 <button class="comment-btn underline" data-cid="${cid}" data-coid="${coid}">回复</button>
             </div>
         </div>

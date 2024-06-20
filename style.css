@@ -442,6 +442,14 @@ ul, ol, li {
       border-radius: 5px;
       font-size: 16px;
       cursor: pointer; }
+    .content .comment-footer .comment-cancel {
+      margin-right: 5px;
+      background-color: #eaeaea;
+      color: #afafaf;
+      padding: 5px 15px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer; }
 
 #footer {
   text-align: center;
