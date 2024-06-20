@@ -1,6 +1,8 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
+define('THEME_NAME', 'reborn');
+
 define('THEME_VERSION', '1.0.0');
 
 // 文章自定义字段
@@ -37,7 +39,7 @@ function themeConfig($form) {
         _t('主页头像邮箱，调用Gravatar头像')
     );
     $form->addInput($avatarEmail);
-    $sidebarBlock = new \Typecho\Widget\Helper\Form\Element\Checkbox(
+    $sidebarBlock = new Typecho\Widget\Helper\Form\Element\Checkbox(
         'sidebarBlock',
         [
             'ShowRecentPosts'    => _t('显示最新文章'),
@@ -49,8 +51,15 @@ function themeConfig($form) {
         ['ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive', 'ShowOther'],
         _t('侧边栏显示')
     );
-
     $form->addInput($sidebarBlock->multiMode());
+    $sidebarAd = new Typecho\Widget\Helper\Form\Element\Textarea(
+        'sidebarAd',
+        NULL,
+        NULL,
+        _t('侧边栏广告'),
+        _t('侧边栏广告')
+    );
+    $form->addInput($sidebarAd);
 }
 
 function themeInit($archive) {
@@ -245,7 +254,7 @@ function renderComments($comments, $link, $maxTopLevelComments = 5)
         if ($showAll || $displayCount < $maxTopLevelComments) {
             echo '<li id="comment-coid-' . $comment['coid'] . '" class="comment-item">';
             echo '<div class="comment-item-header">';
-            echo '<a href="' . htmlspecialchars($comment['url']) . '" target="_blank" class="comment-author">' . htmlspecialchars($comment['author']) . '</a>';
+            echo '<a href="' . htmlspecialchars($comment['url']) . '" target="_blank" class="comment-author" rel="nofollow">' . htmlspecialchars($comment['author']) . '</a>';
             echo '<span class="separator post-comment flex-1" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . htmlspecialchars($comment['text']) .'</span>';
             echo '</div>';
             if (!empty($comment['replies'])) {
@@ -270,7 +279,7 @@ function renderPostComments($comments, $parentAuthor = '') {
     foreach ($comments as $comment) {
         echo '<li id="comment-coid-' . $comment['coid'] . '" class="comment-item">';
         echo '<div class="comment-item-header flex">';
-        echo '<a class="comment-author-avatar" rel="nofollow" target="_blank" href="' . $comment['url'] . '"><img src="' . getGravatarUrl($comment['mail'], 40) . '" alt="' . htmlspecialchars($comment['author']) . '"></a>';
+        echo '<a class="comment-author-avatar" rel="nofollow" target="_blank" href="' . $comment['url'] . '" rel="nofollow"><img src="' . getGravatarUrl($comment['mail'], 40) . '" alt="' . htmlspecialchars($comment['author']) . '"></a>';
         echo '<div class="flex flex-1 comment-body">';
         echo '<div class="flex-1">';
         echo '<a class="comment-author" rel="nofollow" target="_blank" href="' . $comment['url'] . '">' . htmlspecialchars($comment['author']) . '</a>';
@@ -303,7 +312,7 @@ function renderReplies($replies, $parentAuthor)
     foreach ($replies as $reply) {
         echo '<li id="comment-coid-' . $reply['coid'] . '" class="comment-item">';
         echo '<div class="comment-item-header">';
-        echo '<a href="' . htmlspecialchars($reply['url']) . '" target="_blank" class="comment-author">' . htmlspecialchars($reply['author']) . '</a> 回复 <span class="comment-author">' . htmlspecialchars($parentAuthor) . '</span>';
+        echo '<a href="' . htmlspecialchars($reply['url']) . '" target="_blank" class="comment-author" rel="nofollow">' . htmlspecialchars($reply['author']) . '</a> 回复 <span class="comment-author">' . htmlspecialchars($parentAuthor) . '</span>';
         echo '<span class="separator post-comment flex-1" data-cid="' . $reply['cid'] . '" data-coid="' . $reply['coid'] . '" data-name="' . $reply['author'] . '">' . htmlspecialchars($reply['text']) .'</span>';
         echo '</div>';
         if (!empty($reply['replies'])) {

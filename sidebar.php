@@ -1,7 +1,7 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
     <div class="sidebar" id="secondary">
         <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentPosts', $this->options->sidebarBlock)): ?>
-            <section class="widget">
+            <section class="widget" id="sidebar-post-list">
                 <h3 class="widget-title"><?php _e('最新文章'); ?></h3>
                 <ul class="widget-list">
                     <?php
@@ -10,9 +10,8 @@
                     // 循环遍历所有文章
                     while ($posts->next()):
                         // 检查文章类型是否为 'post'
-                        if ($posts->fields->postType == 'post'): ?>
+                        if ($posts->fields->postType != 'shuoshuo'): ?>
                             <li>
-                                <!-- 输出文章的链接和标题 -->
                                 <a href="<?php $posts->permalink(); ?>"><?php $posts->title(); ?></a>
                             </li>
                         <?php endif;
@@ -22,13 +21,19 @@
         <?php endif; ?>
 
         <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentComments', $this->options->sidebarBlock)): ?>
-            <section class="widget">
-                <h3 class="widget-title"><?php _e('最近回复'); ?></h3>
+            <section class="widget" id="sidebar-comment-list">
+                <h3 class="widget-title"><?php _e('最新评论'); ?></h3>
                 <ul class="widget-list">
                     <?php \Widget\Comments\Recent::alloc()->to($comments); ?>
                     <?php while ($comments->next()): ?>
                         <li>
-                            <a href="<?php $comments->permalink(); ?>"><?php $comments->author(false); ?></a>: <?php $comments->excerpt(35, '...'); ?>
+                            <a class="flex comment-item" href="<?php $comments->permalink(); ?>">
+                                <img class="comment-author-avatar" src="<?php echo getGravatarUrl($comments->mail); ?>" alt="<?php $comments->author(false); ?>">
+                                <div class="flex-1">
+                                    <div class="comment-author"><?php $comments->author(false); ?></div>
+                                    <div class="comment-content"><?php $comments->excerpt(40, '...'); ?></div>
+                                </div>
+                            </a>
                         </li>
                     <?php endwhile; ?>
                 </ul>
@@ -67,6 +72,14 @@
                     <li><a href="<?php $this->options->feedUrl(); ?>"><?php _e('文章 RSS'); ?></a></li>
                     <li><a href="<?php $this->options->commentsFeedUrl(); ?>"><?php _e('评论 RSS'); ?></a></li>
                 </ul>
+            </section>
+        <?php endif; ?>
+
+        <?php $sidebarAd = $this->options->sidebarAd; ?>
+        <?php if ($sidebarAd): ?>
+            <section class="sidebar-adv widget">
+                <h3 class="widget-title"><?php _e('广告'); ?></h3>
+                <div><?php echo $sidebarAd; ?></div>
             </section>
         <?php endif; ?>
 

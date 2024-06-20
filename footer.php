@@ -1,7 +1,7 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
         <footer id="footer" class="clear-both">
             <div class="container">
-                <p>&copy; <?php echo date('Y'); ?> <?php $this->options->title(); ?>. <?php _e('由 <a href="http://typecho.org">Typecho</a> 强力驱动'); ?>.</p>
+                <p>&copy; <?php echo date('Y'); ?> <?php $this->options->title(); ?>. Typecho theme <?php echo THEME_NAME . ' ' . THEME_VERSION; ?> by Shawn. All rights reserved.</p>
             </div>
         </footer>
     <script type="text/javascript" src="<?php $this->options->themeUrl('js/jquery-3.7.1.min.js'); ?>"></script>

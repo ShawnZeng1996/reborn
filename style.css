@@ -342,13 +342,55 @@ ul, ol, li {
   .content .sidebar {
     width: 32%;
     float: right;
-    background-color: #FFFFFF;
-    padding: 20px; }
-    .content .sidebar .widget a {
-      color: #576B95;
-      text-decoration: none; }
+    padding: 0; }
+    .content .sidebar .widget {
+      background-color: #FFFFFF;
+      padding: 20px; }
+      .content .sidebar .widget .widget-title {
+        margin-bottom: 10px; }
+      .content .sidebar .widget a {
+        color: #576B95;
+        text-decoration: none; }
     .content .sidebar .widget + .widget {
       margin-top: 10px; }
+    .content .sidebar .sidebar-adv {
+      overflow: hidden; }
+      .content .sidebar .sidebar-adv .ad {
+        display: flex;
+        line-height: 40px; }
+        .content .sidebar .sidebar-adv .ad .ad-avatar {
+          width: 40px;
+          height: 40px; }
+      .content .sidebar .sidebar-adv img {
+        width: 100%; }
+    .content .sidebar #sidebar-post-list ul {
+      list-style-type: disc; }
+      .content .sidebar #sidebar-post-list ul li {
+        list-style-type: disc;
+        margin: 0 0 0 20px; }
+      .content .sidebar #sidebar-post-list ul li + li {
+        margin-top: 5px; }
+    .content .sidebar #sidebar-comment-list li {
+      margin-top: 5px; }
+    .content .sidebar #sidebar-comment-list li + li {
+      border-top: 1px solid rgba(153, 153, 153, 0.24);
+      padding-top: 5px; }
+    .content .sidebar #sidebar-comment-list .comment-item {
+      flex-wrap: wrap; }
+      .content .sidebar #sidebar-comment-list .comment-item > div {
+        overflow: hidden; }
+    .content .sidebar #sidebar-comment-list .comment-author-avatar {
+      width: 40px;
+      height: 40px;
+      margin: 6px 10px 6px 0; }
+    .content .sidebar #sidebar-comment-list .comment-author {
+      color: #787878; }
+    .content .sidebar #sidebar-comment-list .comment-content {
+      width: 100%;
+      color: black;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
   .content .comment-form {
     border: 1px solid #FFFFFF;
     background-color: #FFFFFF;
@@ -403,8 +445,7 @@ ul, ol, li {
 
 #footer {
   text-align: center;
-  padding: 10px;
-  margin-top: 20px; }
+  padding: 50px 10px 10px; }
 
 @media (max-width: 1140px) {
   .content .main-content {

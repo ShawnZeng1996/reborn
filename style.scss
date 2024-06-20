@@ -437,9 +437,13 @@ ul, ol, li {
   .sidebar {
     width: 32%;
     float: right;
-    background-color: #FFFFFF;
-    padding: 20px;
+    padding: 0;
     .widget {
+      background-color: #FFFFFF;
+      padding: 20px;
+      .widget-title {
+        margin-bottom: 10px;
+      }
       a {
         color: $global_link_color;
         text-decoration: none;
@@ -447,6 +451,63 @@ ul, ol, li {
     }
     .widget + .widget {
       margin-top: 10px;
+    }
+    .sidebar-adv {
+      overflow: hidden;
+      .ad {
+        display: flex;
+        line-height: 40px;
+        .ad-avatar {
+          width: 40px;
+          height: 40px;
+        }
+      }
+      img {
+        width: 100%;
+      }
+
+    }
+    #sidebar-post-list {
+      ul {
+        list-style-type: disc;
+        li {
+          list-style-type: disc;
+          margin: 0 0 0 20px;
+        }
+        li + li {
+          margin-top: 5px;
+        }
+      }
+    }
+    #sidebar-comment-list {
+      li {
+        margin-top: 5px;
+      }
+      li + li {
+        border-top: 1px solid rgba(153, 153, 153, 0.24);
+        padding-top: 5px;
+      }
+      .comment-item {
+        flex-wrap: wrap;
+        > div {
+          overflow: hidden;
+        }
+      }
+      .comment-author-avatar {
+        width: 40px;
+        height: 40px;
+        margin: 6px 10px 6px 0;
+      }
+      .comment-author {
+        color: #787878;
+      }
+      .comment-content {
+        width: 100%;
+        color: black;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
     }
   }
   .comment-form {
@@ -515,8 +576,7 @@ ul, ol, li {
 
 #footer {
   text-align: center;
-  padding: 10px;
-  margin-top: 20px;
+  padding: 50px 10px 10px;
 }
 
 @media (max-width: 1140px) {
