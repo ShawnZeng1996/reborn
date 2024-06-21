@@ -1,8 +1,8 @@
 @font-face {
   font-family: "reborn"; /* Project id 4221380 */
-  src: url('iconfont.woff2?t=1718694719928') format('woff2'),
-       url('iconfont.woff?t=1718694719928') format('woff'),
-       url('iconfont.ttf?t=1718694719928') format('truetype');
+  src: url('iconfont.woff2?t=1718952811709') format('woff2'),
+       url('iconfont.woff?t=1718952811709') format('woff'),
+       url('iconfont.ttf?t=1718952811709') format('truetype');
 }
 
 .reborn {
@@ -11,6 +11,54 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.rb-daytime-mode:before {
+  content: "\e839";
+}
+
+.rb-daytime-mode-fill:before {
+  content: "\e83a";
+}
+
+.rb-info-fill:before {
+  content: "\e83f";
+}
+
+.rb-night-mode-fill:before {
+  content: "\e840";
+}
+
+.rb-info:before {
+  content: "\e841";
+}
+
+.rb-night-mode:before {
+  content: "\e842";
+}
+
+.rb-smile-fill:before {
+  content: "\e843";
+}
+
+.rb-smile:before {
+  content: "\e844";
+}
+
+.rb-success-fill:before {
+  content: "\e845";
+}
+
+.rb-success:before {
+  content: "\e846";
+}
+
+.rb-warning-fill:before {
+  content: "\e849";
+}
+
+.rb-warning:before {
+  content: "\e84a";
 }
 
 .rb-like:before {

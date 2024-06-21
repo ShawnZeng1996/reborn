@@ -255,7 +255,7 @@ function renderComments($comments, $link, $maxTopLevelComments = 5)
             echo '<li id="comment-coid-' . $comment['coid'] . '" class="comment-item">';
             echo '<div class="comment-item-header">';
             echo '<a href="' . htmlspecialchars($comment['url']) . '" target="_blank" class="comment-author" rel="nofollow">' . htmlspecialchars($comment['author']) . '</a>';
-            echo '<span class="separator post-comment flex-1" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . htmlspecialchars($comment['text']) .'</span>';
+            echo '<span class="separator post-comment flex-1" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . commentEmojiReplace(htmlspecialchars($comment['text'])) .'</span>';
             echo '</div>';
             if (!empty($comment['replies'])) {
                 echo '<ul class="comment-replies">';
@@ -289,7 +289,7 @@ function renderPostComments($comments, $parentAuthor = '') {
         echo '<time class="comment-time" datetime="' . $comment['created'] . '">' . timeAgo($comment['created']) . '</time>';
         echo '</div>';
         echo '<a class="write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">回复</a>';
-        echo '<div class="comment-content write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . htmlspecialchars($comment['text']) . '</div>';
+        echo '<div class="comment-content write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . commentEmojiReplace(htmlspecialchars($comment['text'])) . '</div>';
         echo '</div>';
         echo '</div>';
         if (!empty($comment['replies'])) {
@@ -313,7 +313,7 @@ function renderReplies($replies, $parentAuthor)
         echo '<li id="comment-coid-' . $reply['coid'] . '" class="comment-item">';
         echo '<div class="comment-item-header">';
         echo '<a href="' . htmlspecialchars($reply['url']) . '" target="_blank" class="comment-author" rel="nofollow">' . htmlspecialchars($reply['author']) . '</a> 回复 <span class="comment-author">' . htmlspecialchars($parentAuthor) . '</span>';
-        echo '<span class="separator post-comment flex-1" data-cid="' . $reply['cid'] . '" data-coid="' . $reply['coid'] . '" data-name="' . $reply['author'] . '">' . htmlspecialchars($reply['text']) .'</span>';
+        echo '<span class="separator post-comment flex-1" data-cid="' . $reply['cid'] . '" data-coid="' . $reply['coid'] . '" data-name="' . $reply['author'] . '">' . commentEmojiReplace(htmlspecialchars($reply['text'])) .'</span>';
         echo '</div>';
         if (!empty($reply['replies'])) {
             echo '<ul class="comment-replies">';
@@ -360,6 +360,33 @@ function getPostView($archive)
     }
     echo $formattedViews;
 }
+
+function commentEmojiReplace($comment_text, $comment = ''): string {
+    // 目录路径
+    $directory = '/usr/themes/reborn/emoji/';
+    // 表情包类别
+    $categories = array('alu', 'paopao', 'xiaodianshi', 'koukou');
+    $data_OwO = array();
+    $db = Typecho_Db::get();
+    $siteUrl = $db->fetchRow($db->select('value')->from('table.options')->where('name = ?', 'siteUrl'));
+    foreach ($categories as $category) {
+        // 获取表情包路径
+        $path = __TYPECHO_ROOT_DIR__ . $directory . $category;
+        // 扫描目录获取文件
+        $files = scandir($path);
+        foreach ($files as $file) {
+            // 检查文件是否为 PNG 格式
+            if (str_contains($file, '.png')) {
+                // 获取表情名称
+                $emoji_name = basename($file, '.png');
+                // 构建替换数组
+                $data_OwO['@(' . $emoji_name . ')'] = '<img src="' . $siteUrl['value'] . $directory . $category . '/' . $file . '" alt="' . $emoji_name . '" class="rb-emoji-item">';
+            }
+        }
+    }
+    return strtr($comment_text, $data_OwO);
+}
+
 
 
 
