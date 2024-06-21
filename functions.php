@@ -361,14 +361,16 @@ function getPostView($archive)
     echo $formattedViews;
 }
 
-function commentEmojiReplace($comment_text, $comment = ''): string {
+function commentEmojiReplace($comment_text): string {
     // 目录路径
     $directory = '/usr/themes/reborn/emoji/';
     // 表情包类别
     $categories = array('alu', 'paopao', 'xiaodianshi', 'koukou');
     $data_OwO = array();
     $db = Typecho_Db::get();
-    $siteUrl = $db->fetchRow($db->select('value')->from('table.options')->where('name = ?', 'siteUrl'));
+    $siteUrlRow = $db->fetchRow($db->select('value')->from('table.options')->where('name = ?', 'siteUrl'));
+    $siteUrl = $siteUrlRow['value'];
+
     foreach ($categories as $category) {
         // 获取表情包路径
         $path = __TYPECHO_ROOT_DIR__ . $directory . $category;
@@ -376,16 +378,17 @@ function commentEmojiReplace($comment_text, $comment = ''): string {
         $files = scandir($path);
         foreach ($files as $file) {
             // 检查文件是否为 PNG 格式
-            if (str_contains($file, '.png')) {
+            if (strpos($file, '.png') !== false) {
                 // 获取表情名称
                 $emoji_name = basename($file, '.png');
                 // 构建替换数组
-                $data_OwO['@(' . $emoji_name . ')'] = '<img src="' . $siteUrl['value'] . $directory . $category . '/' . $file . '" alt="' . $emoji_name . '" class="rb-emoji-item">';
+                $data_OwO['@(' . $emoji_name . ')'] = '<img src="' . $siteUrl . $directory . $category . '/' . $file . '" alt="' . $emoji_name . '" class="rb-emoji-item">';
             }
         }
     }
     return strtr($comment_text, $data_OwO);
 }
+
 
 
 

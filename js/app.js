@@ -285,6 +285,16 @@
                     '扣扣_比心.png', '扣扣_小拇指.png', '扣扣_不开心.png', '扣扣_抱拳.png', '扣扣_方块.png'
                 ],
             };
+            //preloadEmojis();
+            // 预加载所有表情图像
+            function preloadEmojis() {
+                Object.keys(emojiData).forEach(category => {
+                    emojiData[category].forEach(emoji => {
+                        const img = new Image();
+                        img.src = emojiBasePath + category + '/' + emoji;
+                    });
+                });
+            }
             // 加载表情页
             function loadEmojis(category) {
                 const emojiList = $('.emoji-list');
