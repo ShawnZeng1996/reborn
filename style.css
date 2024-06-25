@@ -503,7 +503,8 @@ ul, ol, li {
       cursor: pointer; }
 
 .rb-emoji-item {
-  height: 25px; }
+  height: 25px;
+  vertical-align: middle; }
 
 #footer {
   text-align: center;
