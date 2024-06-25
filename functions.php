@@ -370,7 +370,6 @@ function commentEmojiReplace($comment_text): string {
     $db = Typecho_Db::get();
     $siteUrlRow = $db->fetchRow($db->select('value')->from('table.options')->where('name = ?', 'siteUrl'));
     $siteUrl = $siteUrlRow['value'];
-
     foreach ($categories as $category) {
         // 获取表情包路径
         $path = __TYPECHO_ROOT_DIR__ . $directory . $category;
@@ -380,7 +379,7 @@ function commentEmojiReplace($comment_text): string {
             // 检查文件是否为 PNG 格式
             if (strpos($file, '.png') !== false) {
                 // 获取表情名称
-                $emoji_name = basename($file, '.png');
+                $emoji_name = mb_substr($file, 0, -4); // 去掉 .png 扩展名
                 // 构建替换数组
                 $data_OwO['@(' . $emoji_name . ')'] = '<img src="' . $siteUrl . $directory . $category . '/' . $file . '" alt="' . $emoji_name . '" class="rb-emoji-item">';
             }

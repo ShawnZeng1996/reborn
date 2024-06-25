@@ -60,6 +60,10 @@ try {
         $insertId = $db->query($db->insert('table.comments')->rows($comment));
 
         if ($insertId) {
+            if ($status === 'approved') {
+                // 更新评论数
+                $db->query($db->update('table.contents')->expression('commentsNum', 'commentsNum + 1')->where('cid = ?', $cid));
+            }
             $response['success'] = true;
             $response['message'] = '评论成功';
             $response['views'] = getPostView($cid);
