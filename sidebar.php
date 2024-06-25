@@ -31,7 +31,7 @@
                                 <img class="comment-author-avatar" src="<?php echo getGravatarUrl($comments->mail); ?>" alt="<?php $comments->author(false); ?>">
                                 <div class="flex-1">
                                     <div class="comment-author"><?php $comments->author(false); ?></div>
-                                    <div class="comment-content"><?php $comments->excerpt(40, '...'); ?></div>
+                                    <div class="comment-content"><?php echo commentEmojiReplace($comments->content); ?></div>
                                 </div>
                             </a>
                         </li>

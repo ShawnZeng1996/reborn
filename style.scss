@@ -506,6 +506,11 @@ ul, ol, li {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        p {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
       }
     }
   }
@@ -640,7 +645,7 @@ ul, ol, li {
 }
 
 .rb-emoji-item {
-  height: 30px;
+  height: 25px;
 }
 
 #footer {

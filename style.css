@@ -391,6 +391,10 @@ ul, ol, li {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis; }
+      .content .sidebar #sidebar-comment-list .comment-content p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
   .content .comment-form {
     border: 1px solid #FFFFFF;
     background-color: #FFFFFF;
@@ -499,7 +503,7 @@ ul, ol, li {
       cursor: pointer; }
 
 .rb-emoji-item {
-  height: 30px; }
+  height: 25px; }
 
 #footer {
   text-align: center;
