@@ -60,6 +60,14 @@ function themeConfig($form) {
         _t('侧边栏广告')
     );
     $form->addInput($sidebarAd);
+    $barkNotice = new Typecho\Widget\Helper\Form\Element\Text(
+        'barkUrl',
+        NULL,
+        NULL,
+        _t('Bark通知地址与Key'),
+        _t('Bark通知地址与Key，填写后可以通过Bark App获取博客评论消息通知')
+    );
+    $form->addInput($barkNotice);
 }
 
 function themeInit($self) {

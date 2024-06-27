@@ -4,6 +4,7 @@ require_once dirname(__FILE__, 4) . DIRECTORY_SEPARATOR . 'config.inc.php';
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 require_once __TYPECHO_ROOT_DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'Typecho' . DIRECTORY_SEPARATOR . 'Cookie.php';
 require_once __TYPECHO_ROOT_DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'Typecho' . DIRECTORY_SEPARATOR . 'Db.php';
+require_once __TYPECHO_ROOT_DIR__ . DIRECTORY_SEPARATOR . 'var' . DIRECTORY_SEPARATOR . 'Utils' . DIRECTORY_SEPARATOR . 'Helper.php';
 
 header('Content-Type: application/json');
 
@@ -39,7 +40,6 @@ try {
             $status = $commentsRequireModeration['value'] ? 'approved' : 'waiting';
         }
 
-
         // 插入评论
         $comment = array(
             'cid' => $cid,
@@ -58,7 +58,7 @@ try {
         );
 
         $insertId = $db->query($db->insert('table.comments')->rows($comment));
-
+        $articleName = $db->fetchRow($db->select('title')->from('table.contents')->where('cid = ?', $cid));
         if ($insertId) {
             if ($status === 'approved') {
                 // 更新评论数
@@ -74,6 +74,12 @@ try {
                 'url' => $url,
                 'status' => $status,
             );
+            // Bark评论消息通知
+            $barkUrl = \Utils\Helper::options()->barkUrl;
+            if ($barkUrl) {
+                $message = '您的博文《' . $articleName['title'] . '》有新的评论/' . $author . '：' . $text;
+                file_get_contents($barkUrl . $message);
+            }
         } else {
             $response['message'] = '评论失败，请稍后再试';
         }
@@ -115,3 +121,5 @@ function getPostView($cid)
     }
     return $formattedViews;
 }
+
+
