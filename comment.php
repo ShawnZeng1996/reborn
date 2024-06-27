@@ -37,7 +37,7 @@ try {
         if ( $ownerId['authorId'] === $uid ) {
             $status = 'approved';
         } else {
-            $status = $commentsRequireModeration['value'] ? 'approved' : 'waiting';
+            $status = $commentsRequireModeration['value'] ? 'waiting' : 'approved';
         }
 
         // 插入评论

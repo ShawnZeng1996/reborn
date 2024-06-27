@@ -186,7 +186,7 @@
                             alert('评论成功');
                             $(".comment-form").remove();
                             $('#post-view-cid-' + cid).text(data.views);
-                            location.reload(); // 刷新页面以显示新评论
+                            //location.reload(); // 刷新页面以显示新评论
                         } else {
                             alert('操作失败，请稍后再试。');
                             console.error('操作失败: ', data.message); // 输出错误信息
