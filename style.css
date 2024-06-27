@@ -179,6 +179,7 @@ ul, ol, li {
           margin: 10px 0;
           position: relative; }
           .content .main-content .post-type .post-content pre code.hljs {
+            background-color: #F6F6F6;
             padding: 35px 15px 15px;
             border-radius: 4px;
             max-height: none;
