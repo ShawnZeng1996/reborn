@@ -361,7 +361,7 @@
                 const $code = $pre.find('code').first(); // 查找第一个 code 标签
                 if ($code.length > 0) {
                     const uniqueId = 'rb-code-' + index;
-                    $code.before('<span class="reborn rb-copy code-copy" data-clipboard-action="copy" data-clipboard-target="#' + uniqueId + '"></span>'); // 在 code 标签前添加按钮
+                    $code.before('<span class="reborn rb-down code-hide"></span><span class="reborn rb-copy code-copy" data-clipboard-action="copy" data-clipboard-target="#' + uniqueId + '"></span>'); // 在 code 标签前添加按钮
                     $code.attr('id', uniqueId);
                     var clipboard = new ClipboardJS('.code-copy');
                     clipboard.on('success', function(e) {
@@ -371,7 +371,19 @@
                         //console.log(e);
                     });
                 }
-
+            });
+            // 点击 code-hide 标签时隐藏/显示对应的 code 标签，并切换 rb-down 和 rb-up 类
+            $(document).on('click', '.code-hide', function() {
+                const $this = $(this);
+                const $code = $this.nextAll('code').first(); // 获取相邻的 code 标签
+                if ($code.css('max-height') === '35px') {
+                    $code.css('max-height', 'none');
+                    $code.css('padding-bottom', '15px');
+                } else {
+                    $code.css('max-height', '35px');
+                    $code.css('padding-bottom', '5px');
+                }
+                $this.toggleClass('rb-down rb-up'); // 切换 rb-down 和 rb-up 类
             });
         }
     };

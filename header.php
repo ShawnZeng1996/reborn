@@ -11,7 +11,7 @@
             'author'    =>  _t('%s 发布的文章')
         ), '', ' - '); ?><?php $this->options->title(); ?></title>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('font/iconfont.css'); ?>?v=<?php echo THEME_VERSION; ?>">
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/atom-one-dark.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/atom-one-light.min.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>?v=<?php echo THEME_VERSION; ?>">
     <?php $this->header(); ?>
 </head>

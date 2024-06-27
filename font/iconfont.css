@@ -1,8 +1,8 @@
 @font-face {
   font-family: "reborn"; /* Project id 4221380 */
-  src: url('iconfont.woff2?t=1719475737327') format('woff2'),
-       url('iconfont.woff?t=1719475737327') format('woff'),
-       url('iconfont.ttf?t=1719475737327') format('truetype');
+  src: url('iconfont.woff2?t=1719477960116') format('woff2'),
+       url('iconfont.woff?t=1719477960116') format('woff'),
+       url('iconfont.ttf?t=1719477960116') format('truetype');
 }
 
 .reborn {
@@ -11,6 +11,14 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.rb-down:before {
+  content: "\e848";
+}
+
+.rb-up:before {
+  content: "\e84b";
 }
 
 .rb-copy:before {
@@ -119,10 +127,6 @@
 
 .rb-blank:before {
   content: "\e600";
-}
-
-.rb-expand:before {
-  content: "\e602";
 }
 
 .rb-search:before {
