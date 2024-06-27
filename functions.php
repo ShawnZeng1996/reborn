@@ -62,8 +62,8 @@ function themeConfig($form) {
     $form->addInput($sidebarAd);
 }
 
-function themeInit($archive) {
-
+function themeInit($self) {
+    
 }
 
 

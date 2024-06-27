@@ -30,6 +30,7 @@
         var commentsRequireMail = <?php echo $this->options->commentsRequireMail; ?>;
         var commentsRequireURL = <?php echo $this->options->commentsRequireURL; ?>;
     </script>
+    <script src="<?php $this->options->themeUrl('js/highlight.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php $this->options->themeUrl('js/app.js'); ?>?v=<?php echo THEME_VERSION; ?>"></script>
     <?php $this->footer(); ?>
     </body>

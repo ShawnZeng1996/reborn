@@ -354,6 +354,25 @@
                     });
                 }
             });
+        },
+        codeCopy: function () {
+            $('pre').each(function(index) {
+                const $pre = $(this);
+                const $code = $pre.find('code').first(); // 查找第一个 code 标签
+                if ($code.length > 0) {
+                    const uniqueId = 'rb-code-' + index;
+                    $code.before('<span class="reborn rb-copy code-copy" data-clipboard-action="copy" data-clipboard-target="#' + uniqueId + '"></span>'); // 在 code 标签前添加按钮
+                    $code.attr('id', uniqueId);
+                    var clipboard = new ClipboardJS('.code-copy');
+                    clipboard.on('success', function(e) {
+                        //console.log(e);
+                    });
+                    clipboard.on('error', function(e) {
+                        //console.log(e);
+                    });
+                }
+
+            });
         }
     };
     $(document).ready(function() {
@@ -361,6 +380,9 @@
         App.postLike();
         App.postComment();
         App.emojiEvent();
+        hljs.highlightAll();
+        hljs.initLineNumbersOnLoad();
+        App.codeCopy();
     });
 })(jQuery);
 
