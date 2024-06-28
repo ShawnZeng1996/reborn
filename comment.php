@@ -103,11 +103,12 @@ if ($barkUrl) {
     // 获取文章链接模板
     $routingTable = \Utils\Helper::options()->routingTable;
     $index = \Utils\Helper::options()->index;
-    $permalinkTemplate = match ($articleType) {
-        'post' => $routingTable['post']['url'],
-        'page' => $routingTable['page']['url'],
-        default => '',
-    };
+    $permalinkTemplate = '';
+    if ($articleType === 'post') {
+        $permalinkTemplate = $routingTable['post']['url'];
+    } elseif ($articleType === 'page') {
+        $permalinkTemplate = $routingTable['page']['url'];
+    }
     if ($permalinkTemplate) {
         $permalink = url($permalinkTemplate, $index);
         [$scheme, $permalink] = explode(':', $permalink, 2);
