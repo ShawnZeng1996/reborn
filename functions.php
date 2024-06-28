@@ -7,7 +7,7 @@ define('THEME_VERSION', '1.0.0');
 
 // 文章自定义字段
 function themeFields($layout) {
-    $postType = new Typecho\Widget\Helper\Form\Element\Radio(
+    $postType = new Typecho\Widget\Helper\Form\Element\Radio (
         'postType',
         array(
             'post' => _t('文章（默认）'),
@@ -18,7 +18,7 @@ function themeFields($layout) {
         _t('发布文章时的文章类型，默认为文章')
     );
     $layout->addItem($postType);
-    $location = new Typecho\Widget\Helper\Form\Element\Text(
+    $location = new Typecho\Widget\Helper\Form\Element\Text (
         'location',
         NULL,
         NULL,
@@ -26,6 +26,14 @@ function themeFields($layout) {
         _t('发布内容所在坐标')
     );
     $layout->addItem($location);
+    $thumbnail = new Typecho\Widget\Helper\Form\Element\Text (
+        'thumbnail',
+        NULL,
+        NULL,
+        _t('文章略缩图'),
+        _t('首页文章略缩图，若未设置则使用默认图像')
+    );
+    $layout->addItem($thumbnail);
 }
 
 // 主题设置
