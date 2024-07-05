@@ -8,7 +8,7 @@
     <div class="post-content flex-1">
         <div class="post-author"><?php $this->author(); ?></div>
         <a class="post-item" href="<?php $this->permalink(); ?>">
-            <?php $thumbnail = $this->fields->thumbnail ?: $this->options->themeUrl . '/img/post.webp'; ?>
+            <?php $thumbnail = $this->fields->thumbnail ?: $this->options->themeUrl . '/assets/img/post.webp'; ?>
             <img src="<?php echo $thumbnail; ?>" alt="<?php $this->title(); ?>" class="post-thumbnail" />
             <h3 class="post-title ellipsis"><?php $this->title(); ?></h3>
         </a>

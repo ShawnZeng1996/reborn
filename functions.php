@@ -393,7 +393,7 @@ function getPostView($archive)
 
 function commentEmojiReplace($comment_text): string {
     // 目录路径
-    $directory = '/usr/themes/reborn/emoji/';
+    $directory = '/usr/themes/reborn/assets/emoji/';
     // 表情包类别
     $categories = array('alu', 'paopao', 'xiaodianshi', 'koukou');
     $data_OwO = array();
@@ -426,5 +426,208 @@ function ensureAbsoluteUrl($url) {
         return 'http://' . $url;  // 默认为 http
     }
     return $url;
+}
+
+Typecho\Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
+Typecho\Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');
+class Editor
+{
+    public static function Edit() {
+?>
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4611589_xlzgt6i2rt.css">
+        <link rel="stylesheet" href="<?php Helper::options()->themeUrl('lib/editor.md@1.5.0/css/editormd.css'); ?>">
+
+        <script>
+            var uploadUrl = '<?php Helper::security()->index('/action/upload?cid=CID'); ?>';
+            var emojiPath = '<?php Helper::options()->themeUrl(); ?>';
+        </script>
+        <script type="text/javascript" src="<?php Helper::options()->themeUrl('lib/editor.md@1.5.0/js/editormd.js'); ?>"></script>
+        <script>
+            $(document).ready(function() {
+                var textarea = $('#text').parent("p");
+                var isMarkdown = $('[name=markdown]').val()?1:0;
+                if (!isMarkdown) {
+                    var notice = $('<div class="message notice"><?php _e('本文Markdown解析已禁用！'); ?> '
+                        + '<button class="btn btn-xs primary yes"><?php _e('启用'); ?></button> '
+                        + '<button class="btn btn-xs no"><?php _e('保持禁用'); ?></button></div>')
+                        .hide().insertBefore(textarea).slideDown();
+                    $('.yes', notice).click(function () {
+                        notice.remove();
+                        $('<input type="hidden" name="markdown" value="1" />').appendTo('.submit');
+                    });
+                    $('.no', notice).click(function () {
+                        notice.remove();
+                    });
+                }
+                $('#text').wrap("<div id='text-editormd'></div>");
+                postEditormd = editormd("text-editormd", {
+                    width: "100%",
+                    height: 640,
+                    path: '<?php Helper::options()->themeUrl(); ?>/lib/editor.md@1.5.0/lib/',
+                    toolbarAutoFixed: false,
+                    htmlDecode: true,
+                    emoji: true,//<?php echo $editormd->emoji ? 'true' : 'false'; ?>,
+                    tex: true,//<?php echo $editormd->isTex ? 'true' : 'false'; ?>,
+                    toc: true,//<?php echo $editormd->isToc ? 'true' : 'false'; ?>,
+                    tocm: true,//<?php echo $editormd->isToc ? 'true' : 'false'; ?>,    // Using [TOCM]
+                    taskList: true,//<?php echo $editormd->isTask ? 'true' : 'false'; ?>,
+                    flowChart: true,//<?php echo $editormd->isFlow ? 'true' : 'false'; ?>,  // 默认不解析
+                    sequenceDiagram: true,//<?php echo $editormd->isSeq ? 'true' : 'false'; ?>,
+                    toolbarIcons: function () {
+                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h1", "h2", "h3", "h4", "|", "list-ul", "list-ol", "hr", "|", "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "more", "|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info", "|", "isMarkdown"]
+                    },
+                    toolbarIconsClass: {
+                        redo: "fa-redo",
+                        more: "fa-depart",  // 指定一个FontAawsome的图标类
+                        isMarkdown: "fa-power-off fun"
+                    },
+                    // 自定义工具栏按钮的事件处理
+                    toolbarHandlers: {
+                        /**
+                         * @param {Object}      cm         CodeMirror对象
+                         * @param {Object}      icon       图标按钮jQuery元素对象
+                         * @param {Object}      cursor     CodeMirror的光标对象，可获取光标所在行和位置
+                         * @param {String}      selection  编辑器选中的文本
+                         */
+                        more: function (cm, icon, cursor, selection) {
+                            cm.replaceSelection("<!--more-->");
+                        },
+                        isMarkdown: function (cm, icon, cursor, selection) {
+                            if(!$("div.message.notice").html()){
+                                var isMarkdown = $('[name=markdown]').val()?$('[name=markdown]').val():0;
+                                if (isMarkdown==1) {
+                                    var notice = $('<div class="message notice"><?php _e('本文Markdown解析已启用！'); ?> '
+                                        + '<button class="btn btn-xs no"><?php _e('禁用'); ?></button> '
+                                        + '<button class="btn btn-xs primary yes"><?php _e('保持启用'); ?></button></div>')
+                                        .hide().insertBefore(textarea).slideDown();
+
+                                    $('.yes', notice).click(function () {
+                                        notice.remove();
+                                    });
+
+                                    $('.no', notice).click(function () {
+                                        notice.remove();
+                                        $("[name=markdown]").val(0);
+                                        postEditormd.unwatch();
+                                    });
+                                } else {
+                                    var notice = $('<div class="message notice"><?php _e('本文Markdown解析已禁用！'); ?> '
+                                        + '<button class="btn btn-xs primary yes"><?php _e('启用'); ?></button> '
+                                        + '<button class="btn btn-xs no"><?php _e('保持禁用'); ?></button></div>')
+                                        .hide().insertBefore(textarea).slideDown();
+
+                                    $('.yes', notice).click(function () {
+                                        notice.remove();
+                                        postEditormd.watch();
+                                        if(!$("[name=markdown]").val())
+                                            $('<input type="hidden" name="markdown" value="1" />').appendTo('.submit');
+                                        else
+                                            $("[name=markdown]").val(1);
+                                    });
+
+                                    $('.no', notice).click(function () {
+                                        notice.remove();
+                                    });
+                                }
+                            }
+                        }
+                    },
+                    lang: {
+                        toolbar: {
+                            more: "插入摘要分隔符",
+                            isMarkdown: "非Markdown模式"
+                        }
+                    },
+                });
+
+                // 优化图片及文件附件插入 Thanks to Markxuxiao
+                Typecho.insertFileToEditor = function (file, url, isImage) {
+                    html = isImage ? '![' + file + '](' + url + ')'
+                        : '[' + file + '](' + url + ')';
+                    postEditormd.insertValue(html);
+                };
+
+                // 支持黏贴图片直接上传
+                $(document).on('paste', function(event) {
+                    event = event.originalEvent;
+                    var cbd = event.clipboardData;
+                    var ua = window.navigator.userAgent;
+                    if (!(event.clipboardData && event.clipboardData.items)) {
+                        return;
+                    }
+
+                    if (cbd.items && cbd.items.length === 2 && cbd.items[0].kind === "string" && cbd.items[1].kind === "file" &&
+                        cbd.types && cbd.types.length === 2 && cbd.types[0] === "text/plain" && cbd.types[1] === "Files" &&
+                        ua.match(/Macintosh/i) && Number(ua.match(/Chrome\/(\d{2})/i)[1]) < 49){
+                        return;
+                    }
+
+                    var itemLength = cbd.items.length;
+
+                    if (itemLength == 0) {
+                        return;
+                    }
+
+                    if (itemLength == 1 && cbd.items[0].kind == 'string') {
+                        return;
+                    }
+
+                    if ((itemLength == 1 && cbd.items[0].kind == 'file')
+                        || itemLength > 1
+                    ) {
+                        for (var i = 0; i < cbd.items.length; i++) {
+                            var item = cbd.items[i];
+
+                            if(item.kind == "file") {
+                                var blob = item.getAsFile();
+                                if (blob.size === 0) {
+                                    return;
+                                }
+                                var ext = 'jpg';
+                                switch(blob.type) {
+                                    case 'image/jpeg':
+                                    case 'image/pjpeg':
+                                        ext = 'jpg';
+                                        break;
+                                    case 'image/png':
+                                        ext = 'png';
+                                        break;
+                                    case 'image/gif':
+                                        ext = 'gif';
+                                        break;
+                                }
+                                var formData = new FormData();
+                                formData.append('blob', blob, Math.floor(new Date().getTime() / 1000) + '.' + ext);
+                                var uploadingText = '![图片上传中(' + i + ')...]';
+                                var uploadFailText = '![图片上传失败(' + i + ')]'
+                                postEditormd.insertValue(uploadingText);
+                                $.ajax({
+                                    method: 'post',
+                                    url: uploadURL.replace('CID', $('input[name="cid"]').val()),
+                                    data: formData,
+                                    contentType: false,
+                                    processData: false,
+                                    success: function(data) {
+                                        if (data[0]) {
+                                            postEditormd.setValue(postEditormd.getValue().replace(uploadingText, '![](' + data[0] + ')'));
+                                        } else {
+                                            postEditormd.setValue(postEditormd.getValue().replace(uploadingText, uploadFailText));
+                                        }
+                                    },
+                                    error: function() {
+                                        postEditormd.setValue(postEditormd.getValue().replace(uploadingText, uploadFailText));
+                                    }
+                                });
+                            }
+                        }
+
+                    }
+
+                });
+
+            });
+        </script>
+<?php
+    }
 }
 

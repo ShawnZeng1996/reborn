@@ -10,10 +10,10 @@
             'tag'       =>  _t('标签 %s 下的文章'),
             'author'    =>  _t('%s 发布的文章')
         ), '', ' - '); ?><?php $this->options->title(); ?></title>
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('font/iconfont.css'); ?>?v=<?php echo THEME_VERSION; ?>">
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('css/atom-one-light.min.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/font/iconfont.css'); ?>?v=<?php echo THEME_VERSION; ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('lib/highlight@11.9.0/css/atom-one-light.min.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>?v=<?php echo THEME_VERSION; ?>">
-    <script type="text/javascript" src="<?php $this->options->themeUrl('js/jquery-3.7.1.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php $this->options->themeUrl('lib/jquery@3.7.1/jquery-3.7.1.min.js'); ?>"></script>
     <script type="text/javascript">
         var themeUrl = '<?php $this->options->themeUrl(); ?>'; // 定义主题URL变量
         var isLogin = <?php echo $this->user->hasLogin() ? 'true' : 'false'; ?>;
@@ -39,8 +39,8 @@
         var commentsRequireMail = <?php echo $this->options->commentsRequireMail; ?>;
         var commentsRequireURL = <?php echo $this->options->commentsRequireURL; ?>;
     </script>
-    <script src="<?php $this->options->themeUrl('js/highlight.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php $this->options->themeUrl('js/app.js'); ?>?v=<?php echo THEME_VERSION; ?>"></script>
+    <script src="<?php $this->options->themeUrl('lib/highlight@11.9.0/js/highlight.min.js'); ?>"></script>
+    <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/app.js'); ?>?v=<?php echo THEME_VERSION; ?>"></script>
     <?php $this->header(); ?>
 </head>
 <body>
