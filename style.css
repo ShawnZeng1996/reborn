@@ -161,7 +161,7 @@ ul, ol, li {
           .content .main-content .post-type .post-content .post-item .post-thumbnail {
             width: 50px;
             height: 50px;
-            margin-right: 5px; }
+            margin-right: 10px; }
           .content .main-content .post-type .post-content .post-item .post-title {
             font-weight: normal;
             font-size: 16px; }
@@ -184,7 +184,7 @@ ul, ol, li {
             border-radius: 4px;
             max-height: none;
             transition: max-height 0.3s ease;
-            overflow: hidden; }
+            overflow-y: hidden; }
           .content .main-content .post-type .post-content pre .code-copy {
             position: absolute;
             top: 5px;

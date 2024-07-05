@@ -193,7 +193,7 @@ ul, ol, li {
           .post-thumbnail {
             width: 50px;
             height: 50px;
-            margin-right: 5px;
+            margin-right: 10px;
           }
           .post-title {
             font-weight: normal;
@@ -222,7 +222,7 @@ ul, ol, li {
             border-radius: 4px;
             max-height: none;
             transition: max-height 0.3s ease;
-            overflow: hidden;
+            overflow-y: hidden;
           }
           .code-copy {
             position: absolute;

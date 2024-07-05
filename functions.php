@@ -270,8 +270,13 @@ function renderComments($comments, $link, $maxTopLevelComments = 5)
         if ($showAll || $displayCount < $maxTopLevelComments) {
             echo '<li id="comment-coid-' . $comment['coid'] . '" class="comment-item">';
             echo '<div class="comment-item-header">';
-            echo '<a href="' . htmlspecialchars($comment['url']) . '" target="_blank" class="comment-author" rel="nofollow">' . htmlspecialchars($comment['author']) . '</a>';
-            echo '<span class="separator post-comment flex-1" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . commentEmojiReplace(htmlspecialchars($comment['text'])) .'</span>';
+            if(!empty($comment['url'])) {
+                $hasLink = ' href="' . ensureAbsoluteUrl($comment['url']) . '" target="_blank" rel="nofollow"';
+            } else {
+                $hasLink = '';
+            }
+            echo '<a class="comment-author"' . $hasLink . '>' . $comment['author'] . '</a>';
+            echo '<span class="separator post-comment flex-1" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . commentEmojiReplace($comment['text']) .'</span>';
             echo '</div>';
             if (!empty($comment['replies'])) {
                 echo '<ul class="comment-replies">';
@@ -285,7 +290,6 @@ function renderComments($comments, $link, $maxTopLevelComments = 5)
             break;
         }
     }
-
     if (!$showAll && $commentCount > $maxTopLevelComments) {
         echo '<li class="comment-item"><a class="more-comments" href="' . $link . '#comments">查看更多</a></li>';
     }
@@ -295,17 +299,22 @@ function renderPostComments($comments, $parentAuthor = '') {
     foreach ($comments as $comment) {
         echo '<li id="comment-coid-' . $comment['coid'] . '" class="comment-item">';
         echo '<div class="comment-item-header flex">';
-        echo '<a class="comment-author-avatar" rel="nofollow" target="_blank" href="' . $comment['url'] . '" rel="nofollow"><img src="' . getGravatarUrl($comment['mail'], 40) . '" alt="' . htmlspecialchars($comment['author']) . '"></a>';
+        if(!empty($comment['url'])) {
+            $hasLink = ' href="' . ensureAbsoluteUrl($comment['url']) . '" target="_blank" rel="nofollow"';
+        } else {
+            $hasLink = '';
+        }
+        echo '<a class="comment-author-avatar"' . $hasLink . '><img src="' . getGravatarUrl($comment['mail'], 40) . '" alt="' . $comment['author'] . '"></a>';
         echo '<div class="flex flex-1 comment-body">';
         echo '<div class="flex-1">';
-        echo '<a class="comment-author" rel="nofollow" target="_blank" href="' . $comment['url'] . '">' . htmlspecialchars($comment['author']) . '</a>';
+        echo '<a class="comment-author" rel="nofollow" target="_blank" href="' . $comment['url'] . '">' . $comment['author'] . '</a>';
         if (!empty($parentAuthor)) {
-            echo '回复<span class="comment-author m-l-10">' . htmlspecialchars($parentAuthor) . '</span>';
+            echo '回复<span class="comment-author m-l-10">' . $parentAuthor . '</span>';
         }
         echo '<time class="comment-time" datetime="' . $comment['created'] . '">' . timeAgo($comment['created']) . '</time>';
         echo '</div>';
         echo '<a class="write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">回复</a>';
-        echo '<div class="comment-content write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . commentEmojiReplace(htmlspecialchars($comment['text'])) . '</div>';
+        echo '<div class="comment-content write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . commentEmojiReplace($comment['text']) . '</div>';
         echo '</div>';
         echo '</div>';
         if (!empty($comment['replies'])) {
@@ -328,8 +337,13 @@ function renderReplies($replies, $parentAuthor)
     foreach ($replies as $reply) {
         echo '<li id="comment-coid-' . $reply['coid'] . '" class="comment-item">';
         echo '<div class="comment-item-header">';
-        echo '<a href="' . htmlspecialchars($reply['url']) . '" target="_blank" class="comment-author" rel="nofollow">' . htmlspecialchars($reply['author']) . '</a> 回复 <span class="comment-author">' . htmlspecialchars($parentAuthor) . '</span>';
-        echo '<span class="separator post-comment flex-1" data-cid="' . $reply['cid'] . '" data-coid="' . $reply['coid'] . '" data-name="' . $reply['author'] . '">' . commentEmojiReplace(htmlspecialchars($reply['text'])) .'</span>';
+        if(!empty($reply['url'])) {
+            $hasLink = ' href="' . ensureAbsoluteUrl($reply['url']) . '" target="_blank" rel="nofollow"';
+        } else {
+            $hasLink = '';
+        }
+        echo '<a class="comment-author"' . $hasLink . '>' . $reply['author'] . '</a> 回复 <span class="comment-author">' . $parentAuthor . '</span>';
+        echo '<span class="separator post-comment flex-1" data-cid="' . $reply['cid'] . '" data-coid="' . $reply['coid'] . '" data-name="' . $reply['author'] . '">' . commentEmojiReplace($reply['text']) .'</span>';
         echo '</div>';
         if (!empty($reply['replies'])) {
             echo '<ul class="comment-replies">';
@@ -404,7 +418,13 @@ function commentEmojiReplace($comment_text): string {
     return strtr($comment_text, $data_OwO);
 }
 
-
-
-
+function ensureAbsoluteUrl($url) {
+    if (empty($url)) {
+        return '#'; // 如果 URL 为空，返回锚点链接
+    }
+    if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+        return 'http://' . $url;  // 默认为 http
+    }
+    return $url;
+}
 
