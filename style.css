@@ -315,7 +315,7 @@ ul, ol, li {
           margin-right: 10px; }
       .content .main-content .post-type #post-content {
         padding: 0; }
-        .content .main-content .post-type #post-content img:not(.rb-emoji-item, .post-thumbnail) {
+        .content .main-content .post-type #post-content img:not([class]) {
           display: block;
           margin: 0 auto; }
         .content .main-content .post-type #post-content code:not(.hljs) {
@@ -335,7 +335,7 @@ ul, ol, li {
           color: rgba(0, 0, 0, 0.5);
           background: #F6F6F6;
           margin: 5px 0; }
-        .content .main-content .post-type #post-content h2 {
+        .content .main-content .post-type #post-content h2:not([class]) {
           text-align: center;
           line-height: 1.75;
           font-size: 1.2em;
@@ -345,7 +345,7 @@ ul, ol, li {
           padding: 0 0.2em;
           background: #0f4c81;
           color: #FFFFFF; }
-        .content .main-content .post-type #post-content h3 {
+        .content .main-content .post-type #post-content h3:not([class]) {
           text-align: left;
           line-height: 1.2;
           font-size: 1.1em;
@@ -354,7 +354,7 @@ ul, ol, li {
           padding-left: 8px;
           border-left: 3px solid #0f4c81;
           color: #3f3f3f; }
-        .content .main-content .post-type #post-content h4 {
+        .content .main-content .post-type #post-content h4:not([class]) {
           text-align: left;
           line-height: 1.75;
           font-size: 1em;

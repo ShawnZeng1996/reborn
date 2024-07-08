@@ -387,7 +387,7 @@ ul, ol, li {
       }
       #post-content {
         padding: 0;
-        img:not(.rb-emoji-item, .post-thumbnail) {
+        img:not([class]) {
           display: block;
           margin: 0 auto;
         }
@@ -410,7 +410,7 @@ ul, ol, li {
           background: #F6F6F6;
           margin: 5px 0;
         }
-        h2 {
+        h2:not([class]) {
           text-align: center;
           line-height: 1.75;
           font-size: 1.2em;
@@ -421,7 +421,7 @@ ul, ol, li {
           background: #0f4c81;
           color: #FFFFFF;
         }
-        h3 {
+        h3:not([class]) {
           text-align: left;
           line-height: 1.2;
           font-size: 1.1em;
@@ -431,7 +431,7 @@ ul, ol, li {
           border-left: 3px solid #0f4c81;
           color: #3f3f3f;
         }
-        h4 {
+        h4:not([class]) {
           text-align: left;
           line-height: 1.75;
           font-size: 1em;
