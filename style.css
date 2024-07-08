@@ -172,87 +172,6 @@ ul, ol, li {
           cursor: pointer; }
         .content .main-content .post-type .post-content div, .content .main-content .post-type .post-content img {
           max-width: 100%; }
-        .content .main-content .post-type .post-content img:not(.rb-emoji-item, .post-thumbnail) {
-          display: block;
-          margin: 0 auto; }
-        .content .main-content .post-type .post-content code:not(.hljs) {
-          line-height: 1.75;
-          font-size: 90%;
-          color: #d14;
-          background: #F6F6F6;
-          padding: 3px 5px;
-          border-radius: 4px; }
-        .content .main-content .post-type .post-content blockquote {
-          line-height: 1.75;
-          font-size: 14px;
-          font-style: normal;
-          border-left: none;
-          padding: 1em;
-          border-radius: 8px;
-          color: rgba(0, 0, 0, 0.5);
-          background: #F6F6F6;
-          margin: 5px 0; }
-        .content .main-content .post-type .post-content h2 {
-          text-align: center;
-          line-height: 1.75;
-          font-size: 1.2em;
-          font-weight: bold;
-          display: table;
-          margin: 30px auto;
-          padding: 0 0.2em;
-          background: #0f4c81;
-          color: #FFFFFF; }
-        .content .main-content .post-type .post-content h3 {
-          text-align: left;
-          line-height: 1.2;
-          font-size: 1.1em;
-          font-weight: bold;
-          margin: 20px 0;
-          padding-left: 8px;
-          border-left: 3px solid #0f4c81;
-          color: #3f3f3f; }
-        .content .main-content .post-type .post-content h4 {
-          text-align: left;
-          line-height: 1.75;
-          font-size: 1em;
-          font-weight: bold;
-          margin: 20px 0;
-          color: #0f4c81; }
-        .content .main-content .post-type .post-content a {
-          color: #576B95; }
-        .content .main-content .post-type .post-content ul, .content .main-content .post-type .post-content ol {
-          margin: 0 0 0 20px; }
-        .content .main-content .post-type .post-content ul li {
-          list-style-type: disc; }
-        .content .main-content .post-type .post-content ol li {
-          list-style-type: decimal; }
-        .content .main-content .post-type .post-content li {
-          margin: 0 0 0 20px;
-          line-height: 32px; }
-        .content .main-content .post-type .post-content p {
-          margin: 20px 0; }
-        .content .main-content .post-type .post-content table:not(.hljs-ln) {
-          border-spacing: 0;
-          border-collapse: collapse;
-          width: 100%; }
-          .content .main-content .post-type .post-content table:not(.hljs-ln) thead {
-            text-align: left;
-            line-height: 1.75;
-            background: #F6F6F6;
-            font-weight: bold;
-            color: #3f3f3f; }
-            .content .main-content .post-type .post-content table:not(.hljs-ln) thead th {
-              text-align: left;
-              line-height: 1.75;
-              border: 1px solid #dfdfdf;
-              padding: 0.25em 0.5em;
-              color: #3f3f3f; }
-          .content .main-content .post-type .post-content table:not(.hljs-ln) tbody td {
-            text-align: left;
-            line-height: 1.75;
-            border: 1px solid #dfdfdf;
-            padding: 0.25em 0.5em;
-            color: #3f3f3f; }
         .content .main-content .post-type .post-content .post-meta-1.post-location {
           color: #576B95;
           margin-top: 5px; }
@@ -396,6 +315,87 @@ ul, ol, li {
           margin-right: 10px; }
       .content .main-content .post-type #post-content {
         padding: 0; }
+        .content .main-content .post-type #post-content img:not(.rb-emoji-item, .post-thumbnail) {
+          display: block;
+          margin: 0 auto; }
+        .content .main-content .post-type #post-content code:not(.hljs) {
+          line-height: 1.75;
+          font-size: 90%;
+          color: #d14;
+          background: #F6F6F6;
+          padding: 3px 5px;
+          border-radius: 4px; }
+        .content .main-content .post-type #post-content blockquote {
+          line-height: 1.75;
+          font-size: 14px;
+          font-style: normal;
+          border-left: none;
+          padding: 1em;
+          border-radius: 8px;
+          color: rgba(0, 0, 0, 0.5);
+          background: #F6F6F6;
+          margin: 5px 0; }
+        .content .main-content .post-type #post-content h2 {
+          text-align: center;
+          line-height: 1.75;
+          font-size: 1.2em;
+          font-weight: bold;
+          display: table;
+          margin: 30px auto;
+          padding: 0 0.2em;
+          background: #0f4c81;
+          color: #FFFFFF; }
+        .content .main-content .post-type #post-content h3 {
+          text-align: left;
+          line-height: 1.2;
+          font-size: 1.1em;
+          font-weight: bold;
+          margin: 20px 0;
+          padding-left: 8px;
+          border-left: 3px solid #0f4c81;
+          color: #3f3f3f; }
+        .content .main-content .post-type #post-content h4 {
+          text-align: left;
+          line-height: 1.75;
+          font-size: 1em;
+          font-weight: bold;
+          margin: 20px 0;
+          color: #0f4c81; }
+        .content .main-content .post-type #post-content a {
+          color: #576B95; }
+        .content .main-content .post-type #post-content ul, .content .main-content .post-type #post-content ol {
+          margin: 0 0 0 20px; }
+        .content .main-content .post-type #post-content ul li {
+          list-style-type: disc; }
+        .content .main-content .post-type #post-content ol li {
+          list-style-type: decimal; }
+        .content .main-content .post-type #post-content li {
+          margin: 0 0 0 20px;
+          line-height: 32px; }
+        .content .main-content .post-type #post-content p {
+          margin: 20px 0; }
+        .content .main-content .post-type #post-content table:not(.hljs-ln) {
+          border-spacing: 0;
+          border-collapse: collapse;
+          width: 100%; }
+          .content .main-content .post-type #post-content table:not(.hljs-ln) thead {
+            text-align: left;
+            line-height: 1.75;
+            background: #F6F6F6;
+            font-weight: bold;
+            color: #3f3f3f; }
+            .content .main-content .post-type #post-content table:not(.hljs-ln) thead th {
+              text-align: left;
+              line-height: 1.75;
+              border: 1px solid #dfdfdf;
+              padding: 0.25em 0.5em;
+              color: #3f3f3f; }
+          .content .main-content .post-type #post-content table:not(.hljs-ln) tbody td {
+            text-align: left;
+            line-height: 1.75;
+            border: 1px solid #dfdfdf;
+            padding: 0.25em 0.5em;
+            color: #3f3f3f; }
       .content .main-content .post-type > .post-footer {
         align-items: center;
         justify-content: space-between;
