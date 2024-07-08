@@ -434,7 +434,7 @@ class Editor
 {
     public static function Edit() {
 ?>
-        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4611589_xlzgt6i2rt.css">
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4611589_7w4yxsfh2hs.css">
         <link rel="stylesheet" href="<?php Helper::options()->themeUrl('lib/editor.md@1.5.0/css/editormd.css'); ?>">
 
         <script>
@@ -474,12 +474,12 @@ class Editor
                     flowChart: true,//<?php echo $editormd->isFlow ? 'true' : 'false'; ?>,  // 默认不解析
                     sequenceDiagram: true,//<?php echo $editormd->isSeq ? 'true' : 'false'; ?>,
                     toolbarIcons: function () {
-                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h1", "h2", "h3", "h4", "|", "list-ul", "list-ol", "hr", "|", "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "more", "|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info", "|", "isMarkdown"]
+                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "hr", "|", "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "more", "|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info", "|", "isMarkdown"]
                     },
                     toolbarIconsClass: {
                         redo: "fa-redo",
                         more: "fa-depart",  // 指定一个FontAawsome的图标类
-                        isMarkdown: "fa-power-off fun"
+                        isMarkdown: "fa-shut-down"
                     },
                     // 自定义工具栏按钮的事件处理
                     toolbarHandlers: {

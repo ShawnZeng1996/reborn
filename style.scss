@@ -209,6 +209,106 @@ ul, ol, li {
         div, img {
           max-width: 100%;
         }
+        img:not(.rb-emoji-item, .post-thumbnail) {
+          display: block;
+          margin: 0 auto;
+        }
+        code:not(.hljs) {
+          line-height: 1.75;
+          font-size: 90%;
+          color: #d14;
+          background: #F6F6F6;
+          padding: 3px 5px;
+          border-radius: 4px;
+        }
+        blockquote {
+          line-height: 1.75;
+          font-size: 14px;
+          font-style: normal;
+          border-left: none;
+          padding: 1em;
+          border-radius: 8px;
+          color: rgba(0, 0, 0, 0.5);
+          background: #F6F6F6;
+          margin: 5px 0;
+        }
+        h2 {
+          text-align: center;
+          line-height: 1.75;
+          font-size: 1.2em;
+          font-weight: bold;
+          display: table;
+          margin: 30px auto;
+          padding: 0 0.2em;
+          background: #0f4c81;
+          color: #FFFFFF;
+        }
+        h3 {
+          text-align: left;
+          line-height: 1.2;
+          font-size: 1.1em;
+          font-weight: bold;
+          margin: 20px 0;
+          padding-left: 8px;
+          border-left: 3px solid #0f4c81;
+          color: #3f3f3f;
+        }
+        h4 {
+          text-align: left;
+          line-height: 1.75;
+          font-size: 1em;
+          font-weight: bold;
+          margin: 20px 0;
+          color: #0f4c81;
+        }
+        a {
+          color: #576B95;
+        }
+        ul, ol {
+          margin: 0 0 0 20px;
+        }
+        ul li {
+          list-style-type: disc;
+        }
+        ol li {
+          list-style-type: decimal;
+        }
+        li {
+          margin: 0 0 0 20px;
+          line-height: 32px;
+        }
+        p {
+          margin: 20px 0;
+        }
+        table:not(.hljs-ln) {
+          border-spacing: 0;
+          border-collapse: collapse;
+          width: 100%;
+          thead {
+            text-align: left;
+            line-height: 1.75;
+            background: #F6F6F6;
+            font-weight: bold;
+            color: #3f3f3f;
+            th {
+              text-align: left;
+              line-height: 1.75;
+              border: 1px solid #dfdfdf;
+
+              padding: 0.25em 0.5em;
+              color: #3f3f3f;
+            }
+          }
+          tbody {
+            td {
+              text-align: left;
+              line-height: 1.75;
+              border: 1px solid #dfdfdf;
+              padding: 0.25em 0.5em;
+              color: #3f3f3f;
+            }
+          }
+        }
         .post-meta-1.post-location {
           color: $global_link_color;
           margin-top: 5px;
@@ -386,9 +486,6 @@ ul, ol, li {
       }
       #post-content {
         padding: 0;
-        h1, h2, h3, h4, h5 {
-          margin: 10px 0;
-        }
       }
       > .post-footer {
         align-items: center;

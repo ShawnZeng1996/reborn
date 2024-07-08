@@ -5,7 +5,7 @@ $isLiked = isLikeByCid($this->cid);
 $likes = $likeData['likes'];
 ?>
 <article class="post post-type">
-    <h3 class="post-title"><?php $this->title(); ?></h3>
+    <h1 class="post-title"><?php $this->title(); ?></h1>
     <div class="post-meta">
         <span class="post-author"><?php $this->author(); ?></span>
         <time class="post-publish-time" datetime="<?php $this->date('c'); ?>">
