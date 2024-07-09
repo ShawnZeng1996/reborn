@@ -31,7 +31,6 @@ $likes = $likeData['likes'];
     <div id="post-comment-area-<?php echo $this->cid; ?>"  class="post-comment-area<?php if(!hasComments($this->cid)) echo ' hidden'; ?>">
         <!-- 评论列表 -->
         <ul id="comments-cid-<?php echo $this->cid; ?>">
-            <div id="comments"></div>
             <?php
             if ($this->is('single')) {
                 $comments = getCommentsWithReplies($this->cid, 0);

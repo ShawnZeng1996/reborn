@@ -134,7 +134,12 @@
                 }
             });
             $(document).on('click', '.comment-cancel', function () {
+                let cid = $(this).data('cid');
                 $('.comment-form').remove();
+                if ($('#post-comment-area-'+cid).find('.comment-item').length === 0) {
+                    $('#post-comment-area-'+cid).addClass('hidden');
+                }
+
             });
 
             // 评论提交逻辑
@@ -443,7 +448,7 @@ function getCommentFormHtml(cid, coid, name) {
                     </div>
                 </div>
                 <div class="comment-footer-btn">
-                    <button class="comment-cancel">取消</button>
+                    <button class="comment-cancel" data-cid="${cid}">取消</button>
                     <button class="comment-btn underline" data-cid="${cid}" data-coid="${coid}">回复</button>
                 </div>
             </div>
