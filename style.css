@@ -172,6 +172,31 @@ ul, ol, li {
           cursor: pointer; }
         .content .main-content .post-type .post-content div, .content .main-content .post-type .post-content img {
           max-width: 100%; }
+        .content .main-content .post-type .post-content input.rb-checkbox {
+          -webkit-appearance: none;
+          position: relative;
+          border-radius: 2px;
+          width: 15px;
+          height: 15px;
+          border: 2px solid #0f4c81;
+          vertical-align: -2px; }
+        .content .main-content .post-type .post-content input.rb-checkbox:disabled {
+          cursor: not-allowed; }
+        .content .main-content .post-type .post-content input.rb-checkbox:checked::after {
+          content: '';
+          width: 3px;
+          height: 7px;
+          position: absolute;
+          top: 2px;
+          left: 5px;
+          border: 2px solid #fff;
+          border-top: 0;
+          border-left: 0;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg); }
+        .content .main-content .post-type .post-content input.rb-checkbox:checked {
+          border: none;
+          background: #0f4c81; }
         .content .main-content .post-type .post-content .post-meta-1.post-location {
           color: #576B95;
           margin-top: 5px; }

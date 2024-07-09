@@ -430,11 +430,12 @@ function ensureAbsoluteUrl($url) {
 
 Typecho\Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
 Typecho\Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');
+Typecho\Plugin::factory('Widget_Abstract_Contents')->contentEx_1000 = array('Editor', 'parseContent');
 class Editor
 {
     public static function Edit() {
 ?>
-        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4611589_7w4yxsfh2hs.css">
+        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4611589_m0t444e6ggf.css">
         <link rel="stylesheet" href="<?php Helper::options()->themeUrl('lib/editor.md@1.5.0/css/editormd.css'); ?>">
 
         <script>
@@ -445,20 +446,6 @@ class Editor
         <script>
             $(document).ready(function() {
                 var textarea = $('#text').parent("p");
-                var isMarkdown = $('[name=markdown]').val()?1:0;
-                if (!isMarkdown) {
-                    var notice = $('<div class="message notice"><?php _e('本文Markdown解析已禁用！'); ?> '
-                        + '<button class="btn btn-xs primary yes"><?php _e('启用'); ?></button> '
-                        + '<button class="btn btn-xs no"><?php _e('保持禁用'); ?></button></div>')
-                        .hide().insertBefore(textarea).slideDown();
-                    $('.yes', notice).click(function () {
-                        notice.remove();
-                        $('<input type="hidden" name="markdown" value="1" />').appendTo('.submit');
-                    });
-                    $('.no', notice).click(function () {
-                        notice.remove();
-                    });
-                }
                 $('#text').wrap("<div id='text-editormd'></div>");
                 postEditormd = editormd("text-editormd", {
                     width: "100%",
@@ -466,20 +453,19 @@ class Editor
                     path: '<?php Helper::options()->themeUrl(); ?>/lib/editor.md@1.5.0/lib/',
                     toolbarAutoFixed: false,
                     htmlDecode: true,
-                    emoji: true,//<?php echo $editormd->emoji ? 'true' : 'false'; ?>,
                     tex: true,//<?php echo $editormd->isTex ? 'true' : 'false'; ?>,
                     toc: true,//<?php echo $editormd->isToc ? 'true' : 'false'; ?>,
-                    tocm: true,//<?php echo $editormd->isToc ? 'true' : 'false'; ?>,    // Using [TOCM]
+                    tocm: true,//<?php echo $editormd->isToc ? 'true' : 'false'; ?>,
                     taskList: true,//<?php echo $editormd->isTask ? 'true' : 'false'; ?>,
-                    flowChart: true,//<?php echo $editormd->isFlow ? 'true' : 'false'; ?>,  // 默认不解析
+                    flowChart: true,//<?php echo $editormd->isFlow ? 'true' : 'false'; ?>,
                     sequenceDiagram: true,//<?php echo $editormd->isSeq ? 'true' : 'false'; ?>,
                     toolbarIcons: function () {
-                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "hr", "|", "link", "reference-link", "image", "code", "preformatted-text", "code-block", "table", "more", "|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info", "|", "isMarkdown"]
+                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "image", "code", "code-block", "table", "more", "|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
                     },
                     toolbarIconsClass: {
-                        redo: "fa-redo",
-                        more: "fa-depart",  // 指定一个FontAawsome的图标类
-                        isMarkdown: "fa-shut-down"
+                        more: "fa-depart",
+                        "checkbox-checked": "fa-checkbox-checked",
+                        "checkbox": "fa-checkbox"
                     },
                     // 自定义工具栏按钮的事件处理
                     toolbarHandlers: {
@@ -492,50 +478,18 @@ class Editor
                         more: function (cm, icon, cursor, selection) {
                             cm.replaceSelection("<!--more-->");
                         },
-                        isMarkdown: function (cm, icon, cursor, selection) {
-                            if(!$("div.message.notice").html()){
-                                var isMarkdown = $('[name=markdown]').val()?$('[name=markdown]').val():0;
-                                if (isMarkdown==1) {
-                                    var notice = $('<div class="message notice"><?php _e('本文Markdown解析已启用！'); ?> '
-                                        + '<button class="btn btn-xs no"><?php _e('禁用'); ?></button> '
-                                        + '<button class="btn btn-xs primary yes"><?php _e('保持启用'); ?></button></div>')
-                                        .hide().insertBefore(textarea).slideDown();
-
-                                    $('.yes', notice).click(function () {
-                                        notice.remove();
-                                    });
-
-                                    $('.no', notice).click(function () {
-                                        notice.remove();
-                                        $("[name=markdown]").val(0);
-                                        postEditormd.unwatch();
-                                    });
-                                } else {
-                                    var notice = $('<div class="message notice"><?php _e('本文Markdown解析已禁用！'); ?> '
-                                        + '<button class="btn btn-xs primary yes"><?php _e('启用'); ?></button> '
-                                        + '<button class="btn btn-xs no"><?php _e('保持禁用'); ?></button></div>')
-                                        .hide().insertBefore(textarea).slideDown();
-
-                                    $('.yes', notice).click(function () {
-                                        notice.remove();
-                                        postEditormd.watch();
-                                        if(!$("[name=markdown]").val())
-                                            $('<input type="hidden" name="markdown" value="1" />').appendTo('.submit');
-                                        else
-                                            $("[name=markdown]").val(1);
-                                    });
-
-                                    $('.no', notice).click(function () {
-                                        notice.remove();
-                                    });
-                                }
-                            }
+                        "checkbox-checked": function (cm) {
+                            cm.replaceSelection("[x] ");
+                        },
+                        "checkbox": function (cm) {
+                            cm.replaceSelection("[ ] ");
                         }
                     },
                     lang: {
                         toolbar: {
                             more: "插入摘要分隔符",
-                            isMarkdown: "非Markdown模式"
+                            "checkbox-checked": "插入待办事项（已办）",
+                            "checkbox": "插入待办事项（未办）"
                         }
                     },
                 });
@@ -628,6 +582,15 @@ class Editor
             });
         </script>
 <?php
+    }
+
+    public static function parseContent($content)
+    {
+        // 将 [ ] 替换为未选中的复选框
+        $content = preg_replace('/\[\s\]/', '<input type="checkbox" class="rb-checkbox" disabled />', $content);
+        // 将 [x] 替换为已选中的复选框
+        $content = preg_replace('/\[x\]/', '<input type="checkbox" class="rb-checkbox" checked disabled />', $content);
+        return $content;
     }
 }
 

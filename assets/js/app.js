@@ -200,7 +200,7 @@
             });
         },
         emojiEvent: function () {
-            const emojiBasePath = themeUrl + '/emoji/';
+            const emojiBasePath = themeUrl + '/assets/emoji/';
             const emojiData = {
                 alu: [
                     '阿鲁_吐血倒地.png', '阿鲁_深思.png', '阿鲁_抽烟.png', '阿鲁_蜡烛.png', '阿鲁_咽气.png',

@@ -209,7 +209,35 @@ ul, ol, li {
         div, img {
           max-width: 100%;
         }
-
+        input.rb-checkbox {
+          -webkit-appearance: none;
+          position: relative;
+          border-radius: 2px;
+          width: 15px;
+          height: 15px;
+          border: 2px solid #0f4c81;
+          vertical-align: -2px;
+        }
+        input.rb-checkbox:disabled{
+          cursor: not-allowed;
+        }
+        input.rb-checkbox:checked::after {
+          content: '';
+          width: 3px;
+          height: 7px;
+          position: absolute;
+          top: 2px;
+          left: 5px;
+          border: 2px solid #fff;
+          border-top: 0;
+          border-left: 0;
+          -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+        input.rb-checkbox:checked {
+          border: none;
+          background: #0f4c81;
+        }
         .post-meta-1.post-location {
           color: $global_link_color;
           margin-top: 5px;
