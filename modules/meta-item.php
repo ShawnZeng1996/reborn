@@ -28,7 +28,8 @@ $likes = $likeData['likes'];
 </div>
 <div class="post-meta-3">
     <div id="post-like-area-<?php echo $this->cid; ?>" class="post-like-area<?php echo $likes ? '' : ' hidden'; ?>"><span class="reborn rb-heart-o"></span>&nbsp;<?php echo $likes; ?>人喜欢</div>
-    <div id="post-comment-area-<?php echo $this->cid; ?>"  class="post-comment-area<?php if(!hasComments($this->cid)) echo ' hidden'; ?>">
+    <div id="post-comment-area-<?php echo $this->cid; ?>"  class="post-comment-area-<?php echo $this->cid; ?> post-comment-area<?php if(!hasComments($this->cid)) echo ' hidden'; ?>">
+        <?php $this->need('/modules/comment-form.php'); ?>
         <!-- 评论列表 -->
         <ul id="comments-cid-<?php echo $this->cid; ?>">
             <?php
@@ -38,7 +39,7 @@ $likes = $likeData['likes'];
                     renderComments($comments, $this->permalink, 0);
                 }
             } else {
-                $comments = getCommentsWithReplies($this->cid, 0, 5);
+                $comments = getCommentsWithReplies($this->cid, 0, 6);
                 if ($comments) {
                     renderComments($comments, $this->permalink);
                 }

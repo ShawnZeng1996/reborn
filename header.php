@@ -19,21 +19,12 @@
         var isLogin = <?php echo $this->user->hasLogin() ? 'true' : 'false'; ?>;
         <?php if($this->user->hasLogin()) {
             $user = $this->user;
-            $name = json_encode($user->screenName); // 用户昵称
-            $mail = json_encode($user->mail); // 用户邮箱
-            $url = json_encode($user->url); // 用户网址
             $uid = json_encode($user->uid); // 用户网址
             $avatar = json_encode(getGravatarUrl($user->mail));
         } else {
-            $name = json_encode('');
-            $mail = json_encode('');
-            $url = json_encode('');
             $uid = json_encode(0);
             $avatar = json_encode('');
         } ?>
-        var userName = <?php echo $name; ?>;
-        var userEmail = <?php echo $mail; ?>;
-        var userUrl = <?php echo $url; ?>;
         var userId = <?php echo $uid; ?>;
         var userAvatar = <?php echo $avatar; ?>;
         var commentsRequireMail = <?php echo $this->options->commentsRequireMail; ?>;

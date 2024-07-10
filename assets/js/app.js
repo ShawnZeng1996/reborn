@@ -95,34 +95,46 @@
                 let coid = $(this).data('coid');
                 let name = $(this).data('name');
                 // 显示评论区域
-                $('#post-comment-area-' + cid).removeClass('hidden');
-                let $commentForm = $(".comment-form");
-                let existsCommentFormCoid = $commentForm.data("coid");
-                let existsCommentFormCid = $commentForm.data("cid");
-                let hasCommentForm = $commentForm.length > 0;
-                $commentForm.remove();
-                if (hasCommentForm && existsCommentFormCoid === coid && existsCommentFormCid === cid) {
-                    return;
-                }
-                // 根据是否有 `coid` 决定插入表单的位置
+                let $commentArea = $('#post-comment-area-' + cid);
+                $commentArea.removeClass('hidden');
+                // 隐藏所有的评论表单
+                $('.comment-form').hide();
+                // 获取当前的评论表单
+                let $commentForm = $commentArea.find('.comment-form');
                 if (coid === undefined) {
-                    $('#comments-cid-' + cid).prepend(getCommentFormHtml(cid));
+                    $commentArea.find('.comment-textarea').attr('placeholder', '回复内容');
                 } else {
-                    $('#comment-coid-' + coid + '>.comment-item-header').after(getCommentFormHtml(cid, coid, name));
+                    // 设置数据属性和占位符
+                    $commentForm.attr('data-coid', coid);
+                    $commentForm.find('.comment-btn').attr('data-coid', coid);
+                    $commentArea.find('.comment-textarea').attr('placeholder', '回复@' + name);
+                    // 将评论表单移动到指定位置
+                    $commentForm.insertAfter('#comment-coid-' + coid + ' .comment-item-header');
                 }
+                $commentForm.show();
             });
+
             $(".write-comment").on('click',function (e) {
                 $('.none-comment').remove();
-                $(".comment-form").remove();
+                //$(".comment-form").remove();
                 let cid = $(this).data('cid');
                 let coid = $(this).data('coid');
                 let name = $(this).data('name');
+                // 显示评论区域
+                let $commentArea = $('#comments');
+                let $commentForm = $commentArea.find('.comment-form');
+                console.log('cid:'+cid+';coid'+coid);
                 if (coid === undefined) {
-                    $('.form-place').after(getCommentFormHtml(cid));
+                    $commentArea.find('.comment-textarea').attr('placeholder', '回复内容');
                 } else {
-                    $('#comment-coid-' + coid + '>.comment-item-header').after(getCommentFormHtml(cid, coid, name));
+                    // 设置数据属性和占位符
+                    $commentForm.attr('data-coid', coid);
+                    $commentForm.find('.comment-btn').attr('data-coid', coid);
+                    $commentArea.find('.comment-textarea').attr('placeholder', '回复@' + name);
+                    // 将评论表单移动到指定位置
+                    $commentForm.insertAfter('#comment-coid-' + coid + ' .comment-item-header');
                 }
-
+                $commentForm.show();
             });
 
             $(document).on('click', '.comment-form', function () {
@@ -135,11 +147,10 @@
             });
             $(document).on('click', '.comment-cancel', function () {
                 let cid = $(this).data('cid');
-                $('.comment-form').remove();
+                $('.comment-form').hide();
                 if ($('#post-comment-area-'+cid).find('.comment-item').length === 0) {
                     $('#post-comment-area-'+cid).addClass('hidden');
                 }
-
             });
 
             // 评论提交逻辑
@@ -148,10 +159,12 @@
                 const $this = $(this);
                 let cid = $this.data('cid');
                 let coid = $this.data('coid');
-                let author = $('.comment-input.comment-input-author').val();
-                let mail = $('.comment-input.comment-input-email').val();
-                let url = $('.comment-input.comment-input-url').val();
-                let text = $('.comment-textarea.comment-input-text').val();
+                let $commentArea = $('.post-comment-area-' + cid);
+                let author = $commentArea.find('.comment-input.comment-input-author').val();
+                let mail = $commentArea.find('.comment-input.comment-input-email').val();
+                let url = $commentArea.find('.comment-input.comment-input-url').val();
+                let text = $commentArea.find('.comment-textarea.comment-input-text').val();
+                console.log(text);
                 let param = {
                     cid: cid,
                     parent: coid,
@@ -187,6 +200,13 @@
                     data: param,
                     success: function (data) {
                         if (data.success) {
+                            // 记录已评论的文章cid
+                            //let commentedCids = JSON.parse(window.localStorage.getItem('commentedCids')) || [];
+                            //if (!commentedCids.includes(cid)) {
+                            //    commentedCids.push(cid);
+                            //}
+                            //window.localStorage.setItem('commentedCids', JSON.stringify(commentedCids));
+
                             // 处理成功的响应
                             alert('评论成功');
                             $(".comment-form").remove();
@@ -402,56 +422,3 @@
         App.codeCopy();
     });
 })(jQuery);
-
-function getCommentFormHtml(cid, coid, name) {
-    let author = window.localStorage.getItem('author');
-    let mail = window.localStorage.getItem('mail');
-    let url = window.localStorage.getItem('url');
-    if (author == null) author = '';
-    if (mail == null) mail = '';
-    if (url == null) url = '';
-    let loginClass = '';
-    let commentMeta = '';
-    if (isLogin) {
-        author = userName;
-        mail = userEmail;
-        url = userUrl;
-        loginClass = ' hidden';
-        commentMeta = ' 已登录';
-    }
-    let placeHolder = '回复内容';
-    if (coid) {
-        placeHolder = '回复@' + name;
-    } else {
-        coid = 0;
-    }
-    return `
-        <div class="comment-form" data-cid="${cid}" data-coid="${coid}">
-            <div class="flex comment-meta">
-                <div><span class="color-link">${author}</span>${commentMeta}</div>
-                <input placeholder="昵称" type="text" class="comment-input comment-input-author${loginClass}" name="comment-author" value="${author}"/>
-                <input placeholder="邮箱" type="text" class="comment-input comment-input-email${loginClass}" name="comment-email" value="${mail}"/>
-                <input placeholder="网址" type="text" class="comment-input comment-input-url${loginClass}" name="comment-url" value="${url}" />
-            </div>
-            <div class="comment-area">
-                <textarea placeholder="${placeHolder}" class="comment-textarea comment-input-text" name="comment-text"></textarea>
-            </div>
-            <div class="comment-footer relative flex">
-                <span class="reborn rb-smile comment-emoji" id="toggle-emoji-picker"></span>
-                <div class="emoji-container absolute">
-                    <div class="emoji-list"></div>
-                    <div class="emoji-bar flex">
-                        <div class="emoji-category active" data-category="xiaodianshi">小电视</div>
-                        <div class="emoji-category" data-category="koukou">扣扣</div>
-                        <div class="emoji-category" data-category="alu">阿鲁</div>
-                        <div class="emoji-category" data-category="paopao">泡泡</div>
-                    </div>
-                </div>
-                <div class="comment-footer-btn">
-                    <button class="comment-cancel" data-cid="${cid}">取消</button>
-                    <button class="comment-btn underline" data-cid="${cid}" data-coid="${coid}">回复</button>
-                </div>
-            </div>
-        </div>
-    `;
-}

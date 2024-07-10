@@ -197,6 +197,16 @@ ul, ol, li {
         .content .main-content .post-type .post-content input.rb-checkbox:checked {
           border: none;
           background: #0f4c81; }
+        .content .main-content .post-type .post-content .comment-visible {
+          display: block;
+          width: 150px;
+          margin: 20px auto;
+          text-decoration: none;
+          background-color: #05c160;
+          color: white !important;
+          padding: 5px 15px;
+          border-radius: 5px;
+          text-align: center; }
         .content .main-content .post-type .post-content .post-meta-1.post-location {
           color: #576B95;
           margin-top: 5px; }
@@ -312,6 +322,8 @@ ul, ol, li {
               font-size: 16px; }
           .content .main-content .post-type .post-content .post-meta-3 .post-comment-area {
             padding: 5px 10px; }
+            .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-form {
+              display: none; }
             .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .more-comments {
               color: #576B95; }
             .content .main-content .post-type .post-content .post-meta-3 .post-comment-area .comment-item .comment-item-header {
@@ -450,6 +462,8 @@ ul, ol, li {
         color: #576B95;
         cursor: pointer;
         font-weight: 600; }
+      .content .main-content > #comments .comment-form {
+        display: none; }
       .content .main-content > #comments > ul > li > .comment-reply {
         margin-left: 40px; }
       .content .main-content > #comments .comment-item .comment-item-header {

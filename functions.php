@@ -430,7 +430,6 @@ function ensureAbsoluteUrl($url) {
 
 Typecho\Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
 Typecho\Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');
-Typecho\Plugin::factory('Widget_Abstract_Contents')->contentEx_1000 = array('Editor', 'parseContent');
 class Editor
 {
     public static function Edit() {
@@ -460,12 +459,13 @@ class Editor
                     flowChart: true,//<?php echo $editormd->isFlow ? 'true' : 'false'; ?>,
                     sequenceDiagram: true,//<?php echo $editormd->isSeq ? 'true' : 'false'; ?>,
                     toolbarIcons: function () {
-                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "image", "code", "code-block", "table", "more", "|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
+                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "image", "code", "code-block", "table", "more", "hide", "|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
                     },
                     toolbarIconsClass: {
                         more: "fa-depart",
                         "checkbox-checked": "fa-checkbox-checked",
-                        "checkbox": "fa-checkbox"
+                        "checkbox": "fa-checkbox",
+                        "hide": "fa-unlock"
                     },
                     // 自定义工具栏按钮的事件处理
                     toolbarHandlers: {
@@ -483,13 +483,22 @@ class Editor
                         },
                         "checkbox": function (cm) {
                             cm.replaceSelection("[ ] ");
+                        },
+                        "hide": function (cm) {
+                            // 插入包含换行符的 [hide][/hide] 标签
+                            cm.replaceSelection("[hide]\n\n[/hide]");
+
+                            // 将光标定位到换行符之间，方便用户输入内容
+                            let cursor = cm.getCursor();
+                            cm.setCursor({line: cursor.line - 1, ch: 0});
                         }
                     },
                     lang: {
                         toolbar: {
                             more: "插入摘要分隔符",
                             "checkbox-checked": "插入待办事项（已办）",
-                            "checkbox": "插入待办事项（未办）"
+                            "checkbox": "插入待办事项（未办）",
+                            "hide": "插入回复可见内容"
                         }
                     },
                 });
@@ -582,15 +591,6 @@ class Editor
             });
         </script>
 <?php
-    }
-
-    public static function parseContent($content)
-    {
-        // 将 [ ] 替换为未选中的复选框
-        $content = preg_replace('/\[\s\]/', '<input type="checkbox" class="rb-checkbox" disabled />', $content);
-        // 将 [x] 替换为已选中的复选框
-        $content = preg_replace('/\[x\]/', '<input type="checkbox" class="rb-checkbox" checked disabled />', $content);
-        return $content;
     }
 }
 

@@ -8,7 +8,7 @@
                     <div class="post-content flex-1">
                         <div class="post-author"><?php $this->author(); ?></div>
                         <a class="shuoshuo-item" href="<?php $this->permalink(); ?>">
-                            <?php $this->content(); ?>
+                            <?php $this->need('/modules/content.php'); ?>
                         </a>
                         <?php $this->need('/modules/meta-item.php'); ?>
                     </div>

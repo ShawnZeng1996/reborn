@@ -7,7 +7,9 @@
     </div>
     <div class="post-content flex-1">
         <div class="post-author"><?php $this->author(); ?></div>
-        <div><?php $this->content(); ?></div>
+        <div>
+            <?php $this->need('/modules/content.php'); ?>
+        </div>
         <?php $this->need('/modules/meta-item.php'); ?>
     </div>
 </div>

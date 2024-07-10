@@ -15,7 +15,9 @@ $likes = $likeData['likes'];
             <span class="post-location"><?php echo $this->fields->location; ?></span>
         <?php endif; ?>
     </div>
-    <div id="post-content" class="post-content"><?php $this->content(); ?></div>
+    <div id="post-content" class="post-content">
+        <?php $this->need('/modules/content.php'); ?>
+    </div>
     <div class="post-footer flex">
         <span class="post-view">阅读&nbsp;<span id="post-view-cid-<?php echo $this->cid; ?>"><?php getPostView($this) ?></span></span>
         <a class="post-zan unselectable" data-cid="<?php echo $this->cid; ?>">

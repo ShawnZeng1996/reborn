@@ -238,6 +238,17 @@ ul, ol, li {
           border: none;
           background: #0f4c81;
         }
+        .comment-visible {
+          display: block;
+          width: 150px;
+          margin: 20px auto;
+          text-decoration: none;
+          background-color: #05c160;
+          color: white !important;
+          padding: 5px 15px;
+          border-radius: 5px;
+          text-align: center;
+        }
         .post-meta-1.post-location {
           color: $global_link_color;
           margin-top: 5px;
@@ -374,6 +385,9 @@ ul, ol, li {
           }
           .post-comment-area {
             padding: 5px 10px;
+            .comment-form {
+              display: none;
+            }
             .more-comments {
               color: $global_link_color;
             }
@@ -553,6 +567,9 @@ ul, ol, li {
         color: $global_link_color;
         cursor: pointer;
         font-weight: 600;
+      }
+      .comment-form {
+        display: none;
       }
       > ul > li > .comment-reply {
         margin-left: 40px;
