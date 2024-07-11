@@ -76,8 +76,7 @@ ul, ol, li {
 
 #header {
   background-color: #333333;
-  color: #FFFFFF;
-  min-height: 70px; }
+  color: #FFFFFF; }
   #header #nav {
     margin: 0;
     padding: 0;
@@ -345,8 +344,13 @@ ul, ol, li {
         line-height: 20px;
         word-wrap: break-word; }
         .content .main-content .post-type > .post-meta .post-author {
-          color: #576B95;
+          color: rgba(0, 0, 0, 0.3);
           margin-right: 10px; }
+        .content .main-content .post-type > .post-meta .post-category {
+          margin-right: 10px; }
+          .content .main-content .post-type > .post-meta .post-category a {
+            color: #576B95;
+            text-decoration: none; }
         .content .main-content .post-type > .post-meta .post-publish-time, .content .main-content .post-type > .post-meta .post-location {
           color: rgba(0, 0, 0, 0.3);
           margin-right: 10px; }
@@ -433,6 +437,17 @@ ul, ol, li {
             border: 1px solid #dfdfdf;
             padding: 0.25em 0.5em;
             color: #3f3f3f; }
+      .content .main-content .post-type .post-tags {
+        display: flex;
+        flex-wrap: wrap; }
+        .content .main-content .post-type .post-tags .article-tags {
+          margin: 8px 12px 0 0;
+          padding: 3px 6px; }
+        .content .main-content .post-type .post-tags .article-tags-num {
+          color: rgba(0, 0, 0, 0.3); }
+        .content .main-content .post-type .post-tags a {
+          text-decoration: none;
+          color: #576B95; }
       .content .main-content .post-type > .post-footer {
         align-items: center;
         justify-content: space-between;
@@ -519,6 +534,18 @@ ul, ol, li {
           height: 40px; }
       .content .sidebar .sidebar-adv img {
         width: 100%; }
+    .content .sidebar .author-card {
+      text-align: center; }
+      .content .sidebar .author-card .author-avatar {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto; }
+      .content .sidebar .author-card .post-author {
+        font-weight: bold; }
+      .content .sidebar .author-card .author-description,
+      .content .sidebar .author-card .author-meta {
+        color: rgba(0, 0, 0, 0.3);
+        font-size: 14px; }
     .content .sidebar #sidebar-post-list ul {
       list-style-type: disc; }
       .content .sidebar #sidebar-post-list ul li {

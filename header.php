@@ -45,10 +45,5 @@
             <?php endwhile; ?>
         </ul>
     </nav>
-    <div id="site-info" class="container relative">
-        <?php echo '<img id="site-logo" class="absolute" src="' . getGravatarUrl($this->options->avatarEmail, 160) . '" alt="头像" />'; ?>
-        <h1 id="site-title"><a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title() ?></a></h1>
-        <p id="site-description" class="absolute"><?php $this->options->description() ?></p>
-    </div>
-</header>
+
 

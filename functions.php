@@ -428,6 +428,37 @@ function ensureAbsoluteUrl($url) {
     return $url;
 }
 
+function getTagCount($mid) {
+    $db = Typecho_Db::get();
+    // 构建查询，排除 typecho_fields 表中存在 'shuoshuo' 类型的文章
+    $query = $db->select(array('COUNT(DISTINCT table.relationships.cid)' => 'num'))
+        ->from('table.relationships')
+        ->join('table.contents', 'table.relationships.cid = table.contents.cid', Typecho_Db::LEFT_JOIN)
+        ->join('table.fields', 'table.contents.cid = table.fields.cid', Typecho_Db::LEFT_JOIN)
+        ->where('table.relationships.mid = ?', $mid)
+        ->where('table.contents.type = ?', 'post')
+        ->where('table.fields.name = ?', 'postType')
+        ->where('table.fields.str_value != ?', 'shuoshuo')
+        ->group('table.relationships.mid');
+    $result = $db->fetchObject($query);
+    return $result ? $result->num : 0;
+}
+
+function getAuthorPostStats($authorId) {
+    $db = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+
+    // 构建查询，统计特定作者的文章数量、点赞数和浏览量
+    $query = $db->select(array('COUNT(*)' => 'numPosts', 'SUM(likes)' => 'totalLikes', 'SUM(views)' => 'totalViews'))
+        ->from('table.contents')
+        ->where('authorId = ?', $authorId)
+        ->where('type = ?', 'post')
+        ->where('status = ?', 'publish'); // 仅统计已发布的文章
+
+    $result = $db->fetchObject($query);
+    return $result ? array('numPosts' => $result->numPosts, 'totalLikes' => $result->totalLikes, 'totalViews' => $result->totalViews) : array('numPosts' => 0, 'totalLikes' => 0, 'totalViews' => 0);
+}
+
 Typecho\Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
 Typecho\Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');
 class Editor

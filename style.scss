@@ -94,7 +94,6 @@ ul, ol, li {
 #header {
   background-color: #333333;
   color: #FFFFFF;
-  min-height: 70px;
   #nav {
     margin: 0;
     padding: 0;
@@ -419,7 +418,15 @@ ul, ol, li {
         line-height: 20px;
         word-wrap: break-word;
         .post-author {
-          color: $global_link_color;
+          color: $global_grey_color;
+          margin-right: 10px;
+        }
+        .post-category {
+          a {
+            color: $global_link_color;
+            text-decoration: none;
+          }
+
           margin-right: 10px;
         }
         .post-publish-time, .post-location {
@@ -528,6 +535,22 @@ ul, ol, li {
               color: #3f3f3f;
             }
           }
+        }
+      }
+      .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        .article-tags {
+          margin: 8px 12px 0 0;
+          padding: 3px 6px;
+        }
+
+        .article-tags-num {
+          color: rgba(0, 0, 0, .3);
+        }
+        a {
+          text-decoration: none;
+          color: $global_link_color;
         }
       }
       > .post-footer {
@@ -652,6 +675,22 @@ ul, ol, li {
         width: 100%;
       }
 
+    }
+    .author-card {
+      text-align: center;
+      .author-avatar {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto;
+      }
+      .post-author {
+        font-weight: bold;
+      }
+      .author-description,
+      .author-meta {
+        color: $global_grey_color;
+        font-size: 14px;
+      }
     }
     #sidebar-post-list {
       ul {
