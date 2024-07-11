@@ -109,7 +109,7 @@
                     $commentForm.find('.comment-btn').attr('data-coid', coid);
                     $commentArea.find('.comment-textarea').attr('placeholder', '回复@' + name);
                     // 将评论表单移动到指定位置
-                    $commentForm.insertAfter('#comment-coid-' + coid + ' .comment-item-header');
+                    $commentForm.insertAfter('#comment-coid-' + coid + '>.comment-item-header');
                 }
                 $commentForm.show();
             });
@@ -132,7 +132,7 @@
                     $commentForm.find('.comment-btn').attr('data-coid', coid);
                     $commentArea.find('.comment-textarea').attr('placeholder', '回复@' + name);
                     // 将评论表单移动到指定位置
-                    $commentForm.insertAfter('#comment-coid-' + coid + ' .comment-item-header');
+                    $commentForm.insertAfter('#comment-coid-' + coid + '>.comment-item-header');
                 }
                 $commentForm.show();
             });
