@@ -275,7 +275,7 @@ function renderComments($comments, $link, $maxTopLevelComments = 5)
     $showAll = $maxTopLevelComments === 0;
     foreach ($comments as $comment) {
         if ($showAll || $displayCount < $maxTopLevelComments) {
-            echo '<li id="comment-coid-' . $comment['coid'] . '" class="comment-item">';
+            echo '<li id="comment-' . $comment['coid'] . '" class="comment-item">';
             echo '<div class="comment-item-header">';
             if(!empty($comment['url'])) {
                 $hasLink = ' href="' . ensureAbsoluteUrl($comment['url']) . '" target="_blank" rel="nofollow"';
@@ -304,7 +304,7 @@ function renderComments($comments, $link, $maxTopLevelComments = 5)
 
 function renderPostComments($comments, $parentAuthor = '') {
     foreach ($comments as $comment) {
-        echo '<li id="comment-coid-' . $comment['coid'] . '" class="comment-item">';
+        echo '<li id="comment-' . $comment['coid'] . '" class="comment-item">';
         echo '<div class="comment-item-header flex">';
         if(!empty($comment['url'])) {
             $hasLink = ' href="' . ensureAbsoluteUrl($comment['url']) . '" target="_blank" rel="nofollow"';
