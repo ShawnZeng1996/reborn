@@ -2,7 +2,7 @@
 <div id="comments" class="post-comment-area-<?php echo $this->cid; ?>">
     <?php if (hasComments($this->cid)) { ?>
         <div class="has-comment flex">
-            <span id="comment-title"><span class="comment-num"><?php echo hasComments($this->cid); ?></span>条评论</span>
+            <span id="comment-title">评论&nbsp;<span class="comment-num"><?php echo hasComments($this->cid); ?></span></span>
             <a class="write-comment" data-cid="<?php echo $this->cid; ?>">写评论</a>
         </div>
         <div class="form-place"></div>

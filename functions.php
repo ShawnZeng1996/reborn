@@ -99,7 +99,7 @@ function getGravatarUrl($email, $size = 80, $default = 'mm', $rating = 'g'): str
     // 自定义默认头像 URL
     $defaultAvatarUrl = Helper::options()->themeUrl . '/assets/img/default-avatar.jpeg';
     return $gravatarUrl . "?s=$size&d=" . urlencode($defaultAvatarUrl) . "&r=$rating";
-    
+
 }
 
 
