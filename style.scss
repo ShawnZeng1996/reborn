@@ -160,9 +160,9 @@ ul, ol, li {
     background-color: #FFFFFF;
     width: 66%;
     float: left;
-    padding: 20px;
+    padding: 10px 20px;
     .post-type {
-      margin: 10px auto;
+      margin: 0 -20px;
       .post-author-avatar {
         width: 60px;
         padding: 10px;
@@ -571,6 +571,9 @@ ul, ol, li {
     }
     .post-type + .post-type {
       border-top: 1px solid rgba(153, 153, 153, 0.24);
+    }
+    .post-type#post {
+      margin: 10px auto;
     }
     > #comments {
       border-top: 1px solid rgba(153, 153, 153, 0.24);
