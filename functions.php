@@ -3,7 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 define('THEME_NAME', 'reborn');
 
-define('THEME_VERSION', '1.0.0');
+define('THEME_VERSION', '1.0.1');
 
 // 文章自定义字段
 function themeFields($layout) {
@@ -93,9 +93,16 @@ function themeInit($self) {
  * @return string Gravatar 头像 URL
  */
 function getGravatarUrl($email, $size = 80, $default = 'mm', $rating = 'g'): string {
+    $gravatarsUrl = "https://cravatar.cn/avatar/";
     $hash = md5(strtolower(trim($email)));
-    return "https://cravatar.cn/avatar/$hash?s=$size&d=$default&r=$rating";
+    $gravatarUrl = $gravatarsUrl . $hash;
+    // 自定义默认头像 URL
+    $defaultAvatarUrl = Helper::options()->themeUrl . '/assets/img/default-avatar.jpeg';
+    return $gravatarUrl . "?s=$size&d=" . urlencode($defaultAvatarUrl) . "&r=$rating";
+    
 }
+
+
 
 /**
  * 输出相对时间
