@@ -4,7 +4,7 @@ $likeData = getLikeNumByCid($this->cid);
 $isLiked = isLikeByCid($this->cid);
 $likes = $likeData['likes'];
 ?>
-<article class="post post-type">
+<article id="post" class="post post-type">
     <h1 class="post-title"><?php $this->title(); ?></h1>
     <div class="post-meta">
         <span class="post-author"><?php $this->author(); ?></span>
