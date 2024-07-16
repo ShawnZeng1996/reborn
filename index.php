@@ -17,8 +17,9 @@
                 <?php $this->need('/modules/post-item.php'); ?>
             <?php endif; ?>
         <?php endwhile; ?>
-
+        
     </div>
+
     <?php $this->need('/modules/sidebar-index.php'); ?>
     <?php $this->need('footer.php'); ?>
 </div>

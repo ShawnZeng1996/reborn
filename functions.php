@@ -53,7 +53,6 @@ function themeConfig($form) {
             'ShowRecentPosts'    => _t('显示最新文章'),
             'ShowRecentComments' => _t('显示最近回复'),
             'ShowCategory'       => _t('显示分类'),
-            'ShowArchive'        => _t('显示归档'),
             'ShowOther'          => _t('显示其它杂项')
         ],
         ['ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowArchive', 'ShowOther'],
