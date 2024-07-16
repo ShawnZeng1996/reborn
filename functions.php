@@ -341,7 +341,7 @@ function renderPostComments($comments, $parentAuthor = '') {
 function renderReplies($replies, $parentAuthor)
 {
     foreach ($replies as $reply) {
-        echo '<li id="comment-coid-' . $reply['coid'] . '" class="comment-item">';
+        echo '<li id="comment-' . $reply['coid'] . '" class="comment-item">';
         echo '<div class="comment-item-header">';
         if(!empty($reply['url'])) {
             $hasLink = ' href="' . ensureAbsoluteUrl($reply['url']) . '" target="_blank" rel="nofollow"';
