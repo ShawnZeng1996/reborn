@@ -3,7 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 define('THEME_NAME', 'reborn');
 
-define('THEME_VERSION', '1.0.2');
+define('THEME_VERSION', '1.0.3');
 
 // 文章自定义字段
 function themeFields($layout) {
