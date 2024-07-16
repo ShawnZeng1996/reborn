@@ -466,6 +466,55 @@ function getAuthorPostStats($authorId) {
     return $result ? array('numPosts' => $result->numPosts, 'totalLikes' => $result->totalLikes, 'totalViews' => $result->totalViews) : array('numPosts' => 0, 'totalLikes' => 0, 'totalViews' => 0);
 }
 
+/**
+ * 获取最新的 n 篇非 `shuoshuo` 类型的文章
+ *
+ * @param int $limit 要获取的文章数量
+ * @return array 最新的 n 篇非 `shuoshuo` 类型的文章
+ */
+function getLatestPosts($limit = 5) {
+    $db = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+
+    // 构建查询，获取最新的 n 篇非 `shuoshuo` 类型的已发布文章
+    $query = $db->select()
+        ->from('table.contents')
+        ->join('table.fields', 'table.contents.cid = table.fields.cid', Typecho_Db::LEFT_JOIN)
+        ->where('table.contents.type = ?', 'post')
+        ->where('table.contents.status = ?', 'publish')
+        ->where('table.fields.name = ?', 'postType')
+        ->where('table.fields.str_value != ?', 'shuoshuo')
+        ->order('table.contents.created', Typecho_Db::SORT_DESC)
+        ->limit($limit);
+
+    $result = $db->fetchAll($query);
+    return $result;
+}
+
+/**
+ * 获取最近的 n 条评论，同时排除 authorId 不为 0 的评论
+ *
+ * @param int $limit 要获取的评论数量
+ * @return array 最近的 n 条评论
+ */
+function getLatestComments($limit = 5) {
+    $db = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+
+    // 构建查询，获取最近的 n 条评论，同时排除 authorId 不为 0 的评论
+    $query = $db->select()
+        ->from('table.comments')
+        ->where('status = ?', 'approved')
+        ->where('authorId = ?', 0)
+        ->order('created', Typecho_Db::SORT_DESC)
+        ->limit($limit);
+
+    $result = $db->fetchAll($query);
+    return $result;
+}
+
+
+
 Typecho\Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
 Typecho\Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');
 class Editor

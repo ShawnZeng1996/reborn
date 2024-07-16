@@ -124,7 +124,7 @@ ul, ol, li {
   #site-info {
     text-align: right;
     padding-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
     #site-logo {
       width: 80px;
       height: 80px;
@@ -155,17 +155,16 @@ ul, ol, li {
 }
 
 .content {
-  padding-top: 10px;
   .main-content {
     background-color: #FFFFFF;
     width: 66%;
     float: left;
     padding: 10px 20px;
     .post-type {
-      margin: 0 -20px;
+      margin: 0;
       .post-author-avatar {
-        width: 60px;
-        padding: 10px;
+        width: 40px;
+        padding: 10px 0;
         img {
           width: 40px;
           height: 40px;
@@ -173,7 +172,7 @@ ul, ol, li {
         }
       }
       .post-content {
-        padding: 10px;
+        padding: 10px 0 10px 10px;
         line-height: 1.75em;
         overflow: hidden;
         .post-author {
@@ -656,6 +655,9 @@ ul, ol, li {
       padding: 20px;
       .widget-title {
         margin-bottom: 10px;
+        color: rgba(0, 0, 0, 0.3);
+        font-weight: 600;
+        font-size: 14px;
       }
       a {
         color: $global_link_color;

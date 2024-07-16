@@ -6,16 +6,13 @@
                 <ul class="widget-list">
                     <?php
                     // 获取最近的文章
-                    \Widget\Contents\Post\Recent::alloc()->to($posts);
+                    $posts = getLatestPosts($this->options->postsListSize);
                     // 循环遍历所有文章
-                    while ($posts->next()):
-                        // 检查文章类型是否为 'post'
-                        if ($posts->fields->postType != 'shuoshuo'): ?>
-                            <li>
-                                <a href="<?php $posts->permalink(); ?>"><?php $posts->title(); ?></a>
-                            </li>
-                        <?php endif;
-                    endwhile; ?>
+                    foreach ($posts as $post): ?>
+                        <li>
+                            <a href="<?php echo Typecho_Router::url('post', array('cid' => $post['cid']), Helper::options()->index); ?>"><?php echo $post["title"]; ?></a>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </section>
         <?php endif; ?>
@@ -24,18 +21,22 @@
             <section class="widget" id="sidebar-comment-list">
                 <h3 class="widget-title"><?php _e('最新评论'); ?></h3>
                 <ul class="widget-list">
-                    <?php \Widget\Comments\Recent::alloc()->to($comments); ?>
-                    <?php while ($comments->next()): ?>
-                        <li>
-                            <a class="flex comment-item" href="<?php $comments->permalink(); ?>">
-                                <img class="comment-author-avatar" src="<?php echo getGravatarUrl($comments->mail); ?>" alt="<?php $comments->author(false); ?>">
-                                <div class="flex-1">
-                                    <div class="comment-author"><?php $comments->author(false); ?></div>
-                                    <div class="comment-content"><?php echo commentEmojiReplace($comments->content); ?></div>
-                                </div>
-                            </a>
-                        </li>
-                    <?php endwhile; ?>
+                    <?php
+                        $comments = getLatestComments($this->options->commentsListSize);
+                        foreach ($comments as $comment):
+                        // 获取评论所属文章的 URL
+                        $postUrl = Typecho_Router::url('post', array('cid' => $comment['cid']), Helper::options()->index);
+                    ?>
+                            <li>
+                                <a class="flex comment-item"  href="<?php echo $postUrl . '#comment-' . $comment['coid']; ?>">
+                                    <img class="comment-author-avatar" src="<?php echo getGravatarUrl($comment['mail']); ?>" alt="<?php echo $comment['author']; ?>">
+                                    <div class="flex-1">
+                                        <div class="comment-author"><?php echo $comment['author']; ?></div>
+                                        <div class="comment-content"><?php echo commentEmojiReplace($comment['text']); ?></div>
+                                    </div>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
                 </ul>
             </section>
         <?php endif; ?>
