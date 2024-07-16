@@ -5,6 +5,6 @@
     <div class="main-content">
         <?php $this->need('/modules/post.php'); ?>
     </div>
-    <?php $this->need('/modules/sidebar-post.php'); ?>
+    <?php $this->need('/modules/sidebar/sidebar-post.php'); ?>
     <?php $this->need('footer.php'); ?>
 </div>

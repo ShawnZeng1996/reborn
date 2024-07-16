@@ -115,7 +115,7 @@
             });
 
             $(".write-comment").on('click',function (e) {
-                $('.none-comment').remove();
+                $('.none-comment').hide();
                 //$(".comment-form").remove();
                 let cid = $(this).data('cid');
                 let coid = $(this).data('coid');
@@ -146,6 +146,7 @@
                 }
             });
             $(document).on('click', '.comment-cancel', function () {
+                $('.none-comment').show();
                 let cid = $(this).data('cid');
                 $('.comment-form').hide();
                 if ($('#post-comment-area-'+cid).find('.comment-item').length === 0) {

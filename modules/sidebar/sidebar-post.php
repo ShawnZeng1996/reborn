@@ -16,23 +16,7 @@
         </div>
     </section>
     <?php if (!empty($this->options->sidebarBlock) && in_array('ShowRecentPosts', $this->options->sidebarBlock)): ?>
-        <section class="widget" id="sidebar-post-list">
-            <h3 class="widget-title"><?php _e('最新文章'); ?></h3>
-            <ul class="widget-list">
-                <?php
-                // 获取最近的文章
-                \Widget\Contents\Post\Recent::alloc()->to($posts);
-                // 循环遍历所有文章
-                while ($posts->next()):
-                    // 检查文章类型是否为 'post'
-                    if ($posts->fields->postType != 'shuoshuo'): ?>
-                        <li>
-                            <a href="<?php $posts->permalink(); ?>"><?php $posts->title(); ?></a>
-                        </li>
-                    <?php endif;
-                endwhile; ?>
-            </ul>
-        </section>
+        <?php $this->need('/modules/sidebar/widgets/recent-posts-widget.php'); ?>
     <?php endif; ?>
 
     <?php $sidebarAd = $this->options->sidebarAd; ?>

@@ -1,4 +1,13 @@
-<?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<?php
+/**
+ * Theme reborn for Typecho
+ *
+ * @package reborn
+ * @author Shawn
+ * @version 1.0.0
+ * @link https://shawnzeng.com
+ */
+if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <?php $this->need('header.php'); ?>
     <div id="site-info" class="container relative">
         <?php echo '<img id="site-logo" class="absolute" src="' . getGravatarUrl($this->options->avatarEmail, 160) . '" alt="头像" />'; ?>
@@ -17,8 +26,11 @@
                 <?php $this->need('/modules/post-item.php'); ?>
             <?php endif; ?>
         <?php endwhile; ?>
+        <!--div class="pagination">
+            <?php //$this->pageNav('&laquo; Previous', 'Next &raquo;', 1, '...', array('wrapTag' => 'ul', 'wrapClass' => 'pagination', 'itemTag' => 'li', 'currentClass' => 'active', 'prevClass' => 'prev', 'nextClass' => 'next')); ?>
+        </div-->
     </div>
 
-    <?php $this->need('/modules/sidebar-index.php'); ?>
+    <?php $this->need('/modules/sidebar/sidebar-index.php'); ?>
     <?php $this->need('footer.php'); ?>
 </div>
