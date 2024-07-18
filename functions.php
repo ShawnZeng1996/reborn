@@ -512,6 +512,28 @@ function getLatestComments($limit = 5) {
     return $result;
 }
 
+// 生成文章目录树
+function generateToc($content) {
+    $matches = array();
+    preg_match_all('/<h([1-6])>(.*?)<\/h\1>/', $content, $matches, PREG_SET_ORDER);
+
+    if (!$matches) {
+        return $content;
+    }
+
+    $toc = '<div class="toc"><ul>';
+    foreach ($matches as $match) {
+        $level = $match[1];
+        $title = strip_tags($match[2]);
+        $anchor = 'toc-' . strtolower(str_replace(' ', '-', $title));
+        $content = str_replace($match[0], '<h' . $level . ' id="' . $anchor . '">' . $title . '</h' . $level . '>', $content);
+        $toc .= '<li class="toc-level-' . $level . '"><a href="#' . $anchor . '">' . $title . '</a></li>';
+    }
+    $toc .= '</ul></div>';
+
+    return $toc;
+}
+
 
 
 Typecho\Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
@@ -522,7 +544,6 @@ class Editor
 ?>
         <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4611589_m0t444e6ggf.css">
         <link rel="stylesheet" href="<?php Helper::options()->themeUrl('lib/editor.md@1.5.0/css/editormd.css'); ?>">
-
         <script>
             var uploadUrl = '<?php Helper::security()->index('/action/upload?cid=CID'); ?>';
             var emojiPath = '<?php Helper::options()->themeUrl(); ?>';
@@ -530,7 +551,6 @@ class Editor
         <script type="text/javascript" src="<?php Helper::options()->themeUrl('lib/editor.md@1.5.0/js/editormd.js'); ?>"></script>
         <script>
             $(document).ready(function() {
-                var textarea = $('#text').parent("p");
                 $('#text').wrap("<div id='text-editormd'></div>");
                 postEditormd = editormd("text-editormd", {
                     width: "100%",
@@ -538,12 +558,12 @@ class Editor
                     path: '<?php Helper::options()->themeUrl(); ?>/lib/editor.md@1.5.0/lib/',
                     toolbarAutoFixed: false,
                     htmlDecode: true,
-                    tex: true,//<?php echo $editormd->isTex ? 'true' : 'false'; ?>,
-                    toc: true,//<?php echo $editormd->isToc ? 'true' : 'false'; ?>,
-                    tocm: true,//<?php echo $editormd->isToc ? 'true' : 'false'; ?>,
-                    taskList: true,//<?php echo $editormd->isTask ? 'true' : 'false'; ?>,
-                    flowChart: true,//<?php echo $editormd->isFlow ? 'true' : 'false'; ?>,
-                    sequenceDiagram: true,//<?php echo $editormd->isSeq ? 'true' : 'false'; ?>,
+                    tex: true,
+                    toc: false,
+                    tocm: false,
+                    taskList: true,
+                    flowChart: true,
+                    sequenceDiagram: true,
                     toolbarIcons: function () {
                         return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "image", "code", "code-block", "table", "more", "hide", "|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
                     },
@@ -604,23 +624,18 @@ class Editor
                     if (!(event.clipboardData && event.clipboardData.items)) {
                         return;
                     }
-
                     if (cbd.items && cbd.items.length === 2 && cbd.items[0].kind === "string" && cbd.items[1].kind === "file" &&
                         cbd.types && cbd.types.length === 2 && cbd.types[0] === "text/plain" && cbd.types[1] === "Files" &&
                         ua.match(/Macintosh/i) && Number(ua.match(/Chrome\/(\d{2})/i)[1]) < 49){
                         return;
                     }
-
                     var itemLength = cbd.items.length;
-
                     if (itemLength == 0) {
                         return;
                     }
-
                     if (itemLength == 1 && cbd.items[0].kind == 'string') {
                         return;
                     }
-
                     if ((itemLength == 1 && cbd.items[0].kind == 'file')
                         || itemLength > 1
                     ) {
@@ -669,11 +684,8 @@ class Editor
                                 });
                             }
                         }
-
                     }
-
                 });
-
             });
         </script>
 <?php

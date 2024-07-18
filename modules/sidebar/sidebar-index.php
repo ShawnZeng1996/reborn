@@ -30,9 +30,6 @@
             </section>
         <?php endif; ?>
 
-        <?php $sidebarAd = $this->options->sidebarAd; ?>
-        <?php if ($sidebarAd): ?>
-            <?php $this->need('/modules/sidebar/widgets/advertisement-widget.php'); ?>
-        <?php endif; ?>
+        <?php $this->need('/modules/sidebar/widgets/advertisement-widget.php'); ?>
 
     </div><!-- end #sidebar -->

@@ -371,7 +371,7 @@ ul, ol, li {
         font-style: normal;
         border-left: none;
         padding: 1em;
-        border-radius: 8px;
+        border-radius: 4px;
         color: rgba(0, 0, 0, 0.5);
         background: #F6F6F6;
         margin: 5px 0; }

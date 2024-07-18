@@ -36,7 +36,6 @@ try {
         // 获取客户端 User-Agent
         $userAgent = $_SERVER['HTTP_USER_AGENT'];
         if ( $ownerId['authorId'] == $uid ) {
-            error_log('authorId' . $ownerId['authorId'] . '；'. 'uid:'.$uid);
             $status = 'approved';
         } else {
             $status = $commentsRequireModeration['value'] ? 'waiting' : 'approved';
@@ -101,11 +100,15 @@ try {
                             ->where('table.relationships.cid = ?', $cid)
                             ->where('table.metas.type = ?', 'category')
                     );
-
                     $articleCategorySlug = $category ? $category['slug'] : '';
                     // 获取文章链接模板
                     $routingTable = \Utils\Helper::options()->routingTable;
-                    $index = \Utils\Helper::options()->index;
+                    $index = \Utils\Helper::options()->siteUrl;
+                    $rewrite = $db->fetchRow($db->select()->from('table.options')->where('name = ?', "rewrite"));
+                    $isRewrite = $rewrite["rewrite"];
+                    if ($isRewrite == 0) {
+                        $index = $index . "index.php/";
+                    }
                     $permalinkTemplate = '';
                     if ($articleType === 'post') {
                         $permalinkTemplate = $routingTable['post']['url'];
@@ -118,8 +121,8 @@ try {
                         $permalink = ltrim($permalink, '/');
                         $permalink = preg_replace("/\[([_a-z0-9-]+)[^\]]*\]/i", "{\\1}", $permalink);
                         $permalink = str_replace(
-                            ['{cid}', '{category}', '{year}', '{month}', '{day}'],
-                            [$cid, $articleCategorySlug, $articleYear, $articleMonth, $articleDay],
+                            ['{cid}', '{category}', '{year}', '{month}', '{day}', '{slug}'],
+                            [$cid, $articleCategorySlug, $articleYear, $articleMonth, $articleDay, $articleSlug],
                             $permalink
                         );
                         $permalink = $scheme . '://' . $permalink;
