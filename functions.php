@@ -508,7 +508,7 @@ function generateToc($content) {
     $matches = array();
     preg_match_all('/<h([1-5])(?![^>]*class=)([^>]*)>(.*?)<\/h\1>/', $content, $matches, PREG_SET_ORDER);
     if (!$matches) {
-        return $content;
+        return '暂无目录';
     }
     $toc = '<ul class="ul-toc">';
     $currentLevel = 0;
