@@ -98,8 +98,8 @@ ul, ol, li {
     margin: 0;
     padding: 0;
     background-color: #444444;
-    height: 40px;
-    line-height: 40px;
+    height: 36px;
+    line-height: 36px;
     ul {
       margin: 0;
       padding: 0;
@@ -157,7 +157,7 @@ ul, ol, li {
 .content {
   .main-content {
     background-color: #FFFFFF;
-    width: 66%;
+    width: 72%;
     float: left;
     padding: 10px 20px;
     .post-type {
@@ -647,7 +647,7 @@ ul, ol, li {
     }
   }
   .sidebar {
-    width: 32%;
+    width: 27%;
     float: right;
     padding: 0;
     .widget {
@@ -659,6 +659,23 @@ ul, ol, li {
         font-weight: 600;
         font-size: 14px;
       }
+      .widget-toc {
+        .ul-toc {
+          font-size: 14px;
+          > li {
+            padding-left: 0;
+          }
+          ul {
+            padding-left: 20px;
+          }
+          a {
+            color: $global_grey_color;
+          }
+          a.active {
+            color: $global_link_color;
+          }
+        }
+      }
       a {
         color: $global_link_color;
         text-decoration: none;
@@ -666,6 +683,13 @@ ul, ol, li {
     }
     .widget + .widget {
       margin-top: 10px;
+    }
+    #sticky {
+      margin-top: 10px;
+    }
+    #sticky.sticky {
+      position: fixed;
+      top: 0;
     }
     .sidebar-adv {
       overflow: hidden;

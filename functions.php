@@ -3,7 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 define('THEME_NAME', 'reborn');
 
-define('THEME_VERSION', '1.0.4');
+define('THEME_VERSION', '1.0.5');
 
 // 文章自定义字段
 function themeFields($layout) {
@@ -504,27 +504,73 @@ function getLatestComments($limit = 5) {
 
 // 生成文章目录树
 function generateToc($content) {
+    $idCounter = 1;
     $matches = array();
-    preg_match_all('/<h([1-6])>(.*?)<\/h\1>/', $content, $matches, PREG_SET_ORDER);
-
+    preg_match_all('/<h([1-5])(?![^>]*class=)([^>]*)>(.*?)<\/h\1>/', $content, $matches, PREG_SET_ORDER);
     if (!$matches) {
         return $content;
     }
-
-    $toc = '<div class="toc"><ul>';
+    $toc = '<ul class="ul-toc">';
+    $currentLevel = 0;
     foreach ($matches as $match) {
-        $level = $match[1];
-        $title = strip_tags($match[2]);
-        $anchor = 'toc-' . strtolower(str_replace(' ', '-', $title));
-        $content = str_replace($match[0], '<h' . $level . ' id="' . $anchor . '">' . $title . '</h' . $level . '>', $content);
-        $toc .= '<li class="toc-level-' . $level . '"><a href="#' . $anchor . '">' . $title . '</a></li>';
+        $level = (int)$match[1];
+        $attributes = $match[2];
+        $title = strip_tags($match[3]);
+        $anchor = 'header-' . $idCounter++;
+        // 生成新的标题标签并添加 id
+        $content = str_replace($match[0], '<h' . $level . ' id="' . $anchor . '"' . $attributes . '>' . $match[3] . '</h' . $level . '>', $content);
+        // 调整目录层级
+        if ($currentLevel == 0) {
+            $currentLevel = $level;
+        }
+        while ($currentLevel < $level) {
+            $toc .= '<ul>';
+            $currentLevel++;
+        }
+        while ($currentLevel > $level) {
+            $toc .= '</ul></li>';
+            $currentLevel--;
+        }
+        $toc .= '<li><a href="#' . $anchor . '" class="toc-link">' . $title . '</a>';
+        // 添加闭合标签
+        $toc .= '</li>';
     }
-    $toc .= '</ul></div>';
-
+    // 关闭所有未闭合的 ul 标签
+    while ($currentLevel > 0) {
+        $toc .= '</ul>';
+        $currentLevel--;
+    }
+    $toc .= '</ul>';
     return $toc;
 }
 
 
+
+function getPostLink($cid) {
+    $db = Typecho_Db::get();
+    $article = $db->fetchRow($db->select()->from('table.contents')->where('cid = ?', $cid));
+    $articleSlug = $article['slug'];
+    $articleTime = $article['created'];
+    $articleType = $article['type'];
+    $articleYear = date('Y', $articleTime);
+    $articleMonth = date('m', $articleTime);
+    $articleDay = date('d', $articleTime);
+    // 获取文章分类
+    $category = $db->fetchRow(
+        $db->select()->from('table.metas')
+            ->join('table.relationships', 'table.metas.mid = table.relationships.mid', Typecho_Db::LEFT_JOIN)
+            ->where('table.relationships.cid = ?', $cid)
+            ->where('table.metas.type = ?', 'category')
+    );
+    return Typecho_Router::url('post', array(
+        'cid' => $cid,
+        'slug' => $articleSlug,
+        'category' => $category,
+        'year' => $articleYear,
+        'month' => $articleMonth,
+        'day' => $articleDay
+    ), Helper::options()->index);
+}
 
 Typecho\Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
 Typecho\Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');

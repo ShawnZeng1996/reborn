@@ -20,5 +20,12 @@ if ($this->user->hasLogin() || $result) {
 } else {
     $content = preg_replace("/\[hide\](.*?)\[\/hide\]/sm", '<a href="#comments" class="comment-visible"><span class="underline">回复</span>&nbsp;阅读全文</a>', $content);
 }
+// 给没有 class 属性的 h1 到 h5 标签添加自增的 id
+$idCounter = 1;
+$content = preg_replace_callback('/<h([1-5])(?![^>]*class=)([^>]*)>(.*?)<\/h\1>/', function($matches) use (&$idCounter) {
+    return '<h' . $matches[1] . ' id="header-' . $idCounter++ . '"' . $matches[2] . '>' . $matches[3] . '</h' . $matches[1] . '>';
+}, $content);
+
 echo $content;
+
 

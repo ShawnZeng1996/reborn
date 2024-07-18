@@ -81,8 +81,8 @@ ul, ol, li {
     margin: 0;
     padding: 0;
     background-color: #444444;
-    height: 40px;
-    line-height: 40px; }
+    height: 36px;
+    line-height: 36px; }
     #header #nav ul {
       margin: 0;
       padding: 0;
@@ -127,7 +127,7 @@ ul, ol, li {
 
 .content .main-content {
   background-color: #FFFFFF;
-  width: 66%;
+  width: 72%;
   float: left;
   padding: 10px 20px; }
   .content .main-content .post-type {
@@ -512,7 +512,7 @@ ul, ol, li {
         color: black;
         flex: 0 0 100%; }
 .content .sidebar {
-  width: 32%;
+  width: 27%;
   float: right;
   padding: 0; }
   .content .sidebar .widget {
@@ -523,11 +523,26 @@ ul, ol, li {
       color: rgba(0, 0, 0, 0.3);
       font-weight: 600;
       font-size: 14px; }
+    .content .sidebar .widget .widget-toc .ul-toc {
+      font-size: 14px; }
+      .content .sidebar .widget .widget-toc .ul-toc > li {
+        padding-left: 0; }
+      .content .sidebar .widget .widget-toc .ul-toc ul {
+        padding-left: 20px; }
+      .content .sidebar .widget .widget-toc .ul-toc a {
+        color: rgba(0, 0, 0, 0.3); }
+      .content .sidebar .widget .widget-toc .ul-toc a.active {
+        color: #576B95; }
     .content .sidebar .widget a {
       color: #576B95;
       text-decoration: none; }
   .content .sidebar .widget + .widget {
     margin-top: 10px; }
+  .content .sidebar #sticky {
+    margin-top: 10px; }
+  .content .sidebar #sticky.sticky {
+    position: fixed;
+    top: 0; }
   .content .sidebar .sidebar-adv {
     overflow: hidden; }
     .content .sidebar .sidebar-adv .ad {

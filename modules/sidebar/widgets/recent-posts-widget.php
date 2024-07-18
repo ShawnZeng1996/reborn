@@ -8,7 +8,7 @@
         // 循环遍历所有文章
         foreach ($posts as $post): ?>
             <li>
-                <a href="<?php echo Typecho_Router::url('post', array('cid' => $post['cid']), Helper::options()->index); ?>"><?php echo $post["title"]; ?></a>
+                <a href="<?php echo getPostLink($post["cid"]) ?>"><?php echo $post["title"]; ?></a>
             </li>
         <?php endforeach; ?>
     </ul>
