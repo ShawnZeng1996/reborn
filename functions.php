@@ -3,7 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 define('THEME_NAME', 'reborn');
 
-define('THEME_VERSION', '1.0.3');
+define('THEME_VERSION', '1.0.4');
 
 // 文章自定义字段
 function themeFields($layout) {
@@ -81,7 +81,6 @@ function themeInit($self) {
 
 }
 
-
 /**
  * 获取 Gravatar 头像 URL
  *
@@ -101,8 +100,6 @@ function getGravatarUrl($email, $size = 80, $default = 'mm', $rating = 'g'): str
 
 }
 
-
-
 /**
  * 输出相对时间
  *
@@ -113,7 +110,6 @@ function timeAgo($time)
 {
     $currentTime = time();
     $timeDifference = $currentTime - $time;
-
     $units = array(
         _t('年') => 29030400, // 60 * 60 * 24 * 336
         _t('月') => 2419200,  // 60 * 60 * 24 * 28
@@ -123,14 +119,12 @@ function timeAgo($time)
         _t('分钟') => 60,
         _t('秒') => 1,
     );
-
     foreach ($units as $unit => $value) {
         if ($timeDifference >= $value) {
             $result = floor($timeDifference / $value);
             return $result . ' ' . $unit . _t('前');
         }
     }
-
     return _t('刚刚');
 }
 
@@ -144,21 +138,17 @@ function getLikeNumByCid($cid)
 {
     $db = Typecho_Db::get();
     $prefix = $db->getPrefix();
-
     try {
         // 判断点赞数量字段是否存在
         if (!array_key_exists('likes', $db->fetchRow($db->select()->from('table.contents')))) {
             // 在文章表中创建一个字段用来存储点赞数量
             $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `likes` INT(10) NOT NULL DEFAULT 0;');
         }
-
         // 查询出点赞数量
         $likes = $db->fetchRow($db->select('likes')->from('table.contents')->where('cid = ?', $cid));
-
         // 获取记录点赞的 Cookie
         $likeRecording = Typecho_Cookie::get('typechoLikeRecording', '[]');
         $likeRecordingDecode = json_decode(urldecode($likeRecording), true);
-
         // 返回点赞数量和记录信息
         return [
             'likes' => $likes['likes'],
@@ -256,7 +246,7 @@ function hasComments($cid)
     $db = Typecho_Db::get();
     $prefix = $db->getPrefix();
     // 查询评论数量
-    $comments = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.comments')->where('cid = ?', $cid));
+    $comments = $db->fetchRow($db->select('COUNT(*) AS count')->from('table.comments')->where('cid = ?', $cid)->where('status = ?', 'approved'));
     return $comments['count'] ;
 }
 
