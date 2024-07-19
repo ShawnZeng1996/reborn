@@ -26,10 +26,14 @@ $content = preg_replace_callback('/<h([1-5])(?![^>]*class=)([^>]*)>(.*?)<\/h\1>/
     return '<h' . $matches[1] . ' id="header-' . $idCounter++ . '"' . $matches[2] . '>' . $matches[3] . '</h' . $matches[1] . '>';
 }, $content);
 
-$pattern = '/<img(?![^>]*\bclass\b)([^>]*?)src="([^"]+)"([^>]*?)(alt="([^"]*)")?([^>]*?)(style="([^"]*)")?([^>]*)>/i';
-$replacement = '<a href="$2" data-fancybox="gallery-' . $this->cid . '"><img src="$2" alt="$5" title="$5" $7></a>';
-$content = preg_replace($pattern, $replacement, $content);
-
+$pattern = '/<img(?![^>]*\bclass\b)([^>]*)>/i';
+$content = preg_replace_callback($pattern, function($matches) {
+    // 从 src 属性中提取链接
+    preg_match('/src="([^"]+)"/i', $matches[0], $srcMatches);
+    $src = $srcMatches[1];
+    // 包裹 img 标签
+    return '<a href="' . $src . '" data-fancybox="gallery-' . $this->cid . '">' . $matches[0] . '</a>';
+}, $content);
 
 echo $content;
 
