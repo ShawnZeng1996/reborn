@@ -12,6 +12,7 @@
         ), '', ' - '); ?><?php $this->options->title(); ?></title>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/font/iconfont.css'); ?>?v=<?php echo THEME_VERSION; ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('lib/highlight@11.9.0/css/atom-one-light.min.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('lib/fancybox@3.5.7/jquery.fancybox.min.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>?v=<?php echo THEME_VERSION; ?>">
     <script type="text/javascript" src="<?php $this->options->themeUrl('lib/jquery@3.7.1/jquery-3.7.1.min.js'); ?>"></script>
     <script type="text/javascript">
@@ -31,6 +32,7 @@
         var commentsRequireURL = <?php echo $this->options->commentsRequireURL; ?>;
     </script>
     <script src="<?php $this->options->themeUrl('lib/highlight@11.9.0/js/highlight.min.js'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('lib/fancybox@3.5.7/jquery.fancybox.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/app.js'); ?>?v=<?php echo THEME_VERSION; ?>"></script>
     <?php $this->header(); ?>
 </head>

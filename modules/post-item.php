@@ -1,5 +1,5 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<div class="post post-type flex">
+<article class="post post-type flex">
     <div class="post-author-avatar">
         <?php if ($this->author->mail): ?>
             <img src="<?php echo getGravatarUrl($this->author->mail, 80); ?>" alt="<?php $this->author(); ?>" class="author-avatar" />
@@ -14,4 +14,4 @@
         </a>
         <?php $this->need('/modules/meta-item.php'); ?>
     </div>
-</div>
+</article>
