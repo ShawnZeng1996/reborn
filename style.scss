@@ -91,6 +91,14 @@ ul, ol, li {
   margin-left: 10px;
 }
 
+.m-r-10 {
+  margin-right: 10px;
+}
+
+.m-lr-10 {
+  margin: 0 10px;
+}
+
 #header {
   background-color: #333333;
   color: #FFFFFF;
@@ -631,6 +639,10 @@ ul, ol, li {
           margin-right: 10px;
           text-decoration: none;
         }
+        .admin {
+          font-size: 14px;
+          color: #05c160;
+        }
         .comment-time {
           font-size: 14px;
           color: $global_grey_color;
@@ -721,6 +733,7 @@ ul, ol, li {
         margin-top: 10px;
       }
       .adv-description {
+        color: black;
         display: block;
       }
       .adv-link {

@@ -303,14 +303,19 @@ function renderPostComments($comments, $parentAuthor = '') {
         echo '<a class="comment-author-avatar"' . $hasLink . '><img src="' . getGravatarUrl($comment['mail'], 40) . '" alt="' . $comment['author'] . '"></a>';
         echo '<div class="flex flex-1 comment-body">';
         echo '<div class="flex-1">';
-        echo '<a class="comment-author" rel="nofollow" target="_blank" href="' . $comment['url'] . '">' . $comment['author'] . '</a>';
-        if (!empty($parentAuthor)) {
-            echo '回复<span class="comment-author m-l-10">' . $parentAuthor . '</span>';
+        echo '<a class="comment-author" rel="nofollow" target="_blank" href="' . $comment['url'] . '">' . $comment['author'];
+        echo '</a>';
+        if ($comment["authorId"]) {
+            echo '<span class="admin m-r-10">作者</span>';
         }
         echo '<time class="comment-time" datetime="' . $comment['created'] . '">' . timeAgo($comment['created']) . '</time>';
         echo '</div>';
         echo '<a class="write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">回复</a>';
-        echo '<div class="comment-content write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">' . commentEmojiReplace($comment['text']) . '</div>';
+        echo '<div class="comment-content write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">';
+        if (!empty($parentAuthor)) {
+            echo '回复<span class="comment-author m-lr-10">' . $parentAuthor . '</span>';
+        }
+        echo commentEmojiReplace($comment['text']) . '</div>';
         echo '</div>';
         echo '</div>';
         if (!empty($comment['replies'])) {
