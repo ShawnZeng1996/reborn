@@ -503,7 +503,7 @@ function getLatestComments($limit = 5) {
 }
 
 // 生成文章目录树
-function generateToc($content) {
+function generateToc($content): string {
     $idCounter = 1;
     $matches = array();
     preg_match_all('/<h([1-5])(?![^>]*class=)([^>]*)>(.*?)<\/h\1>/', $content, $matches, PREG_SET_ORDER);
@@ -544,8 +544,6 @@ function generateToc($content) {
     return $toc;
 }
 
-
-
 function getPostLink($cid) {
     $db = Typecho_Db::get();
     $article = $db->fetchRow($db->select()->from('table.contents')->where('cid = ?', $cid));
@@ -571,6 +569,21 @@ function getPostLink($cid) {
         'day' => $articleDay
     ), Helper::options()->index);
 }
+
+function getPostThumbnail($cid) {
+    $db = Typecho_Db::get();
+    $thumbnail = $db->fetchRow(
+        $db->select()->from('table.fields')
+            ->where('cid = ?', $cid)
+            ->where('name = ?', 'thumbnail')
+    );
+    if (!empty($thumbnail["str_value"])) {
+        return $thumbnail["str_value"];
+    } else {
+        return Helper::options()->themeUrl . '/assets/img/post.webp';
+    }
+}
+
 
 Typecho\Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
 Typecho\Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');

@@ -523,16 +523,14 @@ ul, ol, li {
       color: rgba(0, 0, 0, 0.3);
       font-weight: 600;
       font-size: 14px; }
-    .content .sidebar .widget .widget-toc .ul-toc {
-      font-size: 14px; }
-      .content .sidebar .widget .widget-toc .ul-toc > li {
-        padding-left: 0; }
-      .content .sidebar .widget .widget-toc .ul-toc ul {
-        padding-left: 20px; }
-      .content .sidebar .widget .widget-toc .ul-toc a {
-        color: rgba(0, 0, 0, 0.3); }
-      .content .sidebar .widget .widget-toc .ul-toc a.active {
-        color: #576B95; }
+    .content .sidebar .widget .widget-toc .ul-toc > li {
+      padding-left: 0; }
+    .content .sidebar .widget .widget-toc .ul-toc ul {
+      padding-left: 20px; }
+    .content .sidebar .widget .widget-toc .ul-toc a {
+      color: rgba(0, 0, 0, 0.3); }
+    .content .sidebar .widget .widget-toc .ul-toc a.active {
+      color: #576B95; }
     .content .sidebar .widget a {
       color: #576B95;
       text-decoration: none; }
@@ -565,13 +563,28 @@ ul, ol, li {
     .content .sidebar .author-card .author-meta {
       color: rgba(0, 0, 0, 0.3);
       font-size: 14px; }
-  .content .sidebar #sidebar-post-list ul {
-    list-style-type: disc; }
-    .content .sidebar #sidebar-post-list ul li {
-      list-style-type: disc;
-      margin: 0 0 0 20px; }
-    .content .sidebar #sidebar-post-list ul li + li {
-      margin-top: 5px; }
+  .content .sidebar #sidebar-post-list ul .post-item {
+    color: black;
+    align-items: center; }
+    .content .sidebar #sidebar-post-list ul .post-item .post-title {
+      font-weight: normal;
+      font-size: 16px;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+    .content .sidebar #sidebar-post-list ul .post-item .post-view,
+    .content .sidebar #sidebar-post-list ul .post-item .post-like-num {
+      color: rgba(0, 0, 0, 0.3); }
+    .content .sidebar #sidebar-post-list ul .post-item .post-thumbnail {
+      width: 50px;
+      height: 50px;
+      margin-left: 10px; }
+  .content .sidebar #sidebar-post-list ul li {
+    padding: 10px 0; }
+  .content .sidebar #sidebar-post-list ul li + li {
+    border-top: 1px solid rgba(153, 153, 153, 0.24); }
   .content .sidebar #sidebar-comment-list li {
     margin-top: 5px; }
   .content .sidebar #sidebar-comment-list li + li {

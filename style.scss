@@ -661,7 +661,6 @@ ul, ol, li {
       }
       .widget-toc {
         .ul-toc {
-          font-size: 14px;
           > li {
             padding-left: 0;
           }
@@ -724,13 +723,33 @@ ul, ol, li {
     }
     #sidebar-post-list {
       ul {
-        list-style-type: disc;
+        .post-item {
+          color: black;
+          align-items: center;
+          .post-title {
+            font-weight: normal;
+            font-size: $global_font_size;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+          .post-view,
+          .post-like-num {
+            color: $global_grey_color;
+          }
+          .post-thumbnail {
+            width: 50px;
+            height: 50px;
+            margin-left: 10px;
+          }
+        }
         li {
-          list-style-type: disc;
-          margin: 0 0 0 20px;
+          padding: 10px 0;
         }
         li + li {
-          margin-top: 5px;
+          border-top: 1px solid rgba(153, 153, 153, 0.24);
         }
       }
     }
