@@ -26,8 +26,8 @@ $content = preg_replace_callback('/<h([1-5])(?![^>]*class=)([^>]*)>(.*?)<\/h\1>/
     return '<h' . $matches[1] . ' id="header-' . $idCounter++ . '"' . $matches[2] . '>' . $matches[3] . '</h' . $matches[1] . '>';
 }, $content);
 
-$pattern = '/<img(?![^>]*\bclass\b)([^>]*?)src="([^"]+)"([^>]*?)(alt="([^"]*)")?([^>]*)>/i';
-$replacement = '<a href="$2" data-fancybox="gallery-' . $this->cid . '"><img src="$2" alt="$5" title="$5"></a>';
+$pattern = '/<img(?![^>]*\bclass\b)([^>]*?)src="([^"]+)"([^>]*?)(alt="([^"]*)")?([^>]*?)(style="([^"]*)")?([^>]*)>/i';
+$replacement = '<a href="$2" data-fancybox="gallery-' . $this->cid . '"><img src="$2" alt="$5" title="$5" $7></a>';
 $content = preg_replace($pattern, $replacement, $content);
 
 
