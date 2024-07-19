@@ -571,12 +571,6 @@ ul, ol, li {
     .content .sidebar .sidebar-adv .adv-link {
       display: block;
       color: #576B95; }
-    .content .sidebar .sidebar-adv .ad {
-      display: flex;
-      line-height: 40px; }
-      .content .sidebar .sidebar-adv .ad .ad-avatar {
-        width: 40px;
-        height: 40px; }
     .content .sidebar .sidebar-adv img {
       max-width: 100%; }
   .content .sidebar .author-card {

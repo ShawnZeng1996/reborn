@@ -39,10 +39,7 @@
             <?php endif; ?>
 
             <?php if ($showAd): ?>
-                <section class="sidebar-adv widget">
-                    <span class="adv"><?php _e('广告'); ?></span>
-                    <div><?php echo $sidebarAd; ?></div>
-                </section>
+                <?php $this->need('/modules/sidebar/widgets/advertisement-widget.php'); ?>
             <?php endif; ?>
         </div>
     <?php endif; ?>
