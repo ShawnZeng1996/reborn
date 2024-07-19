@@ -601,10 +601,8 @@ function getPostThumbnail($cid) {
     );
 
     if (!empty($thumbnail["str_value"])) {
-        error_log("cid: " . $cid . "; url: " . $thumbnail["str_value"]);
         return $thumbnail["str_value"];
     } else {
-        error_log("cid: " . $cid . "; url: " . '通用地址');
         return Helper::options()->themeUrl . '/assets/img/post.webp';
     }
 }
@@ -616,7 +614,7 @@ class Editor
 {
     public static function Edit() {
 ?>
-        <link rel="stylesheet" href="//at.alicdn.com/t/c/font_4611589_m0t444e6ggf.css">
+        <link rel="stylesheet" href="<?php Helper::options()->themeUrl('lib/editor.md@1.5.0/fonts/iconfont.css'); ?>">
         <link rel="stylesheet" href="<?php Helper::options()->themeUrl('lib/editor.md@1.5.0/css/editormd.css'); ?>">
         <script>
             var uploadUrl = '<?php Helper::security()->index('/action/upload?cid=CID'); ?>';
@@ -626,7 +624,7 @@ class Editor
         <script>
             $(document).ready(function() {
                 $('#text').wrap("<div id='text-editormd'></div>");
-                postEditormd = editormd("text-editormd", {
+                var postEditormd = editormd("text-editormd", {
                     width: "100%",
                     height: 640,
                     path: '<?php Helper::options()->themeUrl(); ?>/lib/editor.md@1.5.0/lib/',
@@ -741,7 +739,7 @@ class Editor
                                 postEditormd.insertValue(uploadingText);
                                 $.ajax({
                                     method: 'post',
-                                    url: uploadURL.replace('CID', $('input[name="cid"]').val()),
+                                    url: uploadUrl.replace('CID', $('input[name="cid"]').val()),
                                     data: formData,
                                     contentType: false,
                                     processData: false,

@@ -7,6 +7,7 @@
     </div>
     <div class="post-content flex-1">
         <div class="post-author"><?php $this->author(); ?></div>
+        <div class="post-excerpt"><?php $this->excerpt(); ?></div>
         <a class="post-item" href="<?php $this->permalink(); ?>">
             <img src="<?php echo getPostThumbnail($this->cid); ?>" alt="<?php $this->title(); ?>" class="post-thumbnail" />
             <h3 class="post-title ellipsis"><?php $this->title(); ?></h3>

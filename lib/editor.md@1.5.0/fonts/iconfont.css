@@ -1,0 +1,191 @@
+@font-face {
+  font-family: "fa"; /* Project id 4611589 */
+  src: url('iconfont.woff2?t=1721366538354') format('woff2'),
+       url('iconfont.woff?t=1721366538354') format('woff'),
+       url('iconfont.ttf?t=1721366538354') format('truetype');
+}
+
+.fa {
+  font-family: "fa" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-checkbox-checked:before {
+  content: "\e6db";
+}
+
+.fa-checkbox:before {
+  content: "\e6dd";
+}
+
+.fa-span:before {
+  content: "\e82a";
+}
+
+.fa-attachent:before {
+  content: "\e837";
+}
+
+.fa-notice:before {
+  content: "\e83d";
+}
+
+.fa-help:before {
+  content: "\e83e";
+}
+
+.fa-unlock:before {
+  content: "\e844";
+}
+
+.fa-shut-down:before {
+  content: "\e869";
+}
+
+.fa-close:before {
+  content: "\e84c";
+}
+
+.fa-preview:before {
+  content: "\e642";
+}
+
+.fa-depart:before {
+  content: "\e648";
+}
+
+.fa-hr:before {
+  content: "\e604";
+}
+
+.fa-goto:before {
+  content: "\e605";
+}
+
+.fa-anchor:before {
+  content: "\e83b";
+}
+
+.fa-quotation:before {
+  content: "\e62d";
+}
+
+.fa-clear:before {
+  content: "\e60d";
+}
+
+.fa-bold:before {
+  content: "\e60e";
+}
+
+.fa-code:before {
+  content: "\e60f";
+}
+
+.fa-strike:before {
+  content: "\e610";
+}
+
+.fa-underline:before {
+  content: "\e611";
+}
+
+.fa-link:before {
+  content: "\e612";
+}
+
+.fa-em:before {
+  content: "\e613";
+}
+
+.fa-ul-list:before {
+  content: "\e614";
+}
+
+.fa-ol-list:before {
+  content: "\e615";
+}
+
+.fa-todo:before {
+  content: "\e617";
+}
+
+.fa-image:before {
+  content: "\e618";
+}
+
+.fa-table:before {
+  content: "\e619";
+}
+
+.fa-upload:before {
+  content: "\e61b";
+}
+
+.fa-file:before {
+  content: "\e61c";
+}
+
+.fa-latex:before {
+  content: "\e61d";
+}
+
+.fa-redo:before {
+  content: "\e61f";
+}
+
+.fa-right:before {
+  content: "\e620";
+}
+
+.fa-center:before {
+  content: "\e621";
+}
+
+.fa-aligh-center:before {
+  content: "\e622";
+}
+
+.fa-left:before {
+  content: "\e623";
+}
+
+.fa-h2:before {
+  content: "\e624";
+}
+
+.fa-undo:before {
+  content: "\e625";
+}
+
+.fa-h5:before {
+  content: "\e626";
+}
+
+.fa-h1:before {
+  content: "\e627";
+}
+
+.fa-h3:before {
+  content: "\e628";
+}
+
+.fa-h6:before {
+  content: "\e629";
+}
+
+.fa-h4:before {
+  content: "\e62a";
+}
+
+.fa-fullscreen:before {
+  content: "\e62b";
+}
+
+.fa-sidebar:before {
+  content: "\e62c";
+}
+

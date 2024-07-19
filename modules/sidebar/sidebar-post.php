@@ -21,10 +21,8 @@
     <?php
     // 判断是否需要生成目录
     $showToc = $this->is('post');
-
     // 获取广告内容
     $sidebarAd = $this->options->sidebarAd;
-
     // 判断是否需要生成广告
     $showAd = !empty($sidebarAd);
 
@@ -42,7 +40,7 @@
 
             <?php if ($showAd): ?>
                 <section class="sidebar-adv widget">
-                    <h3 class="widget-title"><?php _e('广告'); ?></h3>
+                    <span class="adv"><?php _e('广告'); ?></span>
                     <div><?php echo $sidebarAd; ?></div>
                 </section>
             <?php endif; ?>

@@ -2,7 +2,7 @@
 <?php $sidebarAd = $this->options->sidebarAd; ?>
 <?php if ($sidebarAd): ?>
     <section class="sidebar-adv widget">
-        <h3 class="widget-title"><?php _e('广告'); ?></h3>
+        <span class="adv"><?php _e('广告'); ?></span>
         <div><?php echo $sidebarAd; ?></div>
     </section>
 <?php endif; ?>

@@ -145,8 +145,9 @@ ul, ol, li {
       overflow: hidden; }
       .content .main-content .post-type .post-content .post-author {
         color: #576B95;
-        font-weight: bold;
-        margin-bottom: 5px; }
+        font-weight: bold; }
+      .content .main-content .post-type .post-content .post-excerpt {
+        margin: 5px 0; }
       .content .main-content .post-type .post-content .post-item {
         display: flex;
         padding: 5px;
@@ -542,7 +543,34 @@ ul, ol, li {
     position: fixed;
     top: 0; }
   .content .sidebar .sidebar-adv {
-    overflow: hidden; }
+    overflow: hidden;
+    position: relative; }
+    .content .sidebar .sidebar-adv .adv {
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: rgba(0, 0, 0, 0.55);
+      height: 20px;
+      line-height: 12px;
+      font-size: 12px;
+      background-color: #F6F6F6;
+      padding: 4px 6px; }
+    .content .sidebar .sidebar-adv .adv-avatar {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px; }
+    .content .sidebar .sidebar-adv .adv-title {
+      color: #576B95;
+      font-weight: bold;
+      display: block; }
+    .content .sidebar .sidebar-adv .adv-img {
+      margin-top: 10px; }
+    .content .sidebar .sidebar-adv .adv-description {
+      display: block; }
+    .content .sidebar .sidebar-adv .adv-link {
+      display: block;
+      color: #576B95; }
     .content .sidebar .sidebar-adv .ad {
       display: flex;
       line-height: 40px; }
@@ -550,7 +578,7 @@ ul, ol, li {
         width: 40px;
         height: 40px; }
     .content .sidebar .sidebar-adv img {
-      width: 100%; }
+      max-width: 100%; }
   .content .sidebar .author-card {
     text-align: center; }
     .content .sidebar .author-card .author-avatar {
