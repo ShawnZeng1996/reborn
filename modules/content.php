@@ -28,7 +28,7 @@ $content = preg_replace_callback('/<h([1-5])(?![^>]*class=)([^>]*)>(.*?)<\/h\1>/
 
 $pattern = '/<img(?![^>]*\bclass\b)([^>]*?)src="([^"]+)"([^>]*?)(alt="([^"]*)")?([^>]*)>/i';
 $replacement = '<a href="$2" data-fancybox="gallery-' . $this->cid . '"><img src="$2" alt="$5" title="$5"></a>';
-$content = preg_replace($pattern, $replacement, $this->content);
+$content = preg_replace($pattern, $replacement, $content);
 
 
 echo $content;
