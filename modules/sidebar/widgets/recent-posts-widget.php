@@ -12,10 +12,10 @@
                     <div class="post-item-left flex-1">
 
                         <h3 class="post-title"><?php echo $post["title"]; ?></h3>
-                        <span class="post-view">阅读&nbsp;<?php getPostView($this) ?></span>
-                        <span class="post-like-num">赞&nbsp;<?php $likeData = getLikeNumByCid($this->cid); echo $likeData["likes"] ?></span>
+                        <span class="post-view">阅读&nbsp;<?php echo getPostViewNum($post["cid"]); ?></span>
+                        <span class="post-like-num">赞&nbsp;<?php $likeData = getLikeNumByCid($post["cid"]); echo $likeData["likes"] ?></span>
                     </div>
-                    <img src="<?php echo getPostThumbnail($this->cid); ?>" alt="<?php $this->title(); ?>" class="post-thumbnail" />
+                    <img src="<?php echo getPostThumbnail($post["cid"]); ?>" alt="<?php echo $post["title"]; ?>" class="post-thumbnail" />
                 </a>
             </li>
         <?php endforeach; ?>

@@ -355,7 +355,6 @@ function getPostView($archive)
     $cid = $archive->cid;
     $db = Typecho_Db::get();
     $prefix = $db->getPrefix();
-
     // 检查是否存在 views 字段
     if (!array_key_exists('views', $db->fetchRow($db->select()->from('table.contents')->page(1, 1)))) {
         $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `views` INT(10) DEFAULT 0;');
@@ -365,12 +364,10 @@ function getPostView($archive)
     // 获取当前文章的浏览量
     $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
     $views = $row ? (int) $row['views'] : 0;
-
     // 如果是单篇文章页面，则增加浏览量
     if ($archive->is('single')) {
         $cookieViews = Typecho_Cookie::get('__post_views');
         $viewedPosts = $cookieViews ? explode(',', $cookieViews) : [];
-
         if (!in_array($cid, $viewedPosts)) {
             $db->query($db->update('table.contents')->rows(array('views' => $views + 1))->where('cid = ?', $cid));
             $viewedPosts[] = $cid;
@@ -386,6 +383,31 @@ function getPostView($archive)
     }
     echo $formattedViews;
 }
+
+function getPostViewNum($cid)
+{
+    $db = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+
+    // 检查是否存在 views 字段
+    if (!array_key_exists('views', $db->fetchRow($db->select()->from('table.contents')->page(1, 1)))) {
+        $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `views` INT(10) DEFAULT 0;');
+        return 0;
+    }
+
+    // 获取当前文章的浏览量
+    $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
+    $views = $row ? (int) $row['views'] : 0;
+
+    // 格式化浏览量
+    if ($views >= 10000) {
+        $formattedViews = number_format($views / 10000, 1) . '万';
+    } else {
+        $formattedViews = $views;
+    }
+    return $formattedViews;
+}
+
 
 function commentEmojiReplace($comment_text): string {
     // 目录路径
@@ -577,9 +599,12 @@ function getPostThumbnail($cid) {
             ->where('cid = ?', $cid)
             ->where('name = ?', 'thumbnail')
     );
+
     if (!empty($thumbnail["str_value"])) {
+        error_log("cid: " . $cid . "; url: " . $thumbnail["str_value"]);
         return $thumbnail["str_value"];
     } else {
+        error_log("cid: " . $cid . "; url: " . '通用地址');
         return Helper::options()->themeUrl . '/assets/img/post.webp';
     }
 }
