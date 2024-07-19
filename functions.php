@@ -3,7 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 define('THEME_NAME', 'reborn');
 
-define('THEME_VERSION', '1.0.0');
+define('THEME_VERSION', '1.0.1');
 
 // 文章自定义字段
 function themeFields($layout) {
@@ -291,11 +291,13 @@ function renderComments($comments, $link, $maxTopLevelComments = 5)
     }
 }
 
-function renderPostComments($comments, $parentAuthor = '') {
+function renderPostComments($comments, $parentAuthor = '', $parentLevel = 0) {
     foreach ($comments as $comment) {
+        $currentLevel = $parentLevel + 1;
+
         echo '<li id="comment-' . $comment['coid'] . '" class="comment-item">';
         echo '<div class="comment-item-header flex">';
-        if(!empty($comment['url'])) {
+        if (!empty($comment['url'])) {
             $hasLink = ' href="' . ensureAbsoluteUrl($comment['url']) . '" target="_blank" rel="nofollow"';
         } else {
             $hasLink = '';
@@ -303,8 +305,7 @@ function renderPostComments($comments, $parentAuthor = '') {
         echo '<a class="comment-author-avatar"' . $hasLink . '><img src="' . getGravatarUrl($comment['mail'], 40) . '" alt="' . $comment['author'] . '"></a>';
         echo '<div class="flex flex-1 comment-body">';
         echo '<div class="flex-1">';
-        echo '<a class="comment-author" rel="nofollow" target="_blank" href="' . $comment['url'] . '">' . $comment['author'];
-        echo '</a>';
+        echo '<a class="comment-author" rel="nofollow" target="_blank" href="' . $comment['url'] . '">' . $comment['author'] . '</a>';
         if ($comment["authorId"]) {
             echo '<span class="admin m-r-10">作者</span>';
         }
@@ -312,20 +313,22 @@ function renderPostComments($comments, $parentAuthor = '') {
         echo '</div>';
         echo '<a class="write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">回复</a>';
         echo '<div class="comment-content write-comment" data-cid="' . $comment['cid'] . '" data-coid="' . $comment['coid'] . '" data-name="' . $comment['author'] . '">';
-        if (!empty($parentAuthor)) {
-            echo '回复<span class="comment-author m-lr-10">' . $parentAuthor . '</span>';
+        if ($parentLevel > 1 && !empty($parentAuthor)) {
+            echo '回复<span class="comment-author m-lr-10">' . $parentAuthor . '</span>：';
         }
         echo commentEmojiReplace($comment['text']) . '</div>';
         echo '</div>';
         echo '</div>';
         if (!empty($comment['replies'])) {
             echo '<ul class="comment-reply">';
-            renderPostComments($comment['replies'], $comment['author']);
+            renderPostComments($comment['replies'], $comment['author'], $currentLevel);
             echo '</ul>';
         }
         echo '</li>';
     }
 }
+
+
 
 /**
  * 递归渲染回复评论
