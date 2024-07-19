@@ -475,11 +475,14 @@ function getAuthorPostStats($authorId) {
     $prefix = $db->getPrefix();
 
     // 构建查询，统计特定作者的文章数量、点赞数和浏览量
-    $query = $db->select(array('COUNT(*)' => 'numPosts', 'SUM(likes)' => 'totalLikes', 'SUM(views)' => 'totalViews'))
+    $query = $db->select(array('COUNT(*)' => 'numPosts', 'SUM(table.contents.likes)' => 'totalLikes', 'SUM(table.contents.views)' => 'totalViews'))
         ->from('table.contents')
-        ->where('authorId = ?', $authorId)
-        ->where('type = ?', 'post')
-        ->where('status = ?', 'publish'); // 仅统计已发布的文章
+        ->join('table.fields', 'table.contents.cid = table.fields.cid', Typecho_Db::LEFT_JOIN)
+        ->where('table.contents.authorId = ?', $authorId)
+        ->where('table.contents.type = ?', 'post')
+        ->where('table.contents.status = ?', 'publish')
+        ->where('table.fields.name = ?', 'postType')
+        ->where('table.fields.str_value != ?', 'shuoshuo');
 
     $result = $db->fetchObject($query);
     return $result ? array('numPosts' => $result->numPosts, 'totalLikes' => $result->totalLikes, 'totalViews' => $result->totalViews) : array('numPosts' => 0, 'totalLikes' => 0, 'totalViews' => 0);
