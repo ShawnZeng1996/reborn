@@ -173,6 +173,8 @@ ul, ol, li {
       .content .main-content .post-type .post-content .shuoshuo-item {
         display: block;
         color: black; }
+        .content .main-content .post-type .post-content .shuoshuo-item img {
+          max-width: min(100%, 300px); }
       .content .main-content .post-type .post-content div, .content .main-content .post-type .post-content img {
         max-width: 100%; }
       .content .main-content .post-type .post-content input.rb-checkbox {

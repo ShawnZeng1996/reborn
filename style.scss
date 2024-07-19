@@ -212,6 +212,9 @@ ul, ol, li {
         .shuoshuo-item {
           display: block;
           color: black;
+          img {
+            max-width: min(100%, 300px);
+          }
         }
         div, img {
           max-width: 100%;
