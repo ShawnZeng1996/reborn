@@ -14,7 +14,10 @@
     <link rel="stylesheet" href="<?php $this->options->themeUrl('lib/highlight@11.9.0/css/atom-one-light.min.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('lib/fancybox@3.5.7/jquery.fancybox.min.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>?v=<?php echo THEME_VERSION; ?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="text/javascript" src="<?php $this->options->themeUrl('lib/jquery@3.7.1/jquery-3.7.1.min.js'); ?>"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
+
     <script type="text/javascript">
         var themeUrl = '<?php $this->options->themeUrl(); ?>'; // 定义主题URL变量
         var isLogin = <?php echo $this->user->hasLogin() ? 'true' : 'false'; ?>;

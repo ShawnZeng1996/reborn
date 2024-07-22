@@ -223,7 +223,7 @@ ul, ol, li {
       .content .main-content .post-type .post-content .gallery-row {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        max-width: 600px; }
+        max-width: 420px; }
       .content .main-content .post-type .post-content .gallery-row-2 {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
