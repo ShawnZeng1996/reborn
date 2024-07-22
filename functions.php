@@ -3,7 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 define('THEME_NAME', 'reborn');
 
-define('THEME_VERSION', '1.0.3');
+define('THEME_VERSION', '1.0.4');
 
 // 文章自定义字段
 function themeFields($layout) {
@@ -616,6 +616,57 @@ function getPostThumbnail($cid) {
     } else {
         return Helper::options()->themeUrl . '/assets/img/post.webp';
     }
+}
+
+// 生成图片 HTML
+function generateGalleryHtml($images) {
+    $imageCount = count($images);
+    error_log($imageCount);
+    $imageHtml = '<div class="gallery-images">';
+    $imagesProcessed = 0;
+    if ($imageCount == 4) {
+        $rows = array_chunk($images, 2);
+        foreach ($rows as $row) {
+            $imageHtml .= '<div class="gallery-row-2">';
+            foreach ($row as $index => $image) {
+                $imageHtml .= generateGalleryItem($image);
+            }
+            $imageHtml .= '</div>';
+        }
+    } else {
+        $rows = array_chunk($images, 3); // 将图片分成每行3张
+        foreach ($rows as $row) {
+            $imageHtml .= '<div class="gallery-row">';
+            foreach ($row as $index => $image) {
+                if ($imagesProcessed == 8 && $imageCount >= 9) {
+                    $remainingCount = $imageCount - 9;
+                    $imageHtml .= generateGalleryItem($image, $remainingCount);
+                    break 2;
+                }
+                $imageHtml .= generateGalleryItem($image);
+                $imagesProcessed++;
+            }
+            $imageHtml .= '</div>';
+            if ($imageCount <= 9) {
+                $imageCount -= 3;
+            }
+        }
+    }
+    $imageHtml .= '</div>';
+    return $imageHtml;
+}
+
+// 生成单个图片项
+function generateGalleryItem($image, $remainingCount = 0) {
+    $html = '<div class="gallery-image-item">';
+    if ($remainingCount > 0) {
+        $html .= $image . '<div class="overlay">+' . $remainingCount . '</div>';
+    } else {
+        $html .= $image;
+    }
+    $html .= '</div>';
+
+    return $html;
 }
 
 

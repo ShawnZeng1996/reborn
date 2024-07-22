@@ -117,10 +117,10 @@ ul, ol, li {
         display: inline;
         padding: 0 20px;
         a {
-          color: #BBBBBB;
+          color: #FFFFFF;
           text-decoration: none;
           text-transform: uppercase;
-          font-size: 14px;
+          font-size: $global_font_size;
         }
       }
     }
@@ -165,7 +165,7 @@ ul, ol, li {
 .content {
   .main-content {
     background-color: #FFFFFF;
-    width: 72%;
+    width: 66%;
     float: left;
     padding: 10px 20px;
     .post-type {
@@ -258,6 +258,42 @@ ul, ol, li {
           padding: 5px 15px;
           border-radius: 5px;
           text-align: center;
+        }
+        .gallery-images {
+
+        }
+        .gallery-row {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          max-width: 600px;
+        }
+        .gallery-row-2 {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          max-width: 420px;
+        }
+        .gallery-image-item {
+          position: relative;
+          margin: 5px;
+          overflow: hidden;
+          img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+          }
+          .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 2em;
+          }
         }
         .post-meta-1.post-location {
           color: $global_link_color;
@@ -662,7 +698,7 @@ ul, ol, li {
     }
   }
   .sidebar {
-    width: 27%;
+    width: 33%;
     float: right;
     padding: 0;
     .widget {
