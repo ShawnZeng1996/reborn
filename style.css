@@ -25,6 +25,14 @@ div, a, img {
   -webkit-touch-callout: none;
   -webkit-text-size-adjust: none; }
 
+a:focus {
+  outline: none; }
+
+button, input, textarea {
+  -webkit-appearance: none;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
 ul, ol, li {
   list-style: none; }
 
@@ -222,7 +230,7 @@ ul, ol, li {
         max-width: 420px; }
       .content .main-content .post-type .post-content .gallery-image-item {
         position: relative;
-        margin: 5px;
+        margin: 2px;
         overflow: hidden;
         font-size: 0;
         line-height: 0; }
