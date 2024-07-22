@@ -276,7 +276,15 @@ ul, ol, li {
           position: relative;
           margin: 5px;
           overflow: hidden;
+          font-size: 0;
+          line-height: 0;
+          a {
+            display: inline-block;
+            line-height: 0;
+          }
           img {
+            display: block;
+            vertical-align: middle;
             width: 100%;
             aspect-ratio: 1 / 1;
             object-fit: cover;

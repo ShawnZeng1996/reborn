@@ -223,8 +223,15 @@ ul, ol, li {
       .content .main-content .post-type .post-content .gallery-image-item {
         position: relative;
         margin: 5px;
-        overflow: hidden; }
+        overflow: hidden;
+        font-size: 0;
+        line-height: 0; }
+        .content .main-content .post-type .post-content .gallery-image-item a {
+          display: inline-block;
+          line-height: 0; }
         .content .main-content .post-type .post-content .gallery-image-item img {
+          display: block;
+          vertical-align: middle;
           width: 100%;
           aspect-ratio: 1 / 1;
           object-fit: cover; }
