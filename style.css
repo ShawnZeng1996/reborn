@@ -149,6 +149,8 @@ ul, ol, li {
   padding: 10px 20px; }
   .content .main-content .post-type {
     margin: 0; }
+    .content .main-content .post-type p {
+      display: flex; }
     .content .main-content .post-type .post-author-avatar {
       width: 40px;
       padding: 10px 0; }
@@ -804,7 +806,7 @@ ul, ol, li {
 
 .rb-emoji-item {
   height: 25px;
-  vertical-align: middle; }
+  vertical-align: top; }
 
 #footer {
   text-align: center;
