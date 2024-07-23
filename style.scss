@@ -105,6 +105,10 @@ ul, ol, li {
   margin-right: 10px;
 }
 
+.m-r-5 {
+  margin-right: 5px;
+}
+
 .m-lr-10 {
   margin: 0 10px;
 }
@@ -286,7 +290,6 @@ ul, ol, li {
           position: relative;
           margin: 2px;
           overflow: hidden;
-          font-size: 0;
           line-height: 0;
           a {
             display: inline-block;
@@ -311,6 +314,7 @@ ul, ol, li {
             background: rgba(0, 0, 0, 0.5);
             color: white;
             font-size: 2em;
+            text-decoration: none;
           }
         }
         .post-meta-1.post-location {
@@ -663,7 +667,12 @@ ul, ol, li {
         display: none;
       }
       > ul > li > .comment-reply {
-        margin-left: 40px;
+        margin-left: 50px;
+        .comment-author-avatar,
+        .comment-author-avatar img {
+          width: 30px;
+          height: 30px;
+        }
       }
       .comment-item {
         .comment-item-header {
@@ -691,7 +700,7 @@ ul, ol, li {
         flex-wrap: wrap;
         .comment-author {
           color: #787878;
-          margin-right: 10px;
+          margin-right: 5px;
           text-decoration: none;
         }
         .admin {
@@ -706,6 +715,9 @@ ul, ol, li {
           color: #787878;
           font-weight: normal;
           flex: 0 0 36px;
+        }
+        a.write-comment {
+          font-size: 14px;
         }
         .comment-content.write-comment {
           color: black;

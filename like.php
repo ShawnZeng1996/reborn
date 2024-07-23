@@ -47,7 +47,7 @@ try {
             // 获取最新点赞数
             $likes = $db->fetchRow($db->select('likes')->from('table.contents')->where('cid = ?', $cid));
             $response['success'] = true;
-            $response['likes'] = $likes['likes'];
+            $response['likes'] = intval($likes['likes']);
             $response['views'] = getPostView($cid);
         } else {
             $response['message'] = '无效的文章 ID 或操作';

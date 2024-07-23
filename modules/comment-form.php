@@ -20,10 +20,11 @@
         <div class="emoji-container absolute">
             <div class="emoji-list"></div>
             <div class="emoji-bar flex">
-                <div class="emoji-category active" data-category="xiaodianshi">小电视</div>
-                <div class="emoji-category" data-category="koukou">扣扣</div>
-                <div class="emoji-category" data-category="alu">阿鲁</div>
-                <div class="emoji-category" data-category="paopao">泡泡</div>
+                <div class="emoji-category active" data-category="wechat">微信</div>
+                <div class="emoji-category" data-category="xiaodianshi">小电视</div>
+                <!--div class="emoji-category" data-category="koukou">扣扣</div-->
+                <!--div class="emoji-category" data-category="alu">阿鲁</div-->
+                <!--div class="emoji-category" data-category="paopao">泡泡</div-->
             </div>
         </div>
         <div class="comment-footer-btn">

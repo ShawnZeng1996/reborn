@@ -3,7 +3,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 define('THEME_NAME', 'reborn');
 
-define('THEME_VERSION', '1.0.7');
+define('THEME_VERSION', '1.0.8');
 
 // 文章自定义字段
 function themeFields($layout) {
@@ -122,7 +122,7 @@ function timeAgo($time)
     foreach ($units as $unit => $value) {
         if ($timeDifference >= $value) {
             $result = floor($timeDifference / $value);
-            return $result . ' ' . $unit . _t('前');
+            return $result . $unit . _t('前');
         }
     }
     return _t('刚刚');
@@ -302,12 +302,12 @@ function renderPostComments($comments, $parentAuthor = '', $parentLevel = 0) {
         } else {
             $hasLink = '';
         }
-        echo '<a class="comment-author-avatar"' . $hasLink . '><img src="' . getGravatarUrl($comment['mail'], 40) . '" alt="' . $comment['author'] . '"></a>';
+        echo '<a class="comment-author-avatar"' . $hasLink . '><img src="' . getGravatarUrl($comment['mail'], 80) . '" alt="' . $comment['author'] . '"></a>';
         echo '<div class="flex flex-1 comment-body">';
         echo '<div class="flex-1">';
         echo '<a class="comment-author" rel="nofollow" target="_blank" href="' . $comment['url'] . '">' . $comment['author'] . '</a>';
         if ($comment["authorId"]) {
-            echo '<span class="admin m-r-10">作者</span>';
+            echo '<span class="admin m-r-5">作者</span>';
         }
         echo '<time class="comment-time" datetime="' . $comment['created'] . '">' . timeAgo($comment['created']) . '</time>';
         echo '</div>';
@@ -421,7 +421,7 @@ function commentEmojiReplace($comment_text): string {
     // 目录路径
     $directory = '/usr/themes/reborn/assets/emoji/';
     // 表情包类别
-    $categories = array('alu', 'paopao', 'xiaodianshi', 'koukou');
+    $categories = array('wechat', 'xiaodianshi');
     $data_OwO = array();
     $db = Typecho_Db::get();
     $siteUrlRow = $db->fetchRow($db->select('value')->from('table.options')->where('name = ?', 'siteUrl'));
@@ -593,7 +593,7 @@ function getPostLink($cid) {
             ->where('table.relationships.cid = ?', $cid)
             ->where('table.metas.type = ?', 'category')
     );
-    return Typecho_Router::url('post', array(
+    return Typecho_Router::url($articleType, array(
         'cid' => $cid,
         'slug' => $articleSlug,
         'category' => $category,
@@ -619,7 +619,7 @@ function getPostThumbnail($cid) {
 }
 
 // 生成图片 HTML
-function generateGalleryHtml($images) {
+function generateGalleryHtml($images, $cid = 0, $showAll = 0) {
     $imageCount = count($images);
     error_log($imageCount);
     $imageHtml = '<div class="gallery-images">';
@@ -638,9 +638,9 @@ function generateGalleryHtml($images) {
         foreach ($rows as $row) {
             $imageHtml .= '<div class="gallery-row">';
             foreach ($row as $index => $image) {
-                if ($imagesProcessed == 8 && $imageCount >= 9) {
+                if ($showAll == 0 && $imagesProcessed == 8 && $imageCount >= 9) {
                     $remainingCount = $imageCount - 9;
-                    $imageHtml .= generateGalleryItem($image, $remainingCount);
+                    $imageHtml .= generateGalleryItem($image, $cid , $remainingCount);
                     break 2;
                 }
                 $imageHtml .= generateGalleryItem($image);
@@ -657,10 +657,10 @@ function generateGalleryHtml($images) {
 }
 
 // 生成单个图片项
-function generateGalleryItem($image, $remainingCount = 0) {
+function generateGalleryItem($image, $cid = 0, $remainingCount = 0) {
     $html = '<div class="gallery-image-item">';
     if ($remainingCount > 0) {
-        $html .= $image . '<div class="overlay">+' . $remainingCount . '</div>';
+        $html .= $image . '<a class="overlay" href="'.getPostLink($cid).'">+' . $remainingCount . '</a>';
     } else {
         $html .= $image;
     }
@@ -699,13 +699,16 @@ class Editor
                     flowChart: true,
                     sequenceDiagram: true,
                     toolbarIcons: function () {
-                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "image", "code", "code-block", "table", "more", "hide", "|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
+                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "image", "code", "code-block", "table", "more", "hide", "gallery", "rb-emoji","|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
                     },
+                    emojiPath: '<?php Helper::options()->themeUrl(); ?>assets/emoji/',
                     toolbarIconsClass: {
                         more: "fa-depart",
                         "checkbox-checked": "fa-checkbox-checked",
                         "checkbox": "fa-checkbox",
-                        "hide": "fa-unlock"
+                        "hide": "fa-unlock",
+                        "gallery": "fa-gallery",
+                        "rb-emoji": "fa-smile"
                     },
                     // 自定义工具栏按钮的事件处理
                     toolbarHandlers: {
@@ -727,23 +730,33 @@ class Editor
                         "hide": function (cm) {
                             // 插入包含换行符的 [hide][/hide] 标签
                             cm.replaceSelection("[hide]\n\n[/hide]");
-
                             // 将光标定位到换行符之间，方便用户输入内容
                             let cursor = cm.getCursor();
                             cm.setCursor({line: cursor.line - 1, ch: 0});
-                        }
+                        },
+                        "gallery": function (cm) {
+                            // 插入包含换行符的 [hide][/hide] 标签
+                            cm.replaceSelection("[gallery]\n\n[/gallery]");
+                            // 将光标定位到换行符之间，方便用户输入内容
+                            let cursor = cm.getCursor();
+                            cm.setCursor({line: cursor.line - 1, ch: 0});
+                        },
+                        "rb-emoji" : function() {
+                            this.executePlugin("rbEmojiDialog", "rb-emoji-dialog/rb-emoji-dialog");
+                        },
                     },
                     lang: {
                         toolbar: {
                             more: "插入摘要分隔符",
                             "checkbox-checked": "插入待办事项（已办）",
                             "checkbox": "插入待办事项（未办）",
-                            "hide": "插入回复可见内容"
+                            "hide": "插入回复可见内容",
+                            "gallery": "插入说说九图",
+                            "rb-emoji": "插入表情包"
                         }
                     },
                 });
 
-                // 优化图片及文件附件插入 Thanks to Markxuxiao
                 Typecho.insertFileToEditor = function (file, url, isImage) {
                     html = isImage ? '![' + file + '](' + url + ')'
                         : '[' + file + '](' + url + ')';

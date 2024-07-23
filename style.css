@@ -85,6 +85,9 @@ ul, ol, li {
 .m-r-10 {
   margin-right: 10px; }
 
+.m-r-5 {
+  margin-right: 5px; }
+
 .m-lr-10 {
   margin: 0 10px; }
 
@@ -232,7 +235,6 @@ ul, ol, li {
         position: relative;
         margin: 2px;
         overflow: hidden;
-        font-size: 0;
         line-height: 0; }
         .content .main-content .post-type .post-content .gallery-image-item a {
           display: inline-block;
@@ -254,7 +256,8 @@ ul, ol, li {
           justify-content: center;
           background: rgba(0, 0, 0, 0.5);
           color: white;
-          font-size: 2em; }
+          font-size: 2em;
+          text-decoration: none; }
       .content .main-content .post-type .post-content .post-meta-1.post-location {
         color: #576B95;
         margin-top: 5px; }
@@ -531,7 +534,11 @@ ul, ol, li {
     .content .main-content > #comments .comment-form {
       display: none; }
     .content .main-content > #comments > ul > li > .comment-reply {
-      margin-left: 40px; }
+      margin-left: 50px; }
+      .content .main-content > #comments > ul > li > .comment-reply .comment-author-avatar,
+      .content .main-content > #comments > ul > li > .comment-reply .comment-author-avatar img {
+        width: 30px;
+        height: 30px; }
     .content .main-content > #comments .comment-item .comment-item-header {
       width: 100%;
       flex-wrap: wrap; }
@@ -549,7 +556,7 @@ ul, ol, li {
       flex-wrap: wrap; }
       .content .main-content > #comments .comment-body .comment-author {
         color: #787878;
-        margin-right: 10px;
+        margin-right: 5px;
         text-decoration: none; }
       .content .main-content > #comments .comment-body .admin {
         font-size: 14px;
@@ -561,6 +568,8 @@ ul, ol, li {
         color: #787878;
         font-weight: normal;
         flex: 0 0 36px; }
+      .content .main-content > #comments .comment-body a.write-comment {
+        font-size: 14px; }
       .content .main-content > #comments .comment-body .comment-content.write-comment {
         color: black;
         flex: 0 0 100%; }

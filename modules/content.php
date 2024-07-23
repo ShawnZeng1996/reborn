@@ -35,7 +35,11 @@ $content = preg_replace_callback('/\[gallery\](.*?)\[\/gallery\]/s', function($m
     $galleryContent = preg_replace('/<br\s*\/?>/i', '', $matches[1]);
     preg_match_all('/<img.*?src="(.*?)".*?>/i', $galleryContent, $imageMatches);
     $images = array_filter($imageMatches[0]); // 获取完整的img标签
-    return generateGalleryHtml($images);
+    if ( $this->is('post') || $this->is('page') ) {
+        return generateGalleryHtml($images, 0, 1);
+    } else {
+        return generateGalleryHtml($images, $this->cid,0 );
+    }
 }, $content);
 
 // 处理没有 class 属性的 img 标签
