@@ -701,7 +701,6 @@ class Editor
                     toolbarIcons: function () {
                         return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "image", "code", "code-block", "table", "more", "hide", "gallery", "rb-emoji","|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
                     },
-                    emojiPath: '<?php Helper::options()->themeUrl(); ?>assets/emoji/',
                     toolbarIconsClass: {
                         more: "fa-depart",
                         "checkbox-checked": "fa-checkbox-checked",
