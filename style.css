@@ -181,6 +181,8 @@ ul, ol, li {
         .content .main-content .post-type .post-content .post-item .post-title {
           font-weight: normal;
           font-size: 16px; }
+      .content .main-content .post-type .post-content .shuoshuo img {
+        max-width: min(100%, 300px); }
       .content .main-content .post-type .post-content .shuoshuo-item {
         display: block;
         color: black; }

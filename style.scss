@@ -223,6 +223,11 @@ ul, ol, li {
             font-size: $global_font_size;
           }
         }
+        .shuoshuo{
+          img {
+            max-width: min(100%, 300px);
+          }
+        }
         .shuoshuo-item {
           display: block;
           color: black;
