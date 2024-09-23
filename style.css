@@ -1093,6 +1093,9 @@ rb-theme-tabs .rb-tabs {
         .main-content .post-type .post-content .post-unit .post-title {
           font-weight: normal;
           font-size: var(--global-font-size); }
+      .main-content .post-type .post-content .movie-item, .main-content .post-type .post-content .book-item {
+        background-color: var(--weui-FG-5);
+        color: var(--weui-FG-0); }
       .main-content .post-type .post-content .post-location {
         display: block;
         color: var(--weui-LINK);
@@ -1134,7 +1137,8 @@ rb-theme-tabs .rb-tabs {
           .main-content .post-type .post-content .post-meta-2 .post-action a {
             display: block;
             text-align: center;
-            cursor: pointer; }
+            cursor: pointer;
+            color: #FFFFFF; }
             .main-content .post-type .post-content .post-meta-2 .post-action a .rb-heart:before,
             .main-content .post-type .post-content .post-meta-2 .post-action a .rb-heart-o:before,
             .main-content .post-type .post-content .post-meta-2 .post-action a .rb-comments:before {
