@@ -12,7 +12,7 @@ function getGravatarUrl(string $email, int $size = 80): string {
     $hash = md5(strtolower(trim($email)));
     $gravatarUrl = $gravatarUrl . $hash;
     // 自定义默认头像 URL
-    $defaultAvatarUrl = \Utils\Helper::options()->themeUrl . '/assets/img/default-avatar.webp';
+    $defaultAvatarUrl = \Utils\Helper::options()->themeUrl . '/assets/img/default-avatar.jpeg';
     return $gravatarUrl . "?s=$size&d=" . urlencode($defaultAvatarUrl) . "&r=g";
 }
 
