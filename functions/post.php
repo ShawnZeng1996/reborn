@@ -77,14 +77,8 @@ function getPostView($archive): void {
     echo $formattedViews;
 }
 
-/**
- * 获取文章的格式化浏览量
- *
- * @param int $cid
- * @return int|string 格式化后的浏览量
- * @throws \Typecho\Db\Exception
- */
-function getPostViewNum(int $cid): int|string {
+
+function getPostViewNum(int $cid) {
     $db = \Typecho\Db::get();
     $prefix = $db->getPrefix();
     // 获取当前文章的浏览量
