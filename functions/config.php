@@ -21,7 +21,7 @@ function themeConfig($form): void {
         if (!array_key_exists('region', $db->fetchRow($db->select()->from('table.comments')->page(1, 1)))) {
             $db->query('ALTER TABLE `' . $prefix . 'comments` ADD `region` varchar(50) NULL');
         }
-        updateOldCommentsRegion();
+        //updateOldCommentsRegion();
         // 检查是否已有文章点赞列表
         $sql = "SHOW TABLES LIKE '{$prefix}post_like_list'";
         $result = $db->fetchRow($sql);
