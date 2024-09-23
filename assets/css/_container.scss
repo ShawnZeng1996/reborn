@@ -219,6 +219,9 @@
                     max-width: min(100%, 300px);
                     margin: 0;
                 }
+                img:not([class]) {
+                    margin: 0;
+                }
             }
             .post-author {
                 display: block;

@@ -876,6 +876,8 @@ rb-theme-tabs .rb-tabs {
       .main-content .post-type .post-content .shuoshuo-item img {
         max-width: min(100%, 300px);
         margin: 0; }
+      .main-content .post-type .post-content .shuoshuo-item img:not([class]) {
+        margin: 0; }
       .main-content .post-type .post-content .post-author {
         display: block;
         color: var(--weui-LINK);
