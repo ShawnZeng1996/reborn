@@ -215,6 +215,9 @@
                     color: var(--weui-LINK);
                     text-decoration: underline;
                 }
+                img {
+                    max-width: min(100%, 300px);
+                }
             }
             .post-author {
                 display: block;
