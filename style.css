@@ -762,7 +762,6 @@ rb-theme-tabs .rb-tabs {
   .sidebar #sticky {
     margin-top: 10px; }
   .sidebar #sticky.sticky {
-    z-index: 1000;
     position: fixed;
     top: 0; }
   .sidebar .sidebar-adv {

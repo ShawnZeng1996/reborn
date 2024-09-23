@@ -78,7 +78,7 @@ function getPostView($archive): void {
 }
 
 
-function getPostViewNum(int $cid) {
+function getPostViewNum($cid){
     $db = \Typecho\Db::get();
     $prefix = $db->getPrefix();
     // 获取当前文章的浏览量

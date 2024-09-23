@@ -1,2 +1,0 @@
-# reborn
- typecho theme reborn
