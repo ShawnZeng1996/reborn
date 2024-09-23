@@ -877,6 +877,164 @@ rb-theme-tabs .rb-tabs {
         display: block;
         color: var(--weui-LINK);
         font-weight: bold; }
+      .main-content .post-type .post-content img:not([class]) {
+        display: block;
+        margin: 0 auto; }
+      .main-content .post-type .post-content pre {
+        margin: 10px 0;
+        position: relative; }
+        .main-content .post-type .post-content pre code.hljs, .main-content .post-type .post-content pre code[class^="lang-"] {
+          display: block;
+          background-color: var(--weui-FG-5);
+          padding: 35px 15px 15px;
+          border-radius: 4px;
+          max-height: none;
+          transition: max-height 0.3s ease;
+          overflow-x: auto;
+          overflow-y: hidden; }
+        .main-content .post-type .post-content pre .code-copy {
+          position: absolute;
+          top: 5px;
+          right: 15px;
+          color: var(--weui-FG-1);
+          font-size: 18px;
+          cursor: pointer; }
+        .main-content .post-type .post-content pre .code-hide,
+        .main-content .post-type .post-content pre .code-show {
+          position: absolute;
+          top: 5px;
+          right: 45px;
+          color: var(--weui-FG-1);
+          font-size: 18px;
+          cursor: pointer; }
+        .main-content .post-type .post-content pre .hljs-ln td {
+          padding: 0 10px 0 0; }
+        .main-content .post-type .post-content pre .hljs-ln-numbers {
+          color: var(--weui-FG-0); }
+      .main-content .post-type .post-content pre:before {
+        content: '';
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #fc625d;
+        box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+        z-index: 1; }
+      .main-content .post-type .post-content code:not(.hljs, [class^="lang-"]) {
+        line-height: 1.75;
+        font-size: 90%;
+        color: #d14;
+        background-color: var(--weui-FG-5);
+        padding: 3px 5px;
+        border-radius: 4px; }
+      .main-content .post-type .post-content blockquote {
+        line-height: 1.75;
+        font-size: 14px;
+        font-style: normal;
+        border-left: none;
+        padding: 1em;
+        border-radius: 4px;
+        color: var(--weui-FG-0);
+        background-color: var(--weui-FG-5);
+        margin: 5px 0; }
+      .main-content .post-type .post-content h2:not([class]) {
+        text-align: center;
+        line-height: 1.75;
+        font-size: 1.2em;
+        font-weight: bold;
+        display: table;
+        margin: 30px auto;
+        padding: 0 0.2em;
+        background: #0f4c81;
+        color: #FFFFFF; }
+      .main-content .post-type .post-content h3:not([class]) {
+        text-align: left;
+        line-height: 1.2;
+        font-size: 1.1em;
+        font-weight: bold;
+        margin: 20px 0;
+        padding-left: 8px;
+        border-left: 3px solid #0f4c81; }
+      .main-content .post-type .post-content h4:not([class]) {
+        text-align: left;
+        line-height: 1.75;
+        font-size: 1em;
+        font-weight: bold;
+        margin: 20px 0; }
+      .main-content .post-type .post-content a {
+        color: var(--weui-LINK); }
+      .main-content .post-type .post-content ul, .main-content .post-type .post-content ol {
+        margin: 0 0 0 20px; }
+      .main-content .post-type .post-content ul li {
+        list-style-type: disc; }
+      .main-content .post-type .post-content ol li {
+        list-style-type: decimal; }
+      .main-content .post-type .post-content li {
+        margin: 0 0 0 20px;
+        line-height: 32px; }
+      .main-content .post-type .post-content p {
+        margin: 5px 0; }
+      .main-content .post-type .post-content table:not(.hljs-ln) {
+        border-spacing: 0;
+        border-collapse: collapse;
+        width: 100%; }
+        .main-content .post-type .post-content table:not(.hljs-ln) thead {
+          text-align: left;
+          line-height: 1.75;
+          background: var(--weui-FG-5);
+          font-weight: bold;
+          color: var(--weui-FG-0); }
+          .main-content .post-type .post-content table:not(.hljs-ln) thead th {
+            text-align: left;
+            line-height: 1.75;
+            border: 1px solid var(--weui-FG-3);
+            padding: 0.25em 0.5em;
+            color: var(--weui-FG-0); }
+        .main-content .post-type .post-content table:not(.hljs-ln) tbody td {
+          text-align: left;
+          line-height: 1.75;
+          border: 1px solid var(--weui-FG-3);
+          padding: 0.25em 0.5em;
+          color: var(--weui-FG-0); }
+      .main-content .post-type .post-content div, .main-content .post-type .post-content img {
+        max-width: 100%; }
+      .main-content .post-type .post-content input.rb-checkbox {
+        -webkit-appearance: none;
+        position: relative;
+        border-radius: 2px;
+        width: 15px;
+        height: 15px;
+        border: 2px solid var(--weui-LINK);
+        vertical-align: -2px; }
+      .main-content .post-type .post-content input.rb-checkbox:disabled {
+        cursor: not-allowed; }
+      .main-content .post-type .post-content input.rb-checkbox:checked::after {
+        content: '';
+        width: 3px;
+        height: 7px;
+        position: absolute;
+        top: 2px;
+        left: 5px;
+        border: 2px solid #fff;
+        border-top: 0;
+        border-left: 0;
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg); }
+      .main-content .post-type .post-content input.rb-checkbox:checked {
+        border: none;
+        background-color: var(--weui-LINK); }
+      .main-content .post-type .post-content .comment-visible {
+        display: block;
+        width: 150px;
+        margin: 20px auto;
+        text-decoration: none;
+        background-color: #05c160;
+        color: white !important;
+        padding: 5px 15px;
+        border-radius: 5px;
+        text-align: center; }
       .main-content .post-type .post-content .gallery-row {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -1101,164 +1259,6 @@ rb-theme-tabs .rb-tabs {
       margin-left: -50px; }
     .main-content .post-type #post-content {
       padding: 0; }
-      .main-content .post-type #post-content img:not([class]) {
-        display: block;
-        margin: 0 auto; }
-      .main-content .post-type #post-content pre {
-        margin: 10px 0;
-        position: relative; }
-        .main-content .post-type #post-content pre code.hljs, .main-content .post-type #post-content pre code[class^="lang-"] {
-          display: block;
-          background-color: var(--weui-FG-5);
-          padding: 35px 15px 15px;
-          border-radius: 4px;
-          max-height: none;
-          transition: max-height 0.3s ease;
-          overflow-x: auto;
-          overflow-y: hidden; }
-        .main-content .post-type #post-content pre .code-copy {
-          position: absolute;
-          top: 5px;
-          right: 15px;
-          color: var(--weui-FG-1);
-          font-size: 18px;
-          cursor: pointer; }
-        .main-content .post-type #post-content pre .code-hide,
-        .main-content .post-type #post-content pre .code-show {
-          position: absolute;
-          top: 5px;
-          right: 45px;
-          color: var(--weui-FG-1);
-          font-size: 18px;
-          cursor: pointer; }
-        .main-content .post-type #post-content pre .hljs-ln td {
-          padding: 0 10px 0 0; }
-        .main-content .post-type #post-content pre .hljs-ln-numbers {
-          color: var(--weui-FG-0); }
-      .main-content .post-type #post-content pre:before {
-        content: '';
-        position: absolute;
-        top: 15px;
-        left: 15px;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: #fc625d;
-        box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
-        z-index: 1; }
-      .main-content .post-type #post-content code:not(.hljs, [class^="lang-"]) {
-        line-height: 1.75;
-        font-size: 90%;
-        color: #d14;
-        background-color: var(--weui-FG-5);
-        padding: 3px 5px;
-        border-radius: 4px; }
-      .main-content .post-type #post-content blockquote {
-        line-height: 1.75;
-        font-size: 14px;
-        font-style: normal;
-        border-left: none;
-        padding: 1em;
-        border-radius: 4px;
-        color: var(--weui-FG-0);
-        background-color: var(--weui-FG-5);
-        margin: 5px 0; }
-      .main-content .post-type #post-content h2:not([class]) {
-        text-align: center;
-        line-height: 1.75;
-        font-size: 1.2em;
-        font-weight: bold;
-        display: table;
-        margin: 30px auto;
-        padding: 0 0.2em;
-        background: #0f4c81;
-        color: #FFFFFF; }
-      .main-content .post-type #post-content h3:not([class]) {
-        text-align: left;
-        line-height: 1.2;
-        font-size: 1.1em;
-        font-weight: bold;
-        margin: 20px 0;
-        padding-left: 8px;
-        border-left: 3px solid #0f4c81; }
-      .main-content .post-type #post-content h4:not([class]) {
-        text-align: left;
-        line-height: 1.75;
-        font-size: 1em;
-        font-weight: bold;
-        margin: 20px 0; }
-      .main-content .post-type #post-content a {
-        color: var(--weui-LINK); }
-      .main-content .post-type #post-content ul, .main-content .post-type #post-content ol {
-        margin: 0 0 0 20px; }
-      .main-content .post-type #post-content ul li {
-        list-style-type: disc; }
-      .main-content .post-type #post-content ol li {
-        list-style-type: decimal; }
-      .main-content .post-type #post-content li {
-        margin: 0 0 0 20px;
-        line-height: 32px; }
-      .main-content .post-type #post-content p {
-        margin: 5px 0; }
-      .main-content .post-type #post-content table:not(.hljs-ln) {
-        border-spacing: 0;
-        border-collapse: collapse;
-        width: 100%; }
-        .main-content .post-type #post-content table:not(.hljs-ln) thead {
-          text-align: left;
-          line-height: 1.75;
-          background: var(--weui-FG-5);
-          font-weight: bold;
-          color: var(--weui-FG-0); }
-          .main-content .post-type #post-content table:not(.hljs-ln) thead th {
-            text-align: left;
-            line-height: 1.75;
-            border: 1px solid var(--weui-FG-3);
-            padding: 0.25em 0.5em;
-            color: var(--weui-FG-0); }
-        .main-content .post-type #post-content table:not(.hljs-ln) tbody td {
-          text-align: left;
-          line-height: 1.75;
-          border: 1px solid var(--weui-FG-3);
-          padding: 0.25em 0.5em;
-          color: var(--weui-FG-0); }
-      .main-content .post-type #post-content div, .main-content .post-type #post-content img {
-        max-width: 100%; }
-      .main-content .post-type #post-content input.rb-checkbox {
-        -webkit-appearance: none;
-        position: relative;
-        border-radius: 2px;
-        width: 15px;
-        height: 15px;
-        border: 2px solid var(--weui-LINK);
-        vertical-align: -2px; }
-      .main-content .post-type #post-content input.rb-checkbox:disabled {
-        cursor: not-allowed; }
-      .main-content .post-type #post-content input.rb-checkbox:checked::after {
-        content: '';
-        width: 3px;
-        height: 7px;
-        position: absolute;
-        top: 2px;
-        left: 5px;
-        border: 2px solid #fff;
-        border-top: 0;
-        border-left: 0;
-        -webkit-transform: rotate(45deg);
-        transform: rotate(45deg); }
-      .main-content .post-type #post-content input.rb-checkbox:checked {
-        border: none;
-        background-color: var(--weui-LINK); }
-      .main-content .post-type #post-content .comment-visible {
-        display: block;
-        width: 150px;
-        margin: 20px auto;
-        text-decoration: none;
-        background-color: #05c160;
-        color: white !important;
-        padding: 5px 15px;
-        border-radius: 5px;
-        text-align: center; }
   .main-content .post-type:last-of-type {
     border-bottom: 1px solid var(--weui-FG-3); }
   .main-content .post-type.post > .post-title {
