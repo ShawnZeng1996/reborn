@@ -19,7 +19,7 @@ function themeConfig($form): void {
             $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `views` INT(10) NOT NULL DEFAULT 0;');
         }
         if (!array_key_exists('region', $db->fetchRow($db->select()->from('table.comments')->page(1, 1)))) {
-            $db->query('ALTER TABLE `' . $prefix . 'comments` ADD `region` varchar(16) NULL');
+            $db->query('ALTER TABLE `' . $prefix . 'comments` ADD `region` varchar(50) NULL');
         }
         // 检查是否已有文章点赞列表
         $sql = "SHOW TABLES LIKE '{$prefix}post_like_list'";

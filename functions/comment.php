@@ -14,11 +14,11 @@ function getRegionByIp(string $ip): string {
     $url = "https://apis.map.qq.com/ws/location/v1/ip?key={$apiKey}&ip={$ip}";
     $response = file_get_contents($url);
     if ($response === FALSE) {
-        return "Error fetching data from API.";
+        return "未知";
     }
     $data = json_decode($response, true);
     if ($data['status'] !== 0) {
-        return "API Error: " . $data['message'];
+        return "未知";
     }
     if ($data['result']['ad_info']['nation_code']!=156) {
         return $data['result']['ad_info']['nation'];
