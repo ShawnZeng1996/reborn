@@ -7,7 +7,7 @@
                     <div class="post-content">
                         <span class="post-author"><?php $this->author(); ?></span>
                         <div class="shuoshuo-item">
-                            <?php $this->content(); ?>
+                            <?php $this->need('/modules/content/content.php'); ?>
                             <a class="post-link" href="<?php $this->permalink(); ?>">查看全文</a>
                         </div>
                         <?php $this->need('/modules/index/meta-item.php'); ?>

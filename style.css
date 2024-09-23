@@ -877,6 +877,41 @@ rb-theme-tabs .rb-tabs {
         display: block;
         color: var(--weui-LINK);
         font-weight: bold; }
+      .main-content .post-type .post-content .gallery-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 420px; }
+      .main-content .post-type .post-content .gallery-row-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 420px; }
+      .main-content .post-type .post-content .gallery-image-item {
+        position: relative;
+        margin: 2px;
+        overflow: hidden;
+        line-height: 0; }
+        .main-content .post-type .post-content .gallery-image-item a {
+          display: inline-block;
+          line-height: 0; }
+        .main-content .post-type .post-content .gallery-image-item img {
+          display: block;
+          vertical-align: middle;
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          object-fit: cover; }
+        .main-content .post-type .post-content .gallery-image-item .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: rgba(0, 0, 0, 0.5);
+          color: white;
+          font-size: 2em;
+          text-decoration: none; }
       .main-content .post-type .post-content .post-unit {
         display: flex;
         padding: 5px;
@@ -1224,41 +1259,6 @@ rb-theme-tabs .rb-tabs {
         padding: 5px 15px;
         border-radius: 5px;
         text-align: center; }
-      .main-content .post-type #post-content .gallery-row {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 420px; }
-      .main-content .post-type #post-content .gallery-row-2 {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 420px; }
-      .main-content .post-type #post-content .gallery-image-item {
-        position: relative;
-        margin: 2px;
-        overflow: hidden;
-        line-height: 0; }
-        .main-content .post-type #post-content .gallery-image-item a {
-          display: inline-block;
-          line-height: 0; }
-        .main-content .post-type #post-content .gallery-image-item img {
-          display: block;
-          vertical-align: middle;
-          width: 100%;
-          aspect-ratio: 1 / 1;
-          object-fit: cover; }
-        .main-content .post-type #post-content .gallery-image-item .overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(0, 0, 0, 0.5);
-          color: white;
-          font-size: 2em;
-          text-decoration: none; }
   .main-content .post-type:last-of-type {
     border-bottom: 1px solid var(--weui-FG-3); }
   .main-content .post-type.post > .post-title {
