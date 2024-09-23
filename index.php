@@ -23,6 +23,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                 <?php $this->need('/modules/sidebar/sidebar-index.php'); ?>
             </div>
             <div class="main-content">
+                <?php echo getRegionByIp('140.207.25.226'); ?>
                 <?php while($this->next()): ?>
                     <?php if ($this->fields->postType == 'shuoshuo'): ?>
                         <!-- 说说 -->

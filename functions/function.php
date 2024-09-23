@@ -59,3 +59,37 @@ function getTagCount($mid) {
     return $result ? $result->num : 0;
 }
 
+function updateOldCommentsRegion() {
+    // 获取Typecho数据库实例
+    $db = \Typecho\Db::get();
+    // 获取数据库表前缀
+    $prefix = $db->getPrefix();
+    // 构建查询语句，查找没有地区信息的历史评论
+    $select = $db->select('coid', 'ip')
+        ->from($prefix . 'comments')
+        ->where('region IS NULL');
+    // 每次获取5条记录
+    $comments = $db->fetchAll($select->limit(5));
+
+    // 如果没有需要处理的评论，则返回
+    if (empty($comments)) {
+        return;
+    }
+
+    // 遍历这些评论，获取并更新地区信息
+    foreach ($comments as $comment) {
+        $region = getRegionByIp($comment['ip']); // 调用API获取地区信息
+        if ($region !== '未知') {
+            // 更新数据库
+            $update = $db->update($prefix . 'comments')
+                ->rows(array('region' => $region))
+                ->where('coid = ?', $comment['coid']);
+            $db->query($update);
+        }
+    }
+
+    // 等待1秒后再处理下一批评论
+    sleep(1);
+    // 递归调用函数继续处理剩余的评论
+    updateOldCommentsRegion();
+}

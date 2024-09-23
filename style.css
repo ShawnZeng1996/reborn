@@ -1003,7 +1003,7 @@ rb-theme-tabs .rb-tabs {
           border: 1px solid var(--weui-FG-3);
           padding: 0.25em 0.5em;
           color: var(--weui-FG-0); }
-      .main-content .post-type .post-content div, .main-content .post-type .post-content img {
+      .main-content .post-type .post-content img {
         max-width: 100%; }
       .main-content .post-type .post-content input.rb-checkbox {
         -webkit-appearance: none;
