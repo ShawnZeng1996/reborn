@@ -1194,6 +1194,12 @@ rb-theme-tabs .rb-tabs {
             gap: 5px; }
         .main-content .post-type .post-content .post-meta-3 .post-comment-area {
           padding: 5px 10px; }
+          .main-content .post-type .post-content .post-meta-3 .post-comment-area ul, .main-content .post-type .post-content .post-meta-3 .post-comment-area ol, .main-content .post-type .post-content .post-meta-3 .post-comment-area li {
+            margin: 0;
+            list-style-type: none;
+            line-height: 1.75em; }
+          .main-content .post-type .post-content .post-meta-3 .post-comment-area p {
+            margin: 5px 0; }
           .main-content .post-type .post-content .post-meta-3 .post-comment-area .rb-comments:before {
             color: var(--weui-LINK);
             font-size: var(--global-font-size);

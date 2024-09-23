@@ -604,6 +604,14 @@
                 }
                 .post-comment-area {
                     padding: 5px 10px;
+                    ul, ol, li {
+                        margin: 0;
+                        list-style-type: none;
+                        line-height: 1.75em;
+                    }
+                    p {
+                        margin: 5px 0;
+                    }
                     .rb-comments:before {
                         color: var(--weui-LINK);
                         font-size: var(--global-font-size);
