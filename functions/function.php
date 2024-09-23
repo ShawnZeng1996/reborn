@@ -13,7 +13,13 @@ function getGravatarUrl(string $email, int $size = 80): string {
     $gravatarUrl = $gravatarUrl . $hash;
     // 自定义默认头像 URL
     $defaultAvatarUrl = \Utils\Helper::options()->themeUrl . '/assets/img/default-avatar.jpeg';
-    return $gravatarUrl . "?s=$size&d=" . urlencode($defaultAvatarUrl) . "&r=g";
+    $imgUrl = $gravatarUrl . "?s=$size&d=" . urlencode($defaultAvatarUrl) . "&r=g";
+    $headers = @get_headers($imgUrl);
+    if ($headers && strpos($headers[0], '500') === false) {
+        return $imgUrl;
+    } else {
+        return $defaultAvatarUrl;
+    }
 }
 
 /**
