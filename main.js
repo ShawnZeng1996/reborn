@@ -400,7 +400,7 @@
             });
         },
         scrollEvent: function () {
-            var $stickyModule = $('#sticky');
+            let $stickyModule = $('#sticky');
             if ($stickyModule.length) {
                 var stickyModuleOffset = $stickyModule.offset().top;
                 var isSticky = false;
