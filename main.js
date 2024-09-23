@@ -401,49 +401,51 @@
         },
         scrollEvent: function () {
             var $stickyModule = $('#sticky');
-            var stickyModuleOffset = $stickyModule.offset().top;
-            var isSticky = false;
-            function checkSticky() {
-                var moduleRect = $stickyModule[0].getBoundingClientRect();
-                var moduleWidth = moduleRect.width;
-                if ($(window).scrollTop() > stickyModuleOffset) {
-                    if (!isSticky) {
-                        $stickyModule.css('width', moduleWidth).addClass('sticky');
-                        isSticky = true;
-                    }
-                } else {
-                    if (isSticky) {
-                        $stickyModule.css('width', '').removeClass('sticky');
-                        isSticky = false;
+            if ($stickyModule.length) {
+                var stickyModuleOffset = $stickyModule.offset().top;
+                var isSticky = false;
+                function checkSticky() {
+                    var moduleRect = $stickyModule[0].getBoundingClientRect();
+                    var moduleWidth = moduleRect.width;
+                    if ($(window).scrollTop() > stickyModuleOffset) {
+                        if (!isSticky) {
+                            $stickyModule.css('width', moduleWidth).addClass('sticky');
+                            isSticky = true;
+                        }
+                    } else {
+                        if (isSticky) {
+                            $stickyModule.css('width', '').removeClass('sticky');
+                            isSticky = false;
+                        }
                     }
                 }
-            }
-            $(window).on('scroll', function() {
-                requestAnimationFrame(checkSticky);
-            });
-            // 监听滚动事件，更新目录项样式
-            var $tocLinks = $('.toc-link');
-            var $headers = $('#post-content h1, #post-content h2, #post-content h3, #post-content h4, #post-content h5');
-            function scrollCheck() {
-                var scrollTop = $(window).scrollTop();
-                var activeIndex = -1;
-                $headers.each(function(index) {
-                    if ($(this).offset().top - scrollTop < 40) {
-                        activeIndex = index;
-                    }
+                $(window).on('scroll', function() {
+                    requestAnimationFrame(checkSticky);
                 });
-                $tocLinks.removeClass('active');
-                if (activeIndex >= 0) {
-                    $tocLinks.eq(activeIndex).addClass('active');
-                } else {
-                    // 当没有找到高亮的标题时，默认高亮第一个目录项
-                    $tocLinks.eq(0).addClass('active');
+                // 监听滚动事件，更新目录项样式
+                var $tocLinks = $('.toc-link');
+                var $headers = $('#post-content h1, #post-content h2, #post-content h3, #post-content h4, #post-content h5');
+                function scrollCheck() {
+                    var scrollTop = $(window).scrollTop();
+                    var activeIndex = -1;
+                    $headers.each(function(index) {
+                        if ($(this).offset().top - scrollTop < 40) {
+                            activeIndex = index;
+                        }
+                    });
+                    $tocLinks.removeClass('active');
+                    if (activeIndex >= 0) {
+                        $tocLinks.eq(activeIndex).addClass('active');
+                    } else {
+                        // 当没有找到高亮的标题时，默认高亮第一个目录项
+                        $tocLinks.eq(0).addClass('active');
+                    }
                 }
-            }
-            scrollCheck();
-            $(window).on('scroll', function() {
                 scrollCheck();
-            });
+                $(window).on('scroll', function() {
+                    scrollCheck();
+                });
+            }
         }
     };
 
