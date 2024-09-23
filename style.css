@@ -763,7 +763,8 @@ rb-theme-tabs .rb-tabs {
     margin: 10px 0; }
   .sidebar #sticky.sticky {
     position: fixed;
-    top: 0; }
+    top: 0;
+    z-index: 1000; }
   .sidebar .sidebar-adv {
     overflow: hidden;
     position: relative; }
@@ -1301,7 +1302,8 @@ rb-theme-tabs .rb-tabs {
   .main-content .post-type.post #post-content {
     padding: 0; }
   .main-content .post-type.post .post-zan {
-    text-align: center; }
+    text-align: center;
+    margin: 10px 0; }
     .main-content .post-type.post .post-zan .author-avatar {
       width: 40px;
       height: 40px;

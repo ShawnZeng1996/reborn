@@ -71,6 +71,7 @@
     #sticky.sticky {
         position: fixed;
         top: 0;
+        z-index: 1000;
     }
     .sidebar-adv {
         overflow: hidden;
@@ -758,6 +759,7 @@
         }
         .post-zan {
             text-align: center;
+            margin: 10px 0;
             .author-avatar {
                 width: 40px;
                 height: 40px;
