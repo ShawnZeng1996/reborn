@@ -17,10 +17,12 @@
                     // 设置为 light 主题
                     $('html').attr('theme-mode', 'light');
                     $('.rb-tabs__block').css('left', '2px');
+                    loadCssFile(reborn.themeUrl+'lib/highlight@11.9.0/css/atom-one-light.min.css');
                 } else if (themeMode === 'dark') {
                     // 设置为 dark 主题
                     $('html').attr('theme-mode', 'dark');
                     $('.rb-tabs__block').css('left', '30px');
+                    loadCssFile(reborn.themeUrl+'lib/highlight@11.9.0/css/atom-one-dark.min.css');
                 }
             } else {
                 const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
@@ -51,8 +53,10 @@
                 const theme = $(this).data('theme');
                 if (theme === 'light') {
                     setTheme('light', '2px');
+                    loadCssFile(reborn.themeUrl+'lib/highlight@11.9.0/css/atom-one-light.min.css');
                 } else {
                     setTheme('dark', '30px');
+                    loadCssFile(reborn.themeUrl+'lib/highlight@11.9.0/css/atom-one-dark.min.css');
                 }
                 // 更新激活状态
                 $themeButtons.removeClass('active');
@@ -464,3 +468,18 @@
         App.scrollEvent()
     });
 })(jQuery);
+
+// 动态加载 CSS 文件的函数，并移除之前的主题 CSS
+function loadCssFile(filename) {
+    // 先移除之前的主题 CSS
+    const existingLink = document.querySelector('link[rel="stylesheet"][code-theme]');
+    if (existingLink) {
+        existingLink.parentNode.removeChild(existingLink);
+    }
+    // 创建新的 link 标签加载新的主题 CSS
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = filename;
+    link.setAttribute('code-theme', 'true');  // 加一个标识，方便以后移除
+    document.head.appendChild(link);
+}
