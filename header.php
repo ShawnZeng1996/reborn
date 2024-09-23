@@ -24,7 +24,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
     </script>
     <script src="<?php $this->options->themeUrl('lib/highlight@11.9.0/js/highlight.min.js'); ?>"></script>
     <script src="<?php $this->options->themeUrl('lib/fancybox@3.5.7/jquery.fancybox.min.js'); ?>"></script>
-    <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/rb.bundle.js'); ?>?v=<?php echo __THEME_VERSION__; ?>"></script>
+    <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/App.js'); ?>?v=<?php echo __THEME_VERSION__; ?>"></script>
     <?php $this->header(); ?>
 </head>
 <body>
