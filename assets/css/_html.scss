@@ -1,0 +1,181 @@
+@keyframes light-to-dark {
+    0% {
+        clip-path: polygon(0 0,0 0,calc(.14054083 * -100vh) 100%,calc(.14054083 * -100vh) 100%)
+    }
+
+    to {
+        clip-path: polygon(0 0,calc((.14054083 * 100vh) + 100%) 0,100% 100%,calc(.14054083 * -100vh) 100%)
+    }
+}
+
+@keyframes dark-to-light {
+    0% {
+        clip-path: polygon(calc((.14054083 * 100vh) + 100%) 0,calc((.14054083 * 100vh) + 100%) 0,100% 100%,100% 100%)
+    }
+
+    to {
+        clip-path: polygon(0 0,calc((.14054083 * 100vh) + 100%) 0,100% 100%,calc(.14054083 * -100vh) 100%)
+    }
+}
+
+:root::view-transition-group(root) {
+    animation-duration: 1s
+}
+
+:root::view-transition-new(root),:root::view-transition-old(root) {
+    mix-blend-mode: normal
+}
+
+:root::view-transition-old(root),:root[theme-mode=dark]::view-transition-old(root) {
+    animation: none
+}
+
+:root::view-transition-new(root) {
+    animation-name: dark-to-light
+}
+
+:root[theme-mode=dark]::view-transition-new(root) {
+    animation-name: light-to-dark
+}
+
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+body, textarea, input {
+    line-height: 1.6;
+    font-family: system-ui, -apple-system, Helvetica Neue, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+    border: 0;
+    text-rendering: optimizeLegibility;
+}
+
+a img {
+    border: 0;
+}
+
+a {
+    text-decoration: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    cursor: default;
+}
+
+input, textarea {
+    caret-color: #07c160;
+    caret-color: var(--weui-BRAND);
+}
+
+::-webkit-input-placeholder {
+    color: rgba(0, 0, 0, 0.3);
+    color: var(--weui-FG-2);
+}
+
+::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+    color: var(--weui-FG-2);
+}
+
+html, body {
+    color: var(--weui-FG-0);
+    font-size: var( --global-font-size);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--weui-BG-0);
+}
+
+html, body, * {
+    box-sizing: border-box;
+    text-rendering: optimizeLegibility;
+}
+
+html::-webkit-scrollbar, body::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+    background: transparent;
+}
+
+html::-webkit-scrollbar-corner, body::-webkit-scrollbar-corner {
+    width: 0;
+}
+
+html::-webkit-scrollbar-thumb, body::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 4px solid transparent;
+    background-clip: content-box;
+    background-color: var(--bg-color-scroll);
+}
+
+html::-webkit-scrollbar-track, body::-webkit-scrollbar-track {
+    background: var(--bg-color-page);
+}
+
+div, a, img {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none;
+}
+
+a:focus {
+    outline: none;
+}
+
+button, input, textarea {
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none!important;
+}
+
+.unselectable {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* Internet Explorer/Edge */
+    user-select: none;         /* Non-prefixed version, currently supported by Chrome, Opera and Safari */
+}
+
+.separator:before {
+    content: '：';
+}
+
+a[href] {
+    cursor: pointer;
+}
+
+code {
+    font-family: system-ui, -apple-system, Helvetica Neue, sans-serif;
+}
