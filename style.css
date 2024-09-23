@@ -760,7 +760,7 @@ rb-theme-tabs .rb-tabs {
   .sidebar .widget + .widget {
     margin-top: 10px; }
   .sidebar #sticky {
-    margin-top: 10px; }
+    margin: 10px 0; }
   .sidebar #sticky.sticky {
     position: fixed;
     top: 0; }
@@ -1309,7 +1309,7 @@ rb-theme-tabs .rb-tabs {
     .main-content .post-type.post .post-zan .author-avatar,
     .main-content .post-type.post .post-zan .post-author,
     .main-content .post-type.post .post-zan .author-description {
-      margin-bottom: 10px; }
+      margin: 10px 0; }
     .main-content .post-type.post .post-zan .post-like {
       display: inline-block;
       margin: 10px 0;
