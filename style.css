@@ -874,7 +874,8 @@ rb-theme-tabs .rb-tabs {
         color: var(--weui-LINK);
         text-decoration: underline; }
       .main-content .post-type .post-content .shuoshuo-item img {
-        max-width: min(100%, 300px); }
+        max-width: min(100%, 300px);
+        margin: 0; }
       .main-content .post-type .post-content .post-author {
         display: block;
         color: var(--weui-LINK);
