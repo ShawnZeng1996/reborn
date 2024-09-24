@@ -148,7 +148,9 @@
   --weui-TAG-BACKGROUND-GREEN: rgba(6,174,86,.1);
   --weui-TAG-TEXT-RED: rgba(250,81,81,.6);
   --weui-TAG-BACKGROUND-RED: rgba(250,81,81,.1);
-  --weui-TAG-BACKGROUND-BLUE: rgba(16,174,255,.1) ; }
+  --weui-TAG-BACKGROUND-BLUE: rgba(16,174,255,.1)
+  --bg-color-page: #f5f5f5;
+  --bg-color-scroll: rgba(0, 0, 0, 0.14); }
 
 @media (prefers-color-scheme: dark) {
   :root:not([theme-mode=light]) {
@@ -300,7 +302,9 @@
     --weui-TAG-BACKGROUND-BLUE: rgba(16,174,255,.1);
     --weui-TAG-TEXT-ORANGE: rgba(250,157,59,.6);
     --weui-TAG-TEXT-GREEN: rgba(6,174,86,.6);
-    --weui-TAG-TEXT-BLUE: rgba(16,174,255,.6) ; } }
+    --weui-TAG-TEXT-BLUE: rgba(16,174,255,.6);
+    --bg-color-page: #242424;
+    --bg-color-scroll: rgba(255, 255, 255, 0.14); } }
 :root[theme-mode=dark] {
   --weui-BG-0: #111;
   --weui-BG-1: #1e1e1e;
@@ -450,7 +454,9 @@
   --weui-TAG-BACKGROUND-BLUE: rgba(16,174,255,.1);
   --weui-TAG-TEXT-ORANGE: rgba(250,157,59,.6);
   --weui-TAG-TEXT-GREEN: rgba(6,174,86,.6);
-  --weui-TAG-TEXT-BLUE: rgba(16,174,255,.6) ; }
+  --weui-TAG-TEXT-BLUE: rgba(16,174,255,.6);
+  --bg-color-page: #242424;
+  --bg-color-scroll: rgba(255, 255, 255, 0.14); }
 
 :root {
   --header-site-logo-size: 80px;
@@ -459,9 +465,7 @@
   --content-max-width: 1440px;
   --anim-time-fn-easing: cubic-bezier(0.38, 0, 0.24, 1);
   --anim-duration-moderate: 0.24s;
-  --global-font-size: 14px;
-  --bg-color-page: #f5f5f5;
-  --bg-color-scroll: rgba(0, 0, 0, 0.14); }
+  --global-font-size: 14px; }
 
 @keyframes light-to-dark {
   0% {
