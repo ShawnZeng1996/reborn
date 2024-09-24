@@ -2,7 +2,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 const __THEME_NAME__ = 'reborn';
-const __THEME_VERSION__ = '1.2.3';
+const __THEME_VERSION__ = '1.2.5';
 const __GRAVATAR_PREFIX__ = 'https://cravatar.cn/avatar/';
 
 // 自定义字段、配置文件

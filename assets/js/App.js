@@ -31,6 +31,20 @@
                 }
                 // console.log('No theme mode found in sessionStorage.');
             }
+            //在页面代码里面监听onload事件，使用sw的配置文件注册一个service worker
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function () {
+                    navigator.serviceWorker.register('serviceWorker.js')
+                        .then(function (registration) {
+                            // 注册成功
+                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                        })
+                        .catch(function (err) {
+                            // 注册失败
+                            console.log('ServiceWorker registration failed: ', err);
+                        });
+                });
+            }
         },
         // 浅色&深色模式切换
         themeModeToggle: function () {

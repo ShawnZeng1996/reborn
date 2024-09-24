@@ -4,13 +4,20 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
 <html lang="ch">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
-    <title><?php $this->archiveTitle(array(
-            'category'  =>  _t('分类 %s 下的文章'),
-            'search'    =>  _t('包含关键字 %s 的文章'),
-            'tag'       =>  _t('标签 %s 下的文章'),
-            'author'    =>  _t('%s 发布的文章')
-        ), '', ' - '); ?><?php $this->options->title(); ?></title>
+    <meta name="renderer" content="webkit" />
+    <meta name="format-detection" content="email=no" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, shrink-to-fit=no, viewport-fit=cover">
+    <title><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php $this->options->title(); ?></title>
+    <?php if ($this->is('single')) : ?>
+        <meta name="keywords" content="<?php echo $this->fields->keywords ?: htmlspecialchars($this->options->keywords); ?>" />
+        <meta name="description" content="<?php echo $this->fields->description ?: htmlspecialchars($this->options->description); ?>" />
+        <?php $this->header('keywords=&description='); ?>
+    <?php else : ?>
+        <?php $this->header(); ?>
+    <?php endif; ?>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/font/iconfont.css'); ?>?v=<?php echo __THEME_VERSION__; ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('lib/fancybox@3.5.7/jquery.fancybox.min.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>?v=<?php echo __THEME_VERSION__; ?>">
@@ -24,7 +31,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
     <script src="<?php $this->options->themeUrl('lib/highlight@11.9.0/js/highlight.min.js'); ?>"></script>
     <script src="<?php $this->options->themeUrl('lib/fancybox@3.5.7/jquery.fancybox.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/App.js'); ?>?v=<?php echo __THEME_VERSION__; ?>"></script>
-    <?php $this->header(); ?>
 </head>
 <body>
 <header id="header">

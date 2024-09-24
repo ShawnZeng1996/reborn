@@ -40,7 +40,7 @@ function themeConfig($form): void {
     } catch (Exception $e) {
     }
     ?>
-    <style>
+    <!--style>
         .col-mb-12.col-tb-8.col-tb-offset-2 {
             margin-left: 0;
             width: 100%;
@@ -61,7 +61,7 @@ function themeConfig($form): void {
         .reborn-config-menu,
         .reborn-config-index,
         .reborn-config > form {
-            background-color: ##F8F8F8;
+            background-color: #FFFFFF;
             border: 1px solid rgba(0, 0, 0, .1);
             padding: 10px;
         }
@@ -109,10 +109,12 @@ function themeConfig($form): void {
             display: block;
             margin-top: .77em;
             margin-bottom: .3em;
-            padding-left: 15px;
-            padding-right: 15px;
-            color: #999;
+            color: rgba(0,0,0,.55);
             font-size: 14px;
+        }
+        .reborn-config > form .description {
+            color: rgba(0,0,0,.3);
+            font-size: 12px;
         }
         .reborn-config > form .typecho-option {
             position: sticky;
@@ -125,6 +127,15 @@ function themeConfig($form): void {
             background: ##F8F8F8;
             border-top: 1px solid #ebebeb;
             border-radius: 0 0 8px 8px;
+        }
+        .reborn-config > form input[type=text],
+        .reborn-config > form input[type=password],
+        .reborn-config > form input[type=email],
+        .reborn-config > form textarea {
+            width: 100%;
+        }
+        .reborn-config > form textarea {
+            min-height: 200px;
         }
         .typecho-option .btn {
             display: block;
@@ -210,8 +221,19 @@ function themeConfig($form): void {
         </div>
         <div class="reborn-config-index reborn-info reborn-content">
             <p class="title">最新版本：2.0</p>
-        </div>
+        </div-->
     <?php
+    // ----------------------------首页设置----------------------------
+    // 主页头像
+    $avatarEmail = new Typecho\Widget\Helper\Form\Element\Text(
+        'avatarEmail',
+        NULL,
+        NULL,
+        _t('主页头像邮箱'),
+        _t('主页头像邮箱，调用Gravatar头像')
+    );
+    //$avatarEmail->setAttribute('class', 'reborn-content reborn-home');
+    $form->addInput($avatarEmail);
     // ----------------------------全局设置----------------------------
     // Gravatar头像源
     $gravatarPrefix = new Typecho\Widget\Helper\Form\Element\Text(
@@ -221,7 +243,7 @@ function themeConfig($form): void {
         _t('Gravatar头像源'),
         _t('Gravatar头像源，默认使用Cravatar')
     );
-    $gravatarPrefix->setAttribute('class', 'reborn-content reborn-global');
+    //$gravatarPrefix->setAttribute('class', 'reborn-content reborn-global');
     $form->addInput($gravatarPrefix);
     // 腾讯位置服务API Key
     $tencentMapApiKey = new Typecho\Widget\Helper\Form\Element\Text(
@@ -231,7 +253,7 @@ function themeConfig($form): void {
         _t('腾讯位置服务API Key'),
         _t('腾讯位置服务API Key，未填写则无法获取用户地理位置')
     );
-    $tencentMapApiKey->setAttribute('class', 'reborn-content reborn-global');
+    //$tencentMapApiKey->setAttribute('class', 'reborn-content reborn-global');
     $form->addInput($tencentMapApiKey);
     // Bark通知地址与Key
     $barkUrl = new Typecho\Widget\Helper\Form\Element\Text(
@@ -241,8 +263,8 @@ function themeConfig($form): void {
         _t('Bark通知地址与Key'),
         _t('Bark通知地址与Key，填写后可以通过Bark App获取博客评论消息通知')
     );
-    $barkUrl->setAttribute('class', 'reborn-content reborn-global');
-    $form->addInput($barkUrl);
+    //$barkUrl->setAttribute('class', 'reborn-content reborn-global');
+    //$form->addInput($barkUrl);
     // ----------------------------侧栏设置----------------------------
     // 侧边栏最近在玩
     $sidebarRecentPlay = new Typecho\Widget\Helper\Form\Element\Textarea(
@@ -252,7 +274,7 @@ function themeConfig($form): void {
         _t('最近在玩的游戏'),
         _t('最近在玩的游戏，以 游戏名 | 链接 | 图片链接 的形式填写，一个游戏一行。')
     );
-    $sidebarRecentPlay->setAttribute('class', 'reborn-content reborn-sidebar');
+    //$sidebarRecentPlay->setAttribute('class', 'reborn-content reborn-sidebar');
     $form->addInput($sidebarRecentPlay);
     // 侧边栏广告
     $sidebarAd = new Typecho\Widget\Helper\Form\Element\Textarea(
@@ -262,7 +284,7 @@ function themeConfig($form): void {
         _t('侧边栏广告'),
         _t('侧边栏广告')
     );
-    $sidebarAd->setAttribute('class', 'reborn-content reborn-sidebar');
+    //$sidebarAd->setAttribute('class', 'reborn-content reborn-sidebar');
     $form->addInput($sidebarAd);
     // 侧边栏设置
     $sidebarBlock = new Typecho\Widget\Helper\Form\Element\Checkbox(
@@ -276,19 +298,9 @@ function themeConfig($form): void {
         ['ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowOther'],
         _t('侧边栏显示')
     );
-    $sidebarBlock->setAttribute('class', 'reborn-content reborn-sidebar');
+    //$sidebarBlock->setAttribute('class', 'reborn-content reborn-sidebar');
     $form->addInput($sidebarBlock->multiMode());
-    // ----------------------------首页设置----------------------------
-    // 主页头像
-    $avatarEmail = new Typecho\Widget\Helper\Form\Element\Text(
-        'avatarEmail',
-        NULL,
-        NULL,
-        _t('主页头像邮箱'),
-        _t('主页头像邮箱，调用Gravatar头像')
-    );
-    $avatarEmail->setAttribute('class', 'reborn-content reborn-home');
-    $form->addInput($avatarEmail);
+
 
 
 
@@ -296,6 +308,22 @@ function themeConfig($form): void {
 
 // 文章自定义字段
 function themeFields($layout): void {
+    $description = new Typecho\Widget\Helper\Form\Element\Textarea(
+            'description',
+            NULL,
+            NULL,
+            _t('描述'),
+            _t('简单一句话描述')
+    );
+    $layout->addItem($description);
+    $keywords = new Typecho\Widget\Helper\Form\Element\Text(
+            'keywords',
+            NULL,
+            NULL,
+            _t('产品关键词'),
+            _t('多个关键词用英文下逗号隔开')
+    );
+    $layout->addItem($keywords);
     $postType = new Typecho\Widget\Helper\Form\Element\Radio (
         'postType',
         array(
