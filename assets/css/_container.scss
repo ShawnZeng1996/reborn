@@ -687,6 +687,10 @@
                                 .comment-header {
                                     justify-content: space-between;
                                 }
+                                .comment-region {
+                                    margin-left: 5px;
+                                }
+                                .comment-region,
                                 .comment-time {
                                     color: var(--weui-FG-1);
                                     font-size: 12px;

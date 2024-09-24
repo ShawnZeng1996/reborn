@@ -10,7 +10,8 @@ function threadedComments($comment, $options) {
     echo '<a class="comment-author-avatar"' . $hasLink . '><img src="' . getGravatarUrl($comment->mail, 80) . '" alt="' . $comment->author . '"></a>';
     echo '<div class="flex-1 comment-body">';
     echo '<div class="comment-header flex flex-1">';
-    echo '<a class="comment-author"' . $hasLink . '>' . $comment->author . '</a>';
+    echo '<div><a class="comment-author"' . $hasLink . '>' . $comment->author . '</a>';
+    echo '<span class="comment-region">' . getRegionByCoid($comment->coid) . '</span></div>';
     echo '<time class="comment-time" datetime="' . $comment->created . '">' . formatRelativeTime($comment->created) . '</time>';
     echo '</div>';
     echo '<div class="comment-content post-comment" data-cid="' . $comment->cid . '" data-coid="' . $comment->coid . '" data-name="' . $comment->author . '" data-location="post">';

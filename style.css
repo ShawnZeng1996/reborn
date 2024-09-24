@@ -1263,6 +1263,9 @@ rb-theme-tabs .rb-tabs {
                 margin-bottom: 10px; }
                 .main-content .post-type .post-content .post-meta-3 .post-comment-area.shuoshuo .comment-area .comment-item .comment-body .comment-header {
                   justify-content: space-between; }
+                .main-content .post-type .post-content .post-meta-3 .post-comment-area.shuoshuo .comment-area .comment-item .comment-body .comment-region {
+                  margin-left: 5px; }
+                .main-content .post-type .post-content .post-meta-3 .post-comment-area.shuoshuo .comment-area .comment-item .comment-body .comment-region,
                 .main-content .post-type .post-content .post-meta-3 .post-comment-area.shuoshuo .comment-area .comment-item .comment-body .comment-time {
                   color: var(--weui-FG-1);
                   font-size: 12px; }
