@@ -230,10 +230,46 @@ function themeConfig($form): void {
         NULL,
         NULL,
         _t('主页头像邮箱'),
-        _t('主页头像邮箱，调用Gravatar头像')
+        _t('主页头像邮箱，调用Gravatar头像。')
     );
     //$avatarEmail->setAttribute('class', 'reborn-content reborn-home');
     $form->addInput($avatarEmail);
+    $adminGender = new Typecho\Widget\Helper\Form\Element\Radio (
+        'adminGender',
+        array(
+            'male' => _t('男（默认）'),
+            'female'  => _t('女')
+        ),
+        'male',
+        _t('主页博主性别'),
+        _t('主页博主性别，默认为男。')
+    );
+    $form->addInput($adminGender);
+    $adminLocation = new Typecho\Widget\Helper\Form\Element\Text(
+        'adminLocation',
+        NULL,
+        '中国大陆',
+        _t('主页博主地区'),
+        _t('主页博主地区，默认为中国大陆。')
+    );
+    $form->addInput($adminLocation);
+    $adminTags = new Typecho\Widget\Helper\Form\Element\Text(
+        'adminTags',
+        NULL,
+        NULL,
+        _t('主页博主标签'),
+        _t('主页博主标签，用英文逗号分割。')
+    );
+    $form->addInput($adminTags);
+    // 最近在玩
+    $adminRecentPlay = new Typecho\Widget\Helper\Form\Element\Textarea(
+        'adminRecentPlay',
+        NULL,
+        NULL,
+        _t('最近在玩的游戏'),
+        _t('最近在玩的游戏，以 游戏名 | 链接 | 图片链接 的形式填写，一个游戏一行。')
+    );
+    $form->addInput($adminRecentPlay);
     // ----------------------------全局设置----------------------------
     // Gravatar头像源
     $gravatarPrefix = new Typecho\Widget\Helper\Form\Element\Text(
@@ -241,7 +277,7 @@ function themeConfig($form): void {
         NULL,
         'https://cravatar.cn/avatar/',
         _t('Gravatar头像源'),
-        _t('Gravatar头像源，默认使用Cravatar')
+        _t('Gravatar头像源，默认使用Cravatar。')
     );
     //$gravatarPrefix->setAttribute('class', 'reborn-content reborn-global');
     $form->addInput($gravatarPrefix);
@@ -251,38 +287,44 @@ function themeConfig($form): void {
         NULL,
         NULL,
         _t('腾讯位置服务API Key'),
-        _t('腾讯位置服务API Key，未填写则无法获取用户地理位置')
+        _t('腾讯位置服务API Key，未填写则无法获取用户地理位置。')
     );
     //$tencentMapApiKey->setAttribute('class', 'reborn-content reborn-global');
     $form->addInput($tencentMapApiKey);
+    $customCss = new Typecho\Widget\Helper\Form\Element\Textarea(
+            'customCss',
+        NULL,
+        NULL,
+        _t('自定义css'),
+        _t('自定义css，填写时无需填写style标签。')
+    );
+    $form->addInput($customCss);
+    $customScript = new Typecho\Widget\Helper\Form\Element\Textarea(
+        'customScript',
+        NULL,
+        NULL,
+        _t('自定义script'),
+        _t('自定义script，填写时无需填写script标签。')
+    );
+    $form->addInput($customScript);
     // Bark通知地址与Key
     $barkUrl = new Typecho\Widget\Helper\Form\Element\Text(
         'barkUrl',
         NULL,
         NULL,
         _t('Bark通知地址与Key'),
-        _t('Bark通知地址与Key，填写后可以通过Bark App获取博客评论消息通知')
+        _t('Bark通知地址与Key，填写后可以通过Bark App获取博客评论消息通知。')
     );
     //$barkUrl->setAttribute('class', 'reborn-content reborn-global');
     //$form->addInput($barkUrl);
     // ----------------------------侧栏设置----------------------------
-    // 侧边栏最近在玩
-    $sidebarRecentPlay = new Typecho\Widget\Helper\Form\Element\Textarea(
-        'sidebarRecentPlay',
-        NULL,
-        NULL,
-        _t('最近在玩的游戏'),
-        _t('最近在玩的游戏，以 游戏名 | 链接 | 图片链接 的形式填写，一个游戏一行。')
-    );
-    //$sidebarRecentPlay->setAttribute('class', 'reborn-content reborn-sidebar');
-    $form->addInput($sidebarRecentPlay);
     // 侧边栏广告
     $sidebarAd = new Typecho\Widget\Helper\Form\Element\Textarea(
         'sidebarAd',
         NULL,
         NULL,
         _t('侧边栏广告'),
-        _t('侧边栏广告')
+        _t('侧边栏广告。')
     );
     //$sidebarAd->setAttribute('class', 'reborn-content reborn-sidebar');
     $form->addInput($sidebarAd);
@@ -313,7 +355,7 @@ function themeFields($layout): void {
             NULL,
             NULL,
             _t('描述'),
-            _t('简单一句话描述')
+            _t('简单一句话描述。')
     );
     $layout->addItem($description);
     $keywords = new Typecho\Widget\Helper\Form\Element\Text(
@@ -321,7 +363,7 @@ function themeFields($layout): void {
             NULL,
             NULL,
             _t('产品关键词'),
-            _t('多个关键词用英文下逗号隔开')
+            _t('多个关键词用英文下逗号隔开。')
     );
     $layout->addItem($keywords);
     $postType = new Typecho\Widget\Helper\Form\Element\Radio (
@@ -332,7 +374,7 @@ function themeFields($layout): void {
         ),
         'post',
         _t('请选择文章类型'),
-        _t('发布文章时的文章类型，默认为文章')
+        _t('发布文章时的文章类型，默认为文章。')
     );
     $layout->addItem($postType);
     $location = new Typecho\Widget\Helper\Form\Element\Text (
@@ -340,7 +382,7 @@ function themeFields($layout): void {
         NULL,
         NULL,
         _t('位置'),
-        _t('发布内容所在位置')
+        _t('发布内容所在位置。')
     );
     $layout->addItem($location);
     $thumbnail = new Typecho\Widget\Helper\Form\Element\Text (
@@ -348,7 +390,7 @@ function themeFields($layout): void {
         NULL,
         NULL,
         _t('文章略缩图'),
-        _t('首页文章略缩图，若未设置则使用默认图像')
+        _t('首页文章略缩图，若未设置则使用默认图像。')
     );
     $layout->addItem($thumbnail);
 }
@@ -371,6 +413,10 @@ function themeInit($self): void {
                 commentLike($self);
                 break;
         }
+    }
+    if (strpos($self->request->getRequestUri(), 'sitemap.xml') !== false) {
+        $self->response->setStatus(200);
+        $self->setThemeFile("sitemap.php");
     }
 }
 

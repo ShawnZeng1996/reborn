@@ -34,7 +34,7 @@
             //在页面代码里面监听onload事件，使用sw的配置文件注册一个service worker
             if ('serviceWorker' in navigator) {
                 window.addEventListener('load', function () {
-                    navigator.serviceWorker.register(reborn.themeUrl+'usr/themes/reborn/assets/js/serviceWorker.js')
+                    navigator.serviceWorker.register(reborn.themeUrl+'assets/js/serviceWorker.js')
                         .then(function (registration) {
                             // 注册成功
                             console.log('ServiceWorker registration successful with scope: ', registration.scope);

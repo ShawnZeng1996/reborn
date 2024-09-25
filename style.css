@@ -751,6 +751,32 @@ rb-theme-tabs .rb-tabs {
       cursor: pointer; }
     .sidebar .widget ul {
       list-style: none; }
+    .sidebar .widget .admin-info {
+      margin-bottom: 20px; }
+      .sidebar .widget .admin-info img {
+        width: 60px;
+        height: 60px;
+        border-radius: 6px;
+        margin: 0 10px 5px 10px; }
+    .sidebar .widget .admin-name {
+      font-size: 16px;
+      font-weight: bold; }
+      .sidebar .widget .admin-name .rb-male {
+        color: var(--weui-BLUE-100); }
+      .sidebar .widget .admin-name .rb-female {
+        color: var(--weui-RED-120); }
+    .sidebar .widget .admin-location,
+    .sidebar .widget .admin-post-stats {
+      color: var(--weui-FG-1); }
+    .sidebar .widget .admin-meta {
+      display: flex;
+      border-top: 1px solid var(--weui-FG-3);
+      padding: 10px; }
+      .sidebar .widget .admin-meta .meta-name {
+        width: 70px; }
+      .sidebar .widget .admin-meta .meta-value {
+        flex: 1;
+        color: var(--weui-FG-1); }
     .sidebar .widget .game-list {
       display: flex;
       gap: 10px;
@@ -1012,6 +1038,44 @@ rb-theme-tabs .rb-tabs {
           color: var(--weui-FG-0); }
       .main-content .post-type .post-content img {
         max-width: 100%; }
+      .main-content .post-type .post-content .friend-area {
+        flex-wrap: wrap;
+        align-items: flex-start; }
+      .main-content .post-type .post-content .friend-link {
+        flex: 0 1 calc(50% - 10px);
+        background-color: var(--weui-FG-5);
+        margin: 5px;
+        padding: 10px;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        overflow: hidden; }
+        .main-content .post-type .post-content .friend-link div {
+          overflow: hidden; }
+      .main-content .post-type .post-content .friend-link-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 5px; }
+      .main-content .post-type .post-content .friend-link-more {
+        width: 20px; }
+        .main-content .post-type .post-content .friend-link-more i {
+          color: var(--weui-FG-2);
+          display: block;
+          transform: rotate(270deg); }
+      .main-content .post-type .post-content .friend-link-name {
+        height: 14px;
+        line-height: 14px; }
+      .main-content .post-type .post-content .friend-link-description {
+        margin-top: 5px;
+        color: var(--weui-FG-1);
+        font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+      .main-content .post-type .post-content .friend-link-comment {
+        border-top: 1px solid var(--weui-FG-3);
+        color: var(--weui-FG-2);
+        font-size: 12px; }
       .main-content .post-type .post-content input.rb-checkbox {
         -webkit-appearance: none;
         position: relative;
@@ -1042,7 +1106,7 @@ rb-theme-tabs .rb-tabs {
         width: 150px;
         margin: 20px auto;
         text-decoration: none;
-        background-color: #05c160;
+        background-color: var(--weui-GREEN-80);
         color: white !important;
         padding: 5px 15px;
         border-radius: 5px;
@@ -1573,7 +1637,7 @@ rb-theme-tabs .rb-tabs {
       font-weight: 600;
       cursor: pointer; }
   .main-content .comment-form.focus {
-    border: 1px solid #04c160; }
+    border: 1px solid var(--weui-GREEN-80); }
     .main-content .comment-form.focus .comment-textarea {
       min-height: 100px; }
 
@@ -1606,6 +1670,9 @@ rb-theme-tabs .rb-tabs {
       width: 100%; }
     .main-content .post-type .post-meta-3 .post-comment-area .comment-input-area .comment-input + .comment-input {
       margin-left: 0;
-      margin-top: 5px; } }
+      margin-top: 5px; }
+
+  .main-content .post-type .post-content .friend-link {
+    flex: 0 1 calc(100% - 10px); } }
 
 /*# sourceMappingURL=style.css.map */

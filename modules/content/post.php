@@ -3,7 +3,7 @@
     <h1 class="post-title"><?php $this->title(); ?></h1>
     <div class="post-meta">
         <span class="post-author"><?php $this->author(); ?></span>
-        <span class="post-category"><?php $this->category(' / '); ?></span>
+        <?php if ($this->categories): ?><span class="post-category"><?php $this->category(' / '); ?></span><?php endif; ?>
         <time class="post-publish-time" datetime="<?php $this->date('c'); ?>">
             <?php $this->date('Y-m-d H:i'); ?>
         </time>

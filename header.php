@@ -21,6 +21,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/font/iconfont.css'); ?>?v=<?php echo __THEME_VERSION__; ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('lib/fancybox@3.5.7/jquery.fancybox.min.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>?v=<?php echo __THEME_VERSION__; ?>">
+    <?php if ($this->options->customCss) {
+        echo '<style>';
+        $this->options->customCSS();
+        echo '</style>';
+    } ?>
     <script type="text/javascript" src="<?php $this->options->themeUrl('lib/jquery@3.7.1/jquery.min.js'); ?>"></script>
     <script type="text/javascript">
         const reborn = {
@@ -31,6 +36,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
     <script src="<?php $this->options->themeUrl('lib/highlight@11.9.0/js/highlight.min.js'); ?>"></script>
     <script src="<?php $this->options->themeUrl('lib/fancybox@3.5.7/jquery.fancybox.min.js'); ?>"></script>
     <script type="text/javascript" src="<?php $this->options->themeUrl('assets/js/App.js'); ?>?v=<?php echo __THEME_VERSION__; ?>"></script>
+    <?php if ($this->options->customScript) {
+        echo '<script>';
+        $this->options->customScript();
+        echo '</script>';
+    } ?>
 </head>
 <body>
 <header id="header">

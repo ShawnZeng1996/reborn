@@ -42,8 +42,40 @@
         ul {
             list-style: none;
         }
-        .widget-list {
-
+        .admin-info {
+            margin-bottom: 20px;
+            img {
+                width: 60px;
+                height: 60px;
+                border-radius: 6px;
+                margin: 0 10px 5px 10px;
+            }
+        }
+        .admin-name {
+            font-size: 16px;
+            font-weight: bold;
+            .rb-male {
+                color: var(--weui-BLUE-100);
+            }
+            .rb-female {
+                color: var(--weui-RED-120);
+            }
+        }
+        .admin-location,
+        .admin-post-stats {
+            color: var(--weui-FG-1);
+        }
+        .admin-meta {
+            display: flex;
+            border-top: 1px solid var(--weui-FG-3);
+            padding: 10px;
+            .meta-name {
+                width: 70px;
+            }
+            .meta-value {
+                flex: 1;
+                color: var(--weui-FG-1);
+            }
         }
         .game-list {
             display: flex;
@@ -378,6 +410,53 @@
             img {
                 max-width: 100%;
             }
+            .friend-area {
+                flex-wrap: wrap;
+                align-items: flex-start;
+            }
+            .friend-link {
+                flex: 0 1 calc(50% - 10px);
+                background-color: var(--weui-FG-5);
+                margin: 5px;
+                padding: 10px;
+                border-radius: var(--border-radius);
+                cursor: pointer;
+                overflow: hidden;
+                div {
+                    overflow: hidden;
+                }
+            }
+            .friend-link-img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 5px;
+            }
+            .friend-link-more {
+                width: 20px;
+                i {
+                    color: var(--weui-FG-2);
+                    display: block;
+                    transform: rotate(270deg);
+                }
+            }
+            .friend-link-name {
+                height: 14px;
+                line-height: 14px;
+            }
+            .friend-link-description {
+                margin-top: 5px;
+                color: var(--weui-FG-1);
+                font-size: 12px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .friend-link-comment {
+                border-top: 1px solid var(--weui-FG-3);
+                color: var(--weui-FG-2);
+                font-size: 12px;
+            }
             input.rb-checkbox {
                 -webkit-appearance: none;
                 position: relative;
@@ -412,7 +491,7 @@
                 width: 150px;
                 margin: 20px auto;
                 text-decoration: none;
-                background-color: #05c160;
+                background-color: var(--weui-GREEN-80);
                 color: white !important;
                 padding: 5px 15px;
                 border-radius: 5px;
@@ -1087,7 +1166,7 @@
         }
     }
     .comment-form.focus {
-        border: 1px solid #04c160;
+        border: 1px solid var(--weui-GREEN-80);
         .comment-textarea {
             min-height: 100px;
         }
@@ -1139,5 +1218,8 @@
                 margin-top: 5px;
             }
         }
+    }
+    .main-content .post-type .post-content .friend-link {
+        flex: 0 1 calc(100% - 10px);
     }
 }

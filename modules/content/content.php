@@ -52,4 +52,57 @@ $content = preg_replace_callback($pattern, function($matches) {
     return '<a href="' . $src . '" data-fancybox="gallery-' . $this->cid . '">' . $matches[0] . '</a>';
 }, $content);
 
+// 匹配farea的正则表达式
+$farea_pattern = '/\[farea\](.*?)\[\/farea\]/s';
+
+// 处理farea短代码
+$content = preg_replace_callback($farea_pattern, function($matches) {
+    // 获取farea内部内容并移除<p>和<br>标签
+    $farea_content = $matches[1];
+    $farea_content = str_replace(['<p>', '</p>', '<br>', '<br />'], '', $farea_content);
+
+    // 处理farea内的flink短代码
+    $flink_pattern = '/\[flink\s+href="([^"]+)"\s+name="([^"]+)"\s+img="([^"]+)"\s+description="([^"]+)"\s+comment="([^"]*)"\]/';
+    $farea_content = preg_replace_callback($flink_pattern, function($flink_matches) {
+        $href = $flink_matches[1];
+        $name = $flink_matches[2];
+        $img = $flink_matches[3];
+        $description = $flink_matches[4];
+        $comment = $flink_matches[5];
+
+        // 构建HTML输出
+        $html = '
+        <div class="friend-link">
+            <div class="flex">
+                <img class="friend-link-img" alt="' . htmlspecialchars($name) . '" title="' . htmlspecialchars($name) . '" src="' . htmlspecialchars($img) . '" />
+                <div class="flex-1">
+                    <div class="friend-link-name">' . htmlspecialchars($name) . '</div>
+                    <div class="friend-link-description">' . htmlspecialchars($description) . '</div>
+                </div>
+                <div class="friend-link-more"><i class="reborn rb-down"></i></div>
+            </div>';
+
+        // 如果 comment 不为空，则显示对应的 div
+        if (!empty($comment)) {
+            $html .= '
+            <div class="friend-link-comment">' . htmlspecialchars($comment) . '</div>';
+        }
+
+        $html .= '
+        </div>';
+
+        return $html;
+    }, $farea_content);
+
+    // 返回处理后的farea内容
+    return '<div class="friend-area flex">' . $farea_content . '</div>';
+}, $content);
+
+// 输出最终结果
 echo $content;
+
+
+
+
+
+

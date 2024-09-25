@@ -1,6 +1,6 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
+<?php $this->need('/modules/sidebar/widget/admin-card.php'); ?>
 
-<?php $this->need('/modules/sidebar/widget/recent-games.php'); ?>
 <?php
 // 判断是否需要生成目录
 $showToc = $this->is('post');
@@ -11,7 +11,7 @@ $showAd = !empty($sidebarAd);
 // 只有当需要生成目录或广告时才生成 <div id="sticky">
 if ($showToc || $showAd): ?>
     <div id="sticky">
-        <?php if ($showToc): ?>
+        <?php if ($showToc && getPostType($this->cid)==='post'): ?>
             <section class="widget toc">
                 <h3 class="widget-title"><?php _e('目录'); ?></h3>
                 <div class="widget-toc">
