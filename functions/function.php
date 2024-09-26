@@ -11,8 +11,16 @@ function getGravatarUrl(string $email, int $size = 80): string {
     $gravatarUrl = __GRAVATAR_PREFIX__;
     $hash = md5(strtolower(trim($email)));
     $gravatarUrl = $gravatarUrl . $hash;
-    // 自定义默认头像 URL
-    $defaultAvatarUrl = \Utils\Helper::options()->themeUrl . '/assets/img/default-avatar.jpeg';
+    // 默认头像列表
+    $defaultAvatars = [
+        '/assets/img/欢乐马.jpg',
+        '/assets/img/神经蛙.jpg',
+        '/assets/img/阿白.jpg',
+        '/assets/img/momo.jpg',
+        '/assets/img/哄哄.jpg'
+    ];
+    // 随机选择一个默认头像
+    $defaultAvatarUrl = \Utils\Helper::options()->themeUrl . $defaultAvatars[array_rand($defaultAvatars)];
     $imgUrl = $gravatarUrl . "?s=$size&d=" . urlencode($defaultAvatarUrl) . "&r=g";
     $headers = @get_headers($imgUrl);
     if ($headers && strpos($headers[0], '500') === false) {
