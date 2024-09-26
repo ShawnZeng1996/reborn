@@ -342,14 +342,49 @@ function themeConfig($form): void {
     );
     //$sidebarBlock->setAttribute('class', 'reborn-content reborn-sidebar');
     $form->addInput($sidebarBlock->multiMode());
-
-
-
+    $postAd = new Typecho\Widget\Helper\Form\Element\Textarea(
+        'postAd',
+        NULL,
+        NULL,
+        _t('文章页广告'),
+        _t('文章页广告。')
+    );
+    $form->addInput($postAd);
+    $beian = new Typecho\Widget\Helper\Form\Element\Text(
+        'beian',
+        NULL,
+        NULL,
+        _t('备案号'),
+        _t('备案号，填写文字即可，自动链接到工信部备案网站，不填写则不显示。')
+    );
+    $form->addInput($beian);
 
 }
 
 // 文章自定义字段
 function themeFields($layout): void {
+    $postType = new Typecho\Widget\Helper\Form\Element\Radio (
+        'postType',
+        array(
+            'post' => _t('文章（默认）'),
+            'shuoshuo'  => _t('说说')
+        ),
+        'post',
+        _t('请选择文章类型'),
+        _t('发布文章时的文章类型，默认为文章。')
+    );
+    $layout->addItem($postType);
+    $postSticky = new Typecho\Widget\Helper\Form\Element\Radio (
+        'postSticky',
+        array(
+            'normal' => _t('否（默认）'),
+            'sticky'  => _t('是')
+        ),
+        'normal',
+        _t('是否置顶'),
+        _t('文章是否置顶，默认为否。')
+    );
+    $layout->addItem($postSticky);
     $description = new Typecho\Widget\Helper\Form\Element\Textarea(
             'description',
             NULL,
@@ -366,17 +401,6 @@ function themeFields($layout): void {
             _t('多个关键词用英文下逗号隔开。')
     );
     $layout->addItem($keywords);
-    $postType = new Typecho\Widget\Helper\Form\Element\Radio (
-        'postType',
-        array(
-            'post' => _t('文章（默认）'),
-            'shuoshuo'  => _t('说说')
-        ),
-        'post',
-        _t('请选择文章类型'),
-        _t('发布文章时的文章类型，默认为文章。')
-    );
-    $layout->addItem($postType);
     $location = new Typecho\Widget\Helper\Form\Element\Text (
         'location',
         NULL,

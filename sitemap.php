@@ -51,10 +51,16 @@ foreach ($articles as $article) {
     $article['pathinfo'] = $routeExists ? Typecho_Router::url($type, $article) : '#';
     $article['permalink'] = Typecho_Common::url($article['pathinfo'], $options->index);
     echo "\t<url>\n";
+    echo "\t\t<id>" . $article['cid'] . "</id>\n";
     echo "\t\t<loc>" . $article['permalink'] . "</loc>\n";
     echo "\t\t<lastmod>" . date('Y-m-d\TH:i:s\Z', $article['modified']) . "</lastmod>\n";
     echo "\t\t<changefreq>monthly</changefreq>\n";
-    echo "\t\t<priority>0.5</priority>\n";
+    if (getPostType($article['cid']) === 'shuoshuo') {
+        echo "\t\t<priority>0.3</priority>\n";
+    } else {
+        echo "\t\t<priority>0.5</priority>\n";
+    }
+
     echo "\t</url>\n";
 }
 echo "</urlset>";

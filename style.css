@@ -884,13 +884,29 @@ rb-theme-tabs .rb-tabs {
 .main-content {
   width: 66%;
   float: right; }
+  .main-content img {
+    max-width: 100%; }
+  .main-content .post-adv {
+    margin: 10px 0; }
   .main-content .post-type {
     background-color: var(--weui-BG-2);
     padding: 10px 20px;
     border-top: 1px solid var(--weui-FG-3);
     border-left: 1px solid var(--weui-FG-3);
     border-right: 1px solid var(--weui-FG-3);
-    border-bottom: none; }
+    border-bottom: none;
+    position: relative; }
+    .main-content .post-type .post-sticky {
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      color: var(--weui-FG-1);
+      height: 20px;
+      line-height: 12px;
+      font-size: 12px;
+      background-color: var(--weui-FG-5);
+      padding: 4px 6px; }
     .main-content .post-type .post-author-avatar {
       width: 40px;
       padding: 10px 0; }
@@ -1650,7 +1666,7 @@ rb-theme-tabs .rb-tabs {
   text-align: center;
   padding: 50px 10px 10px; }
   #footer a {
-    color: var(--weui-FG-0); }
+    color: var(--weui-LINK); }
 
 @media (max-width: 1140px) {
   #container {

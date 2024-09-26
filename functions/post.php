@@ -85,14 +85,7 @@ function getPostViewNum($cid){
     $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
     $views = $row ? (int) $row['views'] : 0;
     // 格式化浏览量
-    if ($views >= 10000) {
-        $formattedViews = number_format($views / 10000, 1) . 'w';
-    } elseif ($views >= 1000){
-        $formattedViews = number_format($views / 1000, 1) . 'k';
-    } else {
-        $formattedViews = $views;
-    }
-    return $formattedViews;
+    return formatNumber($views);
 }
 
 /**
@@ -347,7 +340,7 @@ function getAuthorPostStats($authorId) {
         ->where('table.fields.str_value != ?', 'shuoshuo');
 
     $result = $db->fetchObject($query);
-    return $result ? array('numPosts' => $result->numPosts, 'totalLikes' => $result->totalLikes, 'totalViews' => $result->totalViews) : array('numPosts' => 0, 'totalLikes' => 0, 'totalViews' => 0);
+    return $result ? array('numPosts' => formatNumber($result->numPosts), 'totalLikes' => formatNumber($result->totalLikes), 'totalViews' => formatNumber($result->totalViews)) : array('numPosts' => 0, 'totalLikes' => 0, 'totalViews' => 0);
 }
 
 // 生成文章目录树
@@ -390,4 +383,29 @@ function generateToc($content): string {
     }
     $toc .= '</ul>';
     return $toc;
+}
+
+function getStickyPostsCids() {
+    $db = Typecho_Db::get();
+
+    // 构造查询语句，联接 typecho_fields 表
+    $query = $db->select('table.contents.cid')
+        ->from('table.contents')
+        ->join('table.fields', 'table.fields.cid = table.contents.cid')
+        ->where('table.contents.type = ?', 'post')
+        ->where('table.contents.status = ?', 'publish')
+        ->where('table.fields.name = ?', 'postSticky')
+        ->where('table.fields.str_value = ?', 'sticky')
+        ->order('table.contents.created', Typecho_Db::SORT_DESC);
+
+    // 执行查询
+    $cids = $db->fetchAll($query);
+
+    // 提取 cid 到数组
+    $cidArray = [];
+    foreach ($cids as $cid) {
+        $cidArray[] = $cid['cid'];
+    }
+
+    return $cidArray;
 }

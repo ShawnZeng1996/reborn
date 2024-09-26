@@ -222,6 +222,12 @@
 .main-content {
     width: 66%;
     float: right;
+    img {
+        max-width: 100%;
+    }
+    .post-adv {
+        margin: 10px 0;
+    }
     .post-type {
         background-color: var(--weui-BG-2);
         padding: 10px 20px;
@@ -229,6 +235,19 @@
         border-left: 1px solid var(--weui-FG-3);
         border-right: 1px solid var(--weui-FG-3);
         border-bottom: none;
+        position: relative;
+        .post-sticky {
+            display: block;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            color: var(--weui-FG-1);
+            height: 20px;
+            line-height: 12px;
+            font-size: 12px;
+            background-color: var(--weui-FG-5);
+            padding: 4px 6px;
+        }
         .post-author-avatar {
             width: 40px;
             padding: 10px 0;
@@ -1184,7 +1203,7 @@
     text-align: center;
     padding: 50px 10px 10px;
     a {
-        color: var(--weui-FG-0);
+        color: var(--weui-LINK);
     }
 }
 

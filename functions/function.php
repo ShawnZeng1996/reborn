@@ -99,3 +99,13 @@ function updateOldCommentsRegion() {
     // 递归调用函数继续处理剩余的评论
     updateOldCommentsRegion();
 }
+
+function formatNumber($number) {
+    if ($number >= 10000) {
+        return number_format($number / 10000, 1) . 'w';
+    } elseif ($number >= 1000) {
+        return number_format($number / 1000, 1) . 'k';
+    } else {
+        return $number;
+    }
+}

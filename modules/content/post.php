@@ -40,6 +40,11 @@
         <span class="post-view">阅读&nbsp;<span id="post-view-cid-<?php echo $this->cid; ?>"><?php getPostView($this) ?></span></span>
     </div>
 </article>
+<?php if($this->options->postAd) {
+    echo '<div class="post-adv">';
+    $this->options->postAd();
+    echo '</div>';
+} ?>
 <div id="comments" class="post post-comment-area-<?php echo $this->cid; ?>">
     <?php if (haveComments($this->cid)) { ?>
         <div class="has-comment flex">

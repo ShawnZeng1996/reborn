@@ -1,5 +1,8 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                 <article class="post-type shuoshuo flex">
+                    <?php if ($this->sticky) {
+                        echo '<span class="post-sticky">置顶</span>';
+                    } ?>
                     <div class="post-author-avatar">
                         <?php $authorMail = $this->author->mail ?: ''; ?>
                         <img src="<?php echo getGravatarUrl($this->author->mail, 80); ?>" alt="<?php $this->author(); ?>" />

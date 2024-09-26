@@ -8,6 +8,7 @@
             <span class="post-author"><?php $this->author(); ?></span>
             <div id="post-content" class="shuoshuo-item">
                 <?php $this->need('/modules/content/content.php'); ?>
+
             </div>
             <div class="post-meta">
                 <span class="post-location post-meta-1"><?php echo $this->fields->location; ?></span>
@@ -50,3 +51,8 @@
             </div>
         </div>
     </article>
+    <?php if($this->options->postAd) {
+        echo '<div class="post-adv">';
+        $this->options->postAd();
+        echo '</div>';
+    } ?>
