@@ -42,9 +42,26 @@
         vertical-align: middle;
         word-break: keep-all;
         flex-shrink: 0;
-        
     }
-    .rb-header-nav__link:hover {
+    .rb-header-nav__link.category {
+        position: relative;
+        .category-menu {
+            display: none;
+            position: absolute;
+            background-color: var(--weui-BG-2);
+            padding: 10px;
+            border: 1px solid var(--weui-FG-3);
+            z-index: 1000;
+            top: 30px;
+            left: -18px;
+        }
+    }
+    .rb-header-nav__link.category:hover {
+        .category-menu {
+            display: block;
+        }
+    }
+    a.rb-header-nav__link:hover {
         background-color: var(--weui-FG-5);
     }
 }

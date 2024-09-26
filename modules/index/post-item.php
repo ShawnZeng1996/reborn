@@ -1,6 +1,6 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                 <article class="post-type shuoshuo flex">
-                    <?php if ($this->sticky) {
+                    <?php if ($this->fields->postSticky == 'sticky') {
                         echo '<span class="post-sticky">置顶</span>';
                     } ?>
                     <div class="post-author-avatar">

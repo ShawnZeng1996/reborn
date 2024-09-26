@@ -29,12 +29,13 @@ class Editor
                     flowChart: false,
                     sequenceDiagram: true,
                     toolbarIcons: function () {
-                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "image", "code", "code-block", "table", "more", "hide", "gallery", "rb-emoji","|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
+                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "reference-link", "friend-link", "image", "code", "code-block", "table", "more", "hide", "gallery", "rb-emoji","|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
                     },
                     toolbarIconsClass: {
                         more: "fa-depart",
                         "checkbox-checked": "fa-checkbox-checked",
                         "checkbox": "fa-checkbox",
+                        "friend-link": "fa-friend-link",
                         "hide": "fa-unlock",
                         "gallery": "fa-gallery",
                         "rb-emoji": "fa-smile"
@@ -55,6 +56,10 @@ class Editor
                         },
                         "checkbox": function (cm) {
                             cm.replaceSelection("[ ] ");
+                        },
+                        "friend-link": function (cm) {
+                            // 插入包含换行符的 [hide][/hide] 标签
+                            cm.replaceSelection('[farea][flink href="站点地址" name="站点名称" img="图片地址" description="站点描述" comment="我的印象"][/farea]');
                         },
                         "hide": function (cm) {
                             // 插入包含换行符的 [hide][/hide] 标签

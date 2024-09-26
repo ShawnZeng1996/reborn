@@ -23,9 +23,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                 <?php $this->need('/modules/sidebar/sidebar-index.php'); ?>
             </div>
             <div class="main-content">
-                <?php $sticky_cids = getStickyPostsCids();
+                <?php if($this->is('index')) {
+                    $sticky_cids = getStickyPostsCids();
                     if (count($sticky_cids) > 0) {
-                        $sticky_html = "<span style='color:red'>[置顶] </span>";
                         $db = Typecho_Db::get();
                         $pageSize = $this->options->pageSize;
                         $select1 = $this->select()->where('type = ?', 'post');
@@ -42,7 +42,6 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                         }
                         if ($order) $select1->order('', "(case cid$order end)");
                         if (($this->_currentPage || $this->currentPage) == 1) foreach($db->fetchAll($select1) as $sticky_post){
-                            $sticky_post['sticky'] = $sticky_html;
                             $this->push($sticky_post);
                         }
                         $uid = $this->user->uid;
@@ -51,7 +50,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                         foreach($sticky_posts as $sticky_post) $this->push($sticky_post);
                         $this->setTotal($this->getTotal()-count($sticky_cids));
                     }
-                ?>
+                } ?>
                 <?php while($this->next()): ?>
                     <?php if ($this->fields->postType == 'shuoshuo'): ?>
                         <!-- 说说 -->

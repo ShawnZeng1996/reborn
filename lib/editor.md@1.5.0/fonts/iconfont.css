@@ -1,8 +1,8 @@
 @font-face {
   font-family: "fa"; /* Project id 4611589 */
-  src: url('iconfont.woff2?t=1721701465401') format('woff2'),
-       url('iconfont.woff?t=1721701465401') format('woff'),
-       url('iconfont.ttf?t=1721701465401') format('truetype');
+  src: url('iconfont.woff2?t=1727333586592') format('woff2'),
+       url('iconfont.woff?t=1727333586592') format('woff'),
+       url('iconfont.ttf?t=1727333586592') format('truetype');
 }
 
 .fa {
@@ -11,6 +11,10 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-friend-link:before {
+  content: "\e616";
 }
 
 .fa-table:before {

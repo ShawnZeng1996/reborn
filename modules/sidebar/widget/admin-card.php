@@ -19,9 +19,41 @@
             <div class="admin-location">地区：<?php if ($this->options->adminLocation) echo $this->options->adminLocation; ?></div>
         </div>
     </div>
+    <?php
+    // 获取数据库连接
+    $db = Typecho_Db::get();
+
+    $categories = $db->fetchAll($db->select('m.mid', 'm.name', 'm.count')
+        ->from('table.metas AS m')
+        ->where('m.type = ?', 'category')
+        ->where('m.parent = ?', 0) // 只获取一级分类
+    );
+
+    // 输出一级分类
+    if ($categories) {
+        echo '<div class="admin-meta admin-tags">';
+        echo '<span class="meta-name">文章分类</span>';
+        echo '<span class="meta-value">';
+
+        $total = count($categories);
+        foreach ($categories as $index => $category) {
+            echo '<a class="post-category" href="' . $this->options->siteUrl . 'category/' . $category['mid'] . '" title="' . $category['name'] . '" target="_self">' . $category['name'] . '(' . $category['count'] . ')</a>';
+
+            // 如果不是最后一个一级分类，输出逗号
+            if ($index < $total - 1) {
+                echo ', ';
+            }
+        }
+
+        echo '</span></div>';
+    } else {
+        echo '没有分类';
+    }
+    ?>
+
     <?php if($this->options->adminTags) {
         echo '<div class="admin-meta admin-tags">';
-        echo '<span class="meta-name">标签</span>';
+        echo '<span class="meta-name">个人标签</span>';
         echo '<span class="meta-value">' . $this->options->adminTags . '</span>';
         echo '</div>';
     }
