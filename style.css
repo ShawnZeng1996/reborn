@@ -790,6 +790,10 @@ rb-theme-tabs .rb-tabs {
       .sidebar .widget .admin-meta .meta-value {
         flex: 1;
         color: var(--weui-FG-1); }
+      .sidebar .widget .admin-meta .post-category:after {
+        content: ', '; }
+      .sidebar .widget .admin-meta .post-category:last-of-type:after {
+        content: ''; }
     .sidebar .widget .game-list {
       display: flex;
       gap: 10px;
@@ -827,7 +831,8 @@ rb-theme-tabs .rb-tabs {
     .sidebar .sidebar-adv .adv-avatar {
       width: 40px;
       height: 40px;
-      margin-right: 10px; }
+      margin-right: 10px;
+      border-radius: var(--border-radius); }
     .sidebar .sidebar-adv .adv-title {
       color: var(--weui-LINK);
       font-weight: bold;
@@ -1478,6 +1483,14 @@ rb-theme-tabs .rb-tabs {
     margin-top: 10px;
     color: var(--weui-FG-2);
     font-size: 15px; }
+  .main-content .page-meta, .main-content .page-no-content {
+    background-color: var(--weui-BG-2);
+    padding: 20px;
+    border: 1px solid var(--weui-FG-3);
+    margin-bottom: 10px; }
+  .main-content .page-meta span {
+    color: var(--weui-LINK);
+    cursor: pointer; }
   .main-content .pagination {
     padding: 20px 10px;
     text-align: center;

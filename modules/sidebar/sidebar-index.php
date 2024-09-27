@@ -3,7 +3,6 @@
 <?php $this->need('/modules/sidebar/widget/admin-card.php'); ?>
 <?php $this->need('/modules/sidebar/widget/recent-posts.php'); ?>
 <?php $this->need('/modules/sidebar/widget/recent-comments.php'); ?>
-<?php $this->need('/modules/sidebar/widget/category.php'); ?>
 <?php
 // 获取广告内容
 $sidebarAd = $this->options->sidebarAd;

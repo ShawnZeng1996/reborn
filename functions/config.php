@@ -333,11 +333,9 @@ function themeConfig($form): void {
         'sidebarBlock',
         [
             'ShowRecentPosts'    => _t('显示最新文章'),
-            'ShowRecentComments' => _t('显示最近评论'),
-            'ShowCategory'       => _t('显示分类'),
-            'ShowOther'          => _t('显示其它杂项')
+            'ShowRecentComments' => _t('显示最近评论')
         ],
-        ['ShowRecentPosts', 'ShowRecentComments', 'ShowCategory', 'ShowOther'],
+        ['ShowRecentPosts', 'ShowRecentComments'],
         _t('侧边栏显示')
     );
     //$sidebarBlock->setAttribute('class', 'reborn-content reborn-sidebar');

@@ -76,6 +76,12 @@
                 flex: 1;
                 color: var(--weui-FG-1);
             }
+            .post-category:after {
+                content: ', ';
+            }
+            .post-category:last-of-type:after {
+                content: '';
+            }
         }
         .game-list {
             display: flex;
@@ -124,6 +130,7 @@
             width: 40px;
             height: 40px;
             margin-right: 10px;
+            border-radius: var(--border-radius);
         }
         .adv-title {
             color: var(--weui-LINK);
@@ -951,6 +958,16 @@
             color: var(--weui-FG-2);
             font-size: 15px;
         }
+    }
+    .page-meta, .page-no-content {
+        background-color: var(--weui-BG-2);
+        padding: 20px;
+        border: 1px solid var(--weui-FG-3);
+        margin-bottom: 10px;
+    }
+    .page-meta span {
+        color: var(--weui-LINK);
+        cursor: pointer;
     }
     .pagination {
         padding: 20px 10px;

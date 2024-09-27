@@ -50,19 +50,29 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                         foreach($sticky_posts as $sticky_post) $this->push($sticky_post);
                         $this->setTotal($this->getTotal()-count($sticky_cids));
                     }
-                } ?>
-                <?php while($this->next()): ?>
-                    <?php if ($this->fields->postType == 'shuoshuo'): ?>
-                        <!-- 说说 -->
-                        <?php $this->need('/modules/index/shuoshuo-item.php'); ?>
-                    <?php else: ?>
-                        <!-- 文章 -->
-                        <?php $this->need('/modules/index/post-item.php'); ?>
-                    <?php endif; ?>
-                <?php endwhile; ?>
-                <div class="pagination">
-                    <?php $this->pageLink('点击查看更多','next'); ?>
-                </div>
+                } else { ?>
+                    <div class="page-meta">
+                    <?php $this->archiveTitle(array('category' => '分类 <span>%s</span> 下的文章', 'search' => '包含关键字 <span>%s</span> 的文章', 'tag' => '标签 <span>%s</span> 下的文章', 'author' => '<span>%s</span> 发布的文章'), '', ''); ?>
+                    </div>
+                <?php }
+                if($this->have()): ?>
+                    <?php while($this->next()): ?>
+                        <?php if ($this->fields->postType == 'shuoshuo'): ?>
+                            <!-- 说说 -->
+                            <?php $this->need('/modules/index/shuoshuo-item.php'); ?>
+                        <?php else: ?>
+                            <!-- 文章 -->
+                            <?php $this->need('/modules/index/post-item.php'); ?>
+                        <?php endif; ?>
+                    <?php endwhile; ?>
+                    <div class="pagination">
+                        <?php $this->pageLink('点击查看更多','next'); ?>
+                    </div>
+                <?php else: ?>
+                    <div class="page-no-content">
+                        暂无内容
+                    </div>
+                <?php endif; ?>
             </div>
             <?php $this->need('footer.php'); ?>
         </div>

@@ -54,7 +54,6 @@ $content = preg_replace_callback($pattern, function($matches) {
 
 // 匹配farea的正则表达式
 $farea_pattern = '/\[farea\](.*?)\[\/farea\]/s';
-
 // 处理farea短代码
 $content = preg_replace_callback($farea_pattern, function($matches) {
     // 获取farea内部内容并移除<p>和<br>标签
@@ -97,6 +96,42 @@ $content = preg_replace_callback($farea_pattern, function($matches) {
     // 返回处理后的farea内容
     return '<div class="friend-area flex">' . $farea_content . '</div>';
 }, $content);
+
+// mbti
+$mbti_pattern = '/\[mbti\s*=\s*"([^"]+)"\s*per1\s*=\s*"(\d+)"\s*per2\s*=\s*"(\d+)"\s*per3\s*=\s*"(\d+)"\s*per4\s*=\s*"(\d+)"\s*per5\s*=\s*"(\d+)"\s*per6\s*=\s*"(\d+)"\]/';
+// 替换回调函数，构造 HTML 结构
+$content = preg_replace_callback($mbti_pattern, function ($matches) {
+    // 提取 MBTI 字符串和百分比
+    $mbti = $matches[1];
+    $percentages = [
+        (int)$matches[2],
+        (int)$matches[3],
+        (int)$matches[4],
+        (int)$matches[5],
+        (int)$matches[6],
+        (int)$matches[7]
+    ];
+
+    // 翻译 MBTI 字符到中文
+    $translatedMbti = translateMbti($mbti);
+
+    // 提取前四个字母用于 SVG 文件名
+    $svgName = substr($mbti, 0, 4);
+
+    // 生成 HTML 结构
+    $html = '<div class="mbti flex">';
+    $html .= '<img src="'. $this->options->themeUrl . '/assets/img/16personalities/' . $svgName . '.svg" alt="'. $svgName . '"/>';
+    $html .= '<div class="mbti-info"><div class="mbti-name">' . $mbti . '</div>';
+    foreach ($translatedMbti['mainType'] as $index => $trait):
+        $html .= '<div class="mbti-per" data-per="' . $percentages[$index] . '">' . $trait . '</div>';
+    endforeach;
+    foreach ($translatedMbti['additionalType'] as $index => $trait):
+        $html .= '<div class="mbti-per" data-per="' . $percentages[$index + 4] . '">' . $trait . '</div>';
+    endforeach;
+    $html .= '</div></div>';
+    return $html; // 获取缓冲的内容并返回
+}, $content);
+
 
 // 输出最终结果
 echo $content;

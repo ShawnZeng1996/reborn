@@ -325,7 +325,7 @@ function generateGalleryItem($image, $cid = 0, $remainingCount = 0): string {
     return $html;
 }
 
-function getAuthorPostStats($authorId) {
+function getAuthorPostStats() {
     $db = Typecho_Db::get();
     $prefix = $db->getPrefix();
 
@@ -333,7 +333,6 @@ function getAuthorPostStats($authorId) {
     $query = $db->select(array('COUNT(*)' => 'numPosts', 'SUM(table.contents.likes)' => 'totalLikes', 'SUM(table.contents.views)' => 'totalViews'))
         ->from('table.contents')
         ->join('table.fields', 'table.contents.cid = table.fields.cid', Typecho_Db::LEFT_JOIN)
-        ->where('table.contents.authorId = ?', $authorId)
         ->where('table.contents.type = ?', 'post')
         ->where('table.contents.status = ?', 'publish')
         ->where('table.fields.name = ?', 'postType')
@@ -408,4 +407,97 @@ function getStickyPostsCids() {
     }
 
     return $cidArray;
+}
+
+// 解析短代码的函数
+// 解析短代码并替换为 HTML 结构
+function replaceMbtiShortcode($content) {
+    // 匹配短代码中的 MBTI 和百分比
+    $pattern = '/\[mbti\s*=\s*\'([^\']+)\'\s*per1\s*=\s*"(\d+)"\s*per2\s*=\s*"(\d+)"\s*per3\s*=\s*"(\d+)"\s*per4\s*=\s*"(\d+)"\s*per5\s*=\s*"(\d+)"\s*per6\s*=\s*"(\d+)"\]/';
+
+    // 替换回调函数，构造 HTML 结构
+    $content = preg_replace_callback($pattern, function ($matches) {
+        // 提取 MBTI 字符串和百分比
+        $mbti = $matches[1];
+        $percentages = [
+            (int)$matches[2],
+            (int)$matches[3],
+            (int)$matches[4],
+            (int)$matches[5],
+            (int)$matches[6],
+            (int)$matches[7]
+        ];
+
+        // 翻译 MBTI 字符到中文
+        $translatedMbti = translateMbti($mbti);
+
+        // 提取前四个字母用于 SVG 文件名
+        $svgName = substr($mbti, 0, 4);
+
+        // 生成 HTML 结构
+        ob_start(); // 开启缓冲
+        ?>
+        <div class="mbti flex">
+            <img src="<?php $this->options->themeUrl('assets/img/16personalities/<?php echo $svgName; ?>.svg'); ?>" alt="<?php echo $svgName; ?>"/>
+            <div class="mbti-info">
+                <div class="mbti-name"><?php echo $mbti; ?></div>
+                <!-- 动态生成 MBTI 维度和百分比 -->
+                <?php foreach ($translatedMbti['mainType'] as $index => $trait): ?>
+                    <div class="mbti-per" data-per="<?php echo $percentages[$index]; ?>"><?php echo $trait; ?></div>
+                <?php endforeach; ?>
+                <!-- 动态生成附加特质和百分比 -->
+                <?php foreach ($translatedMbti['additionalType'] as $index => $trait): ?>
+                    <div class="mbti-per" data-per="<?php echo $percentages[$index + 4]; ?>"><?php echo $trait; ?></div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <?php
+        return ob_get_clean(); // 获取缓冲的内容并返回
+    }, $content);
+
+    return $content;
+}
+
+// MBTI 字符映射到中文解释
+function translateMbti($mbti) {
+    // 将 MBTI 字母映射为中文
+    $mbtiMap = [
+        'I' => '内向',
+        'E' => '外向',
+        'S' => '现实',
+        'N' => '直觉',
+        'T' => '逻辑',
+        'F' => '情感',
+        'P' => '展望',
+        'J' => '计划'
+    ];
+    // 附加特征的映射
+    $additionalMap = [
+        'A' => '自信',
+        'T' => '动荡',
+        'C' => '高冷',
+        'H' => '温暖'
+    ];
+    // 提取 MBTI 的四个主要字母和后面的两个附加字母
+    $mainType = substr($mbti, 0, 4);  // 例如 ISTP
+    $additionalType = substr($mbti, 5); // 例如 A-C
+
+    // 翻译四个主要字母
+    $translatedType = [];
+    for ($i = 0; $i < strlen($mainType); $i++) {
+        $translatedType[] = $mbtiMap[$mainType[$i]];
+    }
+
+    // 翻译后面的附加特征字母
+    $translatedAdditional = [];
+    for ($i = 0; $i < strlen($additionalType); $i++) {
+        if ($additionalType[$i] != '-')
+            $translatedAdditional[] = $additionalMap[$additionalType[$i]];
+    }
+
+    // 返回完整的中文解释
+    return [
+        'mainType' => $translatedType,
+        'additionalType' => $translatedAdditional
+    ];
 }

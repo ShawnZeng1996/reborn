@@ -2,7 +2,7 @@
 
 <section class="widget admin-card">
     <div class="admin-info flex">
-        <img src="<?php echo getGravatarUrl($this->authorId ? $this->author->mail : $this->user->mail); ?>" alt="<?php $this->authorId ? $this->author->screenName() : $this->user->screenName(); ?>">
+        <img src="<?php echo getGravatarUrl($this->authorId ? $this->author->mail : $this->user->mail, 160); ?>" alt="<?php $this->authorId ? $this->author->screenName() : $this->user->screenName(); ?>">
         <div class="flex-1">
             <div class="admin-name">
                 <?php $this->authorId ? $this->author->screenName() : $this->user->screenName(); ?>
@@ -14,44 +14,27 @@
                     }
                 } ?>
             </div>
-            <?php $stats = getAuthorPostStats($this->author->uid); ?>
+            <?php $stats = getAuthorPostStats(); ?>
             <div class="admin-post-stats">文章：<?php echo $stats['numPosts']; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读量：<?php echo $stats['totalViews']; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;获赞数：<?php echo $stats['totalLikes']; ?></div>
             <div class="admin-location">地区：<?php if ($this->options->adminLocation) echo $this->options->adminLocation; ?></div>
         </div>
     </div>
     <?php
-    // 获取数据库连接
-    $db = Typecho_Db::get();
-
-    $categories = $db->fetchAll($db->select('m.mid', 'm.name', 'm.count')
-        ->from('table.metas AS m')
-        ->where('m.type = ?', 'category')
-        ->where('m.parent = ?', 0) // 只获取一级分类
-    );
-
-    // 输出一级分类
-    if ($categories) {
+    $this->widget('Widget_Metas_Category_List')->to($categories);
+    if ($categories->have()):
         echo '<div class="admin-meta admin-tags">';
         echo '<span class="meta-name">文章分类</span>';
         echo '<span class="meta-value">';
-
-        $total = count($categories);
-        foreach ($categories as $index => $category) {
-            echo '<a class="post-category" href="' . $this->options->siteUrl . 'category/' . $category['mid'] . '" title="' . $category['name'] . '" target="_self">' . $category['name'] . '(' . $category['count'] . ')</a>';
-
-            // 如果不是最后一个一级分类，输出逗号
-            if ($index < $total - 1) {
-                echo ', ';
-            }
-        }
-
+        while ($categories->next()):
+            if ( $categories->levels === 0 ):
+                echo '<a class="post-category" href="' . $categories->permalink . '" title="' . $categories->name . '" target="_self">' . $categories->name . '(' . $categories->count . ')</a>';
+            endif;
+        endwhile;
         echo '</span></div>';
-    } else {
-        echo '没有分类';
-    }
-    ?>
+    endif;
 
-    <?php if($this->options->adminTags) {
+
+    if($this->options->adminTags) {
         echo '<div class="admin-meta admin-tags">';
         echo '<span class="meta-name">个人标签</span>';
         echo '<span class="meta-value">' . $this->options->adminTags . '</span>';
