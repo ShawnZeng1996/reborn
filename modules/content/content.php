@@ -121,12 +121,12 @@ $content = preg_replace_callback($mbti_pattern, function ($matches) {
     // 生成 HTML 结构
     $html = '<div class="mbti flex">';
     $html .= '<img src="'. $this->options->themeUrl . '/assets/img/16personalities/' . $svgName . '.svg" alt="'. $svgName . '"/>';
-    $html .= '<div class="mbti-info"><div class="mbti-name">' . $mbti . '</div>';
+    $html .= '<div class="mbti-info flex-1"><div class="mbti-name">' . $mbti . '<a class="mbti-link" href="https://www.16personalities.com/ch/'. $svgName .'-%E4%BA%BA%E6%A0%BC" target="_blank">查看详情</a></div>';
     foreach ($translatedMbti['mainType'] as $index => $trait):
-        $html .= '<div class="mbti-per" data-per="' . $percentages[$index] . '">' . $trait . '</div>';
+        $html .= '<div class="mbti-per flex"><div class="mbti-percent-wrap flex-1"><div class="mbti-percent" style="width: ' . $percentages[$index] . '%"></div></div><div class="mbti-attr-name">' . $trait . '</div></div>';
     endforeach;
     foreach ($translatedMbti['additionalType'] as $index => $trait):
-        $html .= '<div class="mbti-per" data-per="' . $percentages[$index + 4] . '">' . $trait . '</div>';
+        $html .= '<div class="mbti-per flex"><div class="mbti-percent-wrap flex-1"><div class="mbti-percent" style="width: ' . $percentages[$index + 4] . '%"></div></div><div class="mbti-attr-name">' . $trait . '</div></div>';
     endforeach;
     $html .= '</div></div>';
     return $html; // 获取缓冲的内容并返回

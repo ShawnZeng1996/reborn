@@ -595,6 +595,46 @@
             .good-meta{
                 color: var(--weui-FG-0);
             }
+            .mbti {
+                background-color: var(--weui-FG-5);
+                padding: 10px;
+                img {
+                    width: 160px;
+                }
+                .mbti-info {
+                    .mbti-name {
+                        color: var(--weui-FG-1);
+                        padding: 0 10px;
+                        font-weight: bold;
+                        position: relative;
+                    }
+                    .mbti-link {
+                        color: var(--weui-LINK);
+                        line-height: 14px;
+                        font-size: 12px;
+                        margin-left: 10px;
+                        font-weight: normal;
+                        text-decoration: underline;
+                    }
+                    .mbti-per {
+                        text-align: right;
+                        align-items: center;
+                    }
+                    .mbti-percent-wrap {
+                        background-color: var(--weui-FG-3);
+                        height: 8px;
+                        margin: 0 10px;
+                    }
+                    .mbti-percent {
+                        background-color: var(--weui-FG-3);
+                        height: 8px;
+                    }
+                    .mbti-attr-name {
+                        width: 50px;
+                        text-align: center;
+                    }
+                }
+            }
             .post-location {
                 display: block;
                 color: var(--weui-LINK);

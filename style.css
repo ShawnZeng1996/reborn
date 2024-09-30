@@ -1205,6 +1205,36 @@ rb-theme-tabs .rb-tabs {
         color: var(--weui-FG-2); }
       .main-content .post-type .post-content .good-meta {
         color: var(--weui-FG-0); }
+      .main-content .post-type .post-content .mbti {
+        background-color: var(--weui-FG-5);
+        padding: 10px; }
+        .main-content .post-type .post-content .mbti img {
+          width: 160px; }
+        .main-content .post-type .post-content .mbti .mbti-info .mbti-name {
+          color: var(--weui-FG-1);
+          padding: 0 10px;
+          font-weight: bold;
+          position: relative; }
+        .main-content .post-type .post-content .mbti .mbti-info .mbti-link {
+          color: var(--weui-LINK);
+          line-height: 14px;
+          font-size: 12px;
+          margin-left: 10px;
+          font-weight: normal;
+          text-decoration: underline; }
+        .main-content .post-type .post-content .mbti .mbti-info .mbti-per {
+          text-align: right;
+          align-items: center; }
+        .main-content .post-type .post-content .mbti .mbti-info .mbti-percent-wrap {
+          background-color: var(--weui-FG-3);
+          height: 8px;
+          margin: 0 10px; }
+        .main-content .post-type .post-content .mbti .mbti-info .mbti-percent {
+          background-color: var(--weui-FG-3);
+          height: 8px; }
+        .main-content .post-type .post-content .mbti .mbti-info .mbti-attr-name {
+          width: 50px;
+          text-align: center; }
       .main-content .post-type .post-content .post-location {
         display: block;
         color: var(--weui-LINK);
