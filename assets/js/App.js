@@ -105,6 +105,11 @@
                 }
             });
         },
+        menuToggle: function () {
+            $(document).on('click', '.rb-header-nav-mobile.rb-menu, .rb-header-mobile-mask', function () {
+                $('.rb-header-mobile-nav, .rb-header-mobile-mask').toggleClass('show');
+            });
+        },
         // 点击展开点赞/评论
         postMetaExpand: function () {
             $(document).on('click', '.post-more', function () {
@@ -471,6 +476,7 @@
         App.pageInit();
         App.themeModeToggle();
         App.pageLoadMore();
+        App.menuToggle();
         App.postMetaExpand();
         App.postLike();
         App.commentLike();
@@ -479,7 +485,7 @@
         hljs.highlightAll();
         hljs.initLineNumbersOnLoad();
         App.codeCopy();
-        App.scrollEvent()
+        App.scrollEvent();
     });
 })(jQuery);
 

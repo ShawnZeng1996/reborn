@@ -111,10 +111,8 @@ $content = preg_replace_callback($mbti_pattern, function ($matches) {
         (int)$matches[6],
         (int)$matches[7]
     ];
-
     // 翻译 MBTI 字符到中文
     $translatedMbti = translateMbti($mbti);
-
     // 提取前四个字母用于 SVG 文件名
     $svgName = substr($mbti, 0, 4);
 

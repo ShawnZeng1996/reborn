@@ -18,6 +18,9 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
     <?php else : ?>
         <?php $this->header(); ?>
     <?php endif; ?>
+    <?php if ($this->options->favicon): ?>
+        <link rel="shortcut icon" href="<?php $this->options->favicon(); ?>">
+    <?php endif; ?>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/font/iconfont.css'); ?>?v=<?php echo __THEME_VERSION__; ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('lib/fancybox@3.5.7/jquery.fancybox.min.css'); ?>">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('style.css'); ?>?v=<?php echo __THEME_VERSION__; ?>">
@@ -53,6 +56,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                     <a class="rb-header-nav__link" href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>" target="_self"><?php $pages->title(); ?></a>
                 <?php endwhile; ?>
             </div>
+            <span class="rb-header-nav-mobile reborn rb-menu"></span>
             <rb-theme-tabs>
                 <div class="rb-tabs">
                     <div class="rb-tabs__block"></div>
@@ -78,3 +82,43 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
             </rb-theme-tabs>
         </div>
     </div>
+    <div class="rb-header-mobile-nav flex">
+        <div class="rb-header-mobile-site-info">
+            <?php $siteLogo = $this->options->avatarEmail ?: ''; ?>
+            <img class="rb-site-logo" alt="站点头像" src="<?php echo getGravatarUrl($siteLogo, 160); ?>" />
+            <h1 class="rb-site-title"><?php $this->options->title(); ?></h1>
+            <p class="rb-site-description"><?php $this->options->description(); ?></p>
+        </div>
+        <a class="rb-header-mobile-nav__item" href="<?php $this->options->siteUrl(); ?>" target="_self"><?php _e('首页'); ?></a>
+        <?php $this->widget('Widget_Metas_Category_List')->to($categories); ?>
+        <?php if ($categories->have()): ?>
+            <ul class="rb-header-mobile-nav__item"><?php _e('分类'); ?>
+            <?php while($categories->next()): ?>
+                <?php if ($categories->levels === 0): ?>
+                    <?php $children = $categories->getAllChildren($categories->mid); ?>
+                    <?php if (empty($children)) { ?>
+                        <li <?php if($this->is('category', $categories->slug)): ?> class="active"<?php endif; ?>>
+                            <a class="rb-header-mobile-nav__link" href="<?php $categories->permalink(); ?>" title="<?php $categories->name(); ?>"><?php $categories->name(); ?>(<?php $categories->count(); ?>)</a>
+                        </li>
+                    <?php } else { ?>
+                        <li>
+                            <a class="rb-header-mobile-nav__link" href="#" data-target="#"><?php $categories->name(); ?></a>
+                            <ul>
+                                <?php foreach ($children as $mid) { ?>
+                                    <?php $child = $categories->getCategory($mid); ?>
+                                    <li <?php if($this->is('category', $child['slug'])): ?> class="active"<?php endif; ?>>
+                                        <a class="rb-header-mobile-nav__link" href="<?php echo $child['permalink'] ?>" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?>(<?php echo $child['count']; ?>)</a>
+                                    </li>
+                                <?php } ?>
+                            </ul>
+                        </li>
+                    <?php } ?><?php endif; ?>
+            <?php endwhile; ?>
+            </ul>
+        <?php endif; ?>
+        <?php $this->widget('Widget_Contents_Page_List')->to($pages); ?>
+        <?php while($pages->next()): ?>
+            <a class="rb-header-mobile-nav__item" href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>" target="_self"><?php $pages->title(); ?></a>
+        <?php endwhile; ?>
+    </div>
+    <div class="rb-header-mobile-mask"></div>

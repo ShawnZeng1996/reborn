@@ -13,8 +13,8 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                 <div class="rb-site-info-inner">
                     <?php $siteLogo = $this->options->avatarEmail ?: ''; ?>
                     <img class="rb-site-logo" alt="站点头像" src="<?php echo getGravatarUrl($siteLogo, 160); ?>" />
-                    <h1 class="rb-site-title"><?php $this->options->title() ?></h1>
-                    <p class="rb-site-description"><?php $this->options->description() ?></p>
+                    <h1 class="rb-site-title"><?php $this->options->title(); ?></h1>
+                    <p class="rb-site-description"><?php $this->options->description(); ?></p>
                 </div>
             </div>
         </header>

@@ -667,6 +667,10 @@ code {
   .rb-header-nav a.rb-header-nav__link:hover {
     background-color: var(--weui-FG-5); }
 
+.rb-header-nav-mobile {
+  display: none;
+  cursor: pointer; }
+
 rb-theme-tabs .rb-tabs {
   min-width: 60px;
   width: 100%;
@@ -732,6 +736,84 @@ rb-theme-tabs .rb-tabs {
     right: 24px;
     bottom: -50px; }
 
+.rb-header-mobile-nav {
+  position: fixed;
+  left: -320px;
+  top: 0;
+  height: 100%;
+  background-color: var(--weui-BG-0);
+  width: 320px;
+  max-width: 60%;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  border-right: 1px solid var(--weui-FG-3);
+  z-index: 1002;
+  transition: 0.2s; }
+  .rb-header-mobile-nav .rb-header-mobile-site-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 20px; }
+    .rb-header-mobile-nav .rb-header-mobile-site-info .rb-site-logo {
+      border: 1px solid var(--weui-FG-3);
+      width: var(--header-site-logo-size);
+      height: var(--header-site-logo-size);
+      border-radius: var(--header-site-logo-radius); }
+    .rb-header-mobile-nav .rb-header-mobile-site-info .rb-site-title {
+      font-size: 18px;
+      margin: 10px 0 5px; }
+    .rb-header-mobile-nav .rb-header-mobile-site-info .rb-site-description {
+      color: var(--weui-FG-1); }
+  .rb-header-mobile-nav .rb-header-mobile-nav__item {
+    padding: 10px;
+    color: var(--weui-FG-1);
+    border-bottom: 1px solid var(--weui-FG-3);
+    width: 100%;
+    background-color: var(--weui-BG-2);
+    margin: 0 0 5px; }
+    .rb-header-mobile-nav .rb-header-mobile-nav__item ul li {
+      display: inline-block; }
+      .rb-header-mobile-nav .rb-header-mobile-nav__item ul li .rb-header-mobile-nav__link {
+        color: var(--weui-FG-1);
+        height: 20px;
+        line-height: 12px;
+        font-size: 12px;
+        background-color: var(--weui-FG-5);
+        padding: 4px 6px; }
+  .rb-header-mobile-nav a.rb-header-mobile-nav__item,
+  .rb-header-mobile-nav .rb-header-mobile-nav__link {
+    color: var(--weui-FG-0); }
+  .rb-header-mobile-nav .rb-header-mobile-nav__link {
+    display: block;
+    padding: 5px 0; }
+  .rb-header-mobile-nav .rb-header-mobile-nav__link + .rb-header-mobile-nav__link {
+    border-bottom: 1px solid var(--weui-FG-3); }
+
+.rb-header-mobile-nav.show {
+  left: 0; }
+
+.rb-header-mobile-mask {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5); }
+
+.rb-header-mobile-mask.show {
+  display: block; }
+
+@media (max-width: 480px) {
+  .rb-header-nav {
+    display: none; }
+
+  .rb-header-nav-mobile {
+    display: block; } }
 #container {
   max-width: var(--content-max-width);
   margin: 0 auto;
@@ -1231,7 +1313,7 @@ rb-theme-tabs .rb-tabs {
           height: 8px;
           margin: 0 10px; }
         .main-content .post-type .post-content .mbti .mbti-info .mbti-percent {
-          background-color: var(--weui-FG-3);
+          background-color: var(--weui-BRAND);
           height: 8px; }
         .main-content .post-type .post-content .mbti .mbti-info .mbti-attr-name {
           width: 50px;

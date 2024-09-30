@@ -307,6 +307,15 @@ function themeConfig($form): void {
         _t('自定义script，填写时无需填写script标签。')
     );
     $form->addInput($customScript);
+    // favicon
+    $favicon = new Typecho\Widget\Helper\Form\Element\Text(
+        'favicon',
+        NULL,
+        \Utils\Helper::options()->themeUrl . '/assets/img/default-icon.ico',
+        _t('网站 Favicon 设置'),
+        _t('网站 Favicon，格式：图片 URL地址 或 Base64 地址，免费转换 Favicon 网站 <a target="_blank" href="//tool.lu/favicon">tool.lu/favicon</a>')
+    );
+    $form->addInput($favicon);
     // Bark通知地址与Key
     $barkUrl = new Typecho\Widget\Helper\Form\Element\Text(
         'barkUrl',

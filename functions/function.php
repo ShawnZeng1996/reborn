@@ -8,7 +8,11 @@
  * @return string Gravatar 头像 URL
  */
 function getGravatarUrl(string $email, int $size = 80): string {
-    $gravatarUrl = __GRAVATAR_PREFIX__;
+    if(\Utils\Helper::options()->gravatarPrefix) {
+        $gravatarUrl = \Utils\Helper::options()->gravatarPrefix;
+    } else {
+        $gravatarUrl = 'https://cravatar.cn/avatar/';
+    }
     $hash = md5(strtolower(trim($email)));
     $gravatarUrl = $gravatarUrl . $hash;
     // 默认头像列表
