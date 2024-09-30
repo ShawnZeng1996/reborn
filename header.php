@@ -55,6 +55,12 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                 <?php while($pages->next()): ?>
                     <a class="rb-header-nav__link" href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>" target="_self"><?php $pages->title(); ?></a>
                 <?php endwhile; ?>
+                <?php if ($this->user->hasLogin()): ?>
+                    <a class="rb-header-nav__link" href="<?php $this->options->adminUrl(); ?>"><?php _e('后台'); ?>
+                            (<?php $this->user->screenName(); ?>)</a>
+                <?php else: ?>
+                    <a class="rb-header-nav__link" href="<?php $this->options->adminUrl('login.php'); ?>"><?php _e('登录'); ?></a>
+                <?php endif; ?>
             </div>
             <span class="rb-header-nav-mobile reborn rb-menu"></span>
             <rb-theme-tabs>
@@ -120,5 +126,11 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
         <?php while($pages->next()): ?>
             <a class="rb-header-mobile-nav__item" href="<?php $pages->permalink(); ?>" title="<?php $pages->title(); ?>" target="_self"><?php $pages->title(); ?></a>
         <?php endwhile; ?>
+        <?php if ($this->user->hasLogin()): ?>
+            <a class="rb-header-mobile-nav__item" href="<?php $this->options->adminUrl(); ?>"><?php _e('后台'); ?>
+                (<?php $this->user->screenName(); ?>)</a>
+        <?php else: ?>
+            <a class="rb-header-mobile-nav__item" href="<?php $this->options->adminUrl('login.php'); ?>"><?php _e('登录'); ?></a>
+        <?php endif; ?>
     </div>
     <div class="rb-header-mobile-mask"></div>
