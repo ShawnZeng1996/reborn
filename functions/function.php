@@ -25,7 +25,7 @@ function getGravatarUrl(string $email, int $size = 80): string {
     ];
     // 随机选择一个默认头像
     $defaultAvatarUrl = \Utils\Helper::options()->themeUrl . $defaultAvatars[array_rand($defaultAvatars)];
-    $imgUrl = $gravatarUrl . "?s=$size&d=" . urlencode($defaultAvatarUrl) . "&r=g";
+    $imgUrl = $gravatarUrl . "?s=$size&d=" . urlencode($defaultAvatarUrl) . "&r=G";
     $headers = @get_headers($imgUrl);
     if ($headers && strpos($headers[0], '500') === false) {
         return $imgUrl;
