@@ -19,6 +19,7 @@
 
 ## 捐赠
 开源不易，请我喝杯🧋？
-| ![微信捐赠](./donate/shawn_zfb.jpg) | ![支付宝捐赠](./donate/shawn_wx.jpg) |
+
+| ![微信捐赠](./donate/shawn_zfb.png) | ![支付宝捐赠](./donate/shawn_wx.png) |
 |---|---|
 
