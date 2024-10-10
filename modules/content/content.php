@@ -71,7 +71,7 @@ $content = preg_replace_callback($farea_pattern, function($matches) {
 
         // 构建HTML输出
         $html = '
-        <div class="friend-link">
+        <a class="friend-link" href="' . htmlspecialchars($href) . '" target="_blank">
             <div class="flex">
                 <img class="friend-link-img" alt="' . htmlspecialchars($name) . '" title="' . htmlspecialchars($name) . '" src="' . htmlspecialchars($img) . '" />
                 <div class="flex-1">
@@ -88,7 +88,7 @@ $content = preg_replace_callback($farea_pattern, function($matches) {
         }
 
         $html .= '
-        </div>';
+        </a>';
 
         return $html;
     }, $farea_content);
