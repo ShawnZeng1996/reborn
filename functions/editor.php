@@ -29,7 +29,7 @@ class Editor
                     flowChart: false,
                     sequenceDiagram: true,
                     toolbarIcons: function () {
-                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "reference-link", "friend-link", "image", "code", "code-block", "table", "more", "hide", "gallery", "rb-emoji","|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
+                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "friend-link", "image", "code", "code-block", "table", "more", "hide", "gallery", "rb-emoji","|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
                     },
                     toolbarIconsClass: {
                         more: "fa-depart",
@@ -86,7 +86,8 @@ class Editor
                             "checkbox": "插入待办事项（未办）",
                             "hide": "插入回复可见内容",
                             "gallery": "插入说说九图",
-                            "rb-emoji": "插入表情包"
+                            "rb-emoji": "插入表情包",
+                            "friend-link": "插入友情链接"
                         }
                     },
                 });

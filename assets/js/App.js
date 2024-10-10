@@ -200,6 +200,7 @@
                                 $postLikeArea.removeClass('hidden');
                                 $postLikeArea.html(likesDisplay);
                             }
+                            $('.post-action').removeClass('show');
                         }
                     },
                     error: function(xhr, status, error) {
