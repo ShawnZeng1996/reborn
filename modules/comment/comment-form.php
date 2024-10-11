@@ -8,9 +8,19 @@
             <?php } else { ?>
                 <?php
                 $email = $this->remember('mail', true);
+                // 默认头像列表
+                $defaultAvatars = [
+                    '/assets/img/欢乐马.jpg',
+                    '/assets/img/神经蛙.jpg',
+                    '/assets/img/阿白.jpg',
+                    '/assets/img/momo.jpg',
+                    '/assets/img/哄哄.jpg'
+                ];
+                // 随机选择一个默认头像
+                $defaultAvatarUrl = \Utils\Helper::options()->themeUrl . $defaultAvatars[array_rand($defaultAvatars)];
                 $avatarUrl = !empty($email)
                     ? getGravatarUrl($email)
-                    : $this->options->themeUrl . '/assets/img/default-avatar.webp';
+                    : $defaultAvatarUrl;
                 ?>
                 <img class="avatar" src="<?php echo $avatarUrl; ?>" alt="头像">
                 <div class="comment-input-area flex flex-1">
