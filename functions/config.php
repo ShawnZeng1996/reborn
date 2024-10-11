@@ -404,7 +404,7 @@ function themeFields($layout): void {
             'keywords',
             NULL,
             NULL,
-            _t('产品关键词'),
+            _t('关键词'),
             _t('多个关键词用英文下逗号隔开。')
     );
     $layout->addItem($keywords);

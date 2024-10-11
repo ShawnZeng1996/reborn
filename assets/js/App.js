@@ -37,11 +37,11 @@
                     navigator.serviceWorker.register(reborn.themeUrl+'assets/js/serviceWorker.js')
                         .then(function (registration) {
                             // 注册成功
-                            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                            //console.log('ServiceWorker registration successful with scope: ', registration.scope);
                         })
                         .catch(function (err) {
                             // 注册失败
-                            console.log('ServiceWorker registration failed: ', err);
+                            //console.log('ServiceWorker registration failed: ', err);
                         });
                 });
             }
@@ -483,6 +483,9 @@
         App.commentLike();
         App.postComment();
         App.emojiEvent();
+        hljs.configure({
+            ignoreUnescapedHTML: true
+        });
         hljs.highlightAll();
         hljs.initLineNumbersOnLoad();
         App.codeCopy();
