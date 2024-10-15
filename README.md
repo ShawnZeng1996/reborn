@@ -18,9 +18,12 @@
 - 主题个性化配置：为了提高大家的个性化，主题提供了多项自定义配置供大家使用
 - 良好的SEO配置，每篇文章均支持自定义关键词与描述，同时自带sitemap
 
+<h2><img src="./readme/todo.gif" width="30" /> 待完成</h2>
+- 网易云音乐样式支持
+
 ## 捐赠
 开源不易，请我喝杯🧋
 
-| ![微信捐赠](./donate/shawn_zfb.png) | ![支付宝捐赠](./donate/shawn_wx.png) |
+| ![微信捐赠](./readme/shawn_zfb.png) | ![支付宝捐赠](./readme/shawn_wx.png) |
 |---|---|
 
