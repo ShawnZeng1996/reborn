@@ -27,7 +27,10 @@
             } else {
                 const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
                 if (darkMode && darkMode.matches) {
+                    loadCssFile(reborn.themeUrl+'lib/highlight@11.9.0/css/atom-one-dark.min.css');
                     $('.rb-tabs__block').css('left', '30px');
+                } else {
+                    loadCssFile(reborn.themeUrl+'lib/highlight@11.9.0/css/atom-one-light.min.css');
                 }
                 // console.log('No theme mode found in sessionStorage.');
             }
