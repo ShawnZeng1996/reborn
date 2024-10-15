@@ -2,7 +2,7 @@
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 
 const __THEME_NAME__ = 'reborn';
-const __THEME_VERSION__ = '1.0.0';
+const __THEME_VERSION__ = '1.0.1';
 
 // 自定义字段、配置文件
 require_once("functions/config.php");

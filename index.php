@@ -4,7 +4,7 @@
  *
  * @package reborn
  * @author Shawn
- * @version 1.0.0
+ * @version 1.0.1
  * @link https://shawnzeng.com
  */
 if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
