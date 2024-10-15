@@ -222,28 +222,6 @@ function renderReplies(array $replies, string $parentAuthor): void
     }
 }
 
-/**
- * 获取最近的 n 条评论，同时排除 authorId 不为 0 的评论
- *
- * @param int $limit 要获取的评论数量
- * @return array 最近的 n 条评论
- */
-function getLatestComments($limit = 5) {
-    $db = Typecho_Db::get();
-    $prefix = $db->getPrefix();
-
-    // 构建查询，获取最近的 n 条评论，同时排除 authorId 不为 0 的评论
-    $query = $db->select()
-        ->from('table.comments')
-        ->where('status = ?', 'approved')
-        ->where('authorId = ?', 0)
-        ->order('created', Typecho_Db::SORT_DESC)
-        ->limit($limit);
-
-    $result = $db->fetchAll($query);
-    return $result;
-}
-
 function commentReply(int $coid)
 {
     // 使用 Typecho 数据库实例
