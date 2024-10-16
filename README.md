@@ -1,6 +1,14 @@
 # Typecho仿微信主题reborn
 重回博客后的第一个主题，鸣谢[@泽泽](https://typecho.work/ "泽泽")
 
+![GitHub Release](https://img.shields.io/github/v/release/ShawnZeng1996/reborn)
+![GitHub Release Date](https://img.shields.io/github/release-date/ShawnZeng1996/reborn)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ShawnZeng1996/reborn)
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/ShawnZeng1996/reborn/total)
+![GitHub contributors](https://img.shields.io/github/contributors/ShawnZeng1996/reborn)
+
+![Alt](https://repobeats.axiom.co/api/embed/b6f4e65a980c5bf9dca47a0b2fa79483830193d1.svg "Repobeats analytics image")
+
 ## 主题预览
 预览链接：[Shawn](https://shawnzeng.com)
 ![微信捐赠](screenshot.png)
