@@ -8,7 +8,10 @@
                     <a class="flex comment-item"  href="<?php $comments->permalink(); ?>">
                         <img class="comment-author-avatar" src="<?php $email = $comments->mail ?: ''; ;echo getGravatarUrl($email); ?>" alt="<?php $comments->author(false); ?>">
                         <div class="flex-1">
-                            <div class="comment-author"><?php $comments->author(false); ?></div>
+                            <div class="comment-meta flex">
+                                <div class="comment-author"><?php $comments->author(false); ?></div>
+                                <time class="comment-time" datetime="<?php echo $comments->created; ?>"><?php echo formatRelativeTime($comments->created); ?></time>
+                            </div>
                             <div class="comment-content"><?php echo commentEmojiReplace($comments->content); ?></div>
                         </div>
                     </a>

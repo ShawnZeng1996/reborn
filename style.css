@@ -968,8 +968,12 @@ rb-theme-tabs .rb-tabs {
     height: 40px;
     margin: 0 10px 6px 0;
     border-radius: 4px; }
+  .sidebar #sidebar-comment-list .comment-meta {
+    justify-content: space-between; }
   .sidebar #sidebar-comment-list .comment-author {
     color: var(--weui-FG-1); }
+  .sidebar #sidebar-comment-list .comment-time {
+    color: var(--weui-FG-2); }
   .sidebar #sidebar-comment-list .comment-content {
     width: 100%;
     color: var(--weui-FG-0);

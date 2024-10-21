@@ -208,8 +208,14 @@
             margin: 0 10px 6px 0;
             border-radius: 4px;
         }
+        .comment-meta {
+            justify-content: space-between;
+        }
         .comment-author {
             color: var(--weui-FG-1);
+        }
+        .comment-time {
+            color: var(--weui-FG-2);
         }
         .comment-content {
             width: 100%;

@@ -43,7 +43,7 @@
                             <?php $this->comments()->to($comments);?>
                             <?php $this->need('/modules/comment/shuoshuo-comment-item.php');?>
                             <?php $comments->listComments();?>
-                            <?php $comments->pageNav('&lt;', '&gt;');?>
+                            <?php $comments->pageNav('上一页', '下一页');?>
                         </div>
 
                     </div>
