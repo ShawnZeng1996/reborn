@@ -55,7 +55,7 @@
         <?php $this->comments()->to($comments);?>
         <?php $this->need('/modules/comment/post-comment-item.php');?>
         <?php $comments->listComments();?>
-        <?php $comments->pageNav('&lt;', '&gt;');?>
+        <?php $comments->pageNav('上一页', '下一页');?>
     <?php } else {  ?>
         <?php $this->need('/modules/comment/comment-form.php'); ?>
         <div class="none-comment"><a class="post-comment" data-cid="<?php echo $this->cid; ?>" data-location="post">写评论</a></div>

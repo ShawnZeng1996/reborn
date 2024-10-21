@@ -847,24 +847,6 @@
                             padding-top: 0;
                             border-top: none;
                         }
-                        .page-navigator {
-                            padding: 10px;
-                            list-style: none;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            gap: 10px;
-                            a {
-                                color: var(--weui-FG-1);
-                                cursor: pointer;
-                            }
-                            li.current {
-                                a {
-                                    color: var(--weui-FG-0);
-                                }
-                            }
-                        }
-
                     }
                 }
             }
@@ -1017,6 +999,24 @@
         .next {
             color: var(--weui-FG-1);
             cursor: pointer;
+        }
+    }
+    .page-navigator {
+        padding: 10px;
+        list-style: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        color: var(--weui-FG-0);
+        a {
+            color: var(--weui-FG-1);
+            cursor: pointer;
+        }
+        li.current {
+            a {
+                color: var(--weui-FG-0);
+            }
         }
     }
     #comments {
@@ -1248,7 +1248,6 @@
             min-height: 100px;
         }
     }
-
 }
 
 .rb-emoji-item {

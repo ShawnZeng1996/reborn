@@ -1483,18 +1483,6 @@ rb-theme-tabs .rb-tabs {
             .main-content .post-type .post-content .post-meta-3 .post-comment-area.shuoshuo .comment-area > ol > .comment-item:first-child {
               padding-top: 0;
               border-top: none; }
-            .main-content .post-type .post-content .post-meta-3 .post-comment-area.shuoshuo .comment-area .page-navigator {
-              padding: 10px;
-              list-style: none;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              gap: 10px; }
-              .main-content .post-type .post-content .post-meta-3 .post-comment-area.shuoshuo .comment-area .page-navigator a {
-                color: var(--weui-FG-1);
-                cursor: pointer; }
-              .main-content .post-type .post-content .post-meta-3 .post-comment-area.shuoshuo .comment-area .page-navigator li.current a {
-                color: var(--weui-FG-0); }
     .main-content .post-type .post-content.shuoshuo-content .post-meta-3 {
       margin-left: -50px; }
     .main-content .post-type #post-content {
@@ -1611,6 +1599,19 @@ rb-theme-tabs .rb-tabs {
     .main-content .pagination .next {
       color: var(--weui-FG-1);
       cursor: pointer; }
+  .main-content .page-navigator {
+    padding: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--weui-FG-0); }
+    .main-content .page-navigator a {
+      color: var(--weui-FG-1);
+      cursor: pointer; }
+    .main-content .page-navigator li.current a {
+      color: var(--weui-FG-0); }
   .main-content #comments {
     margin: 10px 0;
     background-color: var(--weui-BG-2);
