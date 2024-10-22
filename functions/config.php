@@ -449,5 +449,9 @@ function themeInit($self): void {
         $self->response->setStatus(200);
         $self->setThemeFile("sitemap.php");
     }
+    //强制评论关闭反垃圾保护
+    \Utils\Helper::options()->commentsAntiSpam = false;
+    //关闭检查评论来源URL与文章链接是否一致判断
+    \Utils\Helper::options()->commentsCheckReferer = false;
 }
 

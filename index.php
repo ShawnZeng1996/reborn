@@ -26,7 +26,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                 <?php if($this->is('index')) {
                     $sticky_cids = getStickyPostsCids();
                     if (count($sticky_cids) > 0) {
-                        $db = Typecho_Db::get();
+                        $db = \Typecho\Db::get();
                         $pageSize = $this->options->pageSize;
                         $select1 = $this->select()->where('type = ?', 'post');
                         $select2 = $this->select()->where('type = ? && status = ? && created < ?', 'post', 'publish', time());
@@ -46,7 +46,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
                         }
                         $uid = $this->user->uid;
                         if($uid) $select2->orWhere('authorId = ? && status = ?', $uid, 'private');
-                        $sticky_posts = $db->fetchAll($select2->order('table.contents.created', Typecho_Db::SORT_DESC)->page($this->_currentPage, $this->parameter->pageSize));
+                        $sticky_posts = $db->fetchAll($select2->order('table.contents.created', \Typecho\Db::SORT_DESC)->page($this->_currentPage, $this->parameter->pageSize));
                         foreach($sticky_posts as $sticky_post) $this->push($sticky_post);
                         $this->setTotal($this->getTotal()-count($sticky_cids));
                     }
