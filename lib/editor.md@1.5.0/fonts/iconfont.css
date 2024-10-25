@@ -1,8 +1,8 @@
 @font-face {
   font-family: "fa"; /* Project id 4611589 */
-  src: url('iconfont.woff2?t=1727333586592') format('woff2'),
-       url('iconfont.woff?t=1727333586592') format('woff'),
-       url('iconfont.ttf?t=1727333586592') format('truetype');
+  src: url('iconfont.woff2?t=1729846858427') format('woff2'),
+       url('iconfont.woff?t=1729846858427') format('woff'),
+       url('iconfont.ttf?t=1729846858427') format('truetype');
 }
 
 .fa {
@@ -11,6 +11,18 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.fa-appstore:before {
+  content: "\e7cc";
+}
+
+.fa-mbti:before {
+  content: "\e709";
+}
+
+.fa-neteasemusic:before {
+  content: "\e600";
 }
 
 .fa-friend-link:before {

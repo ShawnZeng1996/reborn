@@ -29,7 +29,7 @@ class Editor
                     flowChart: false,
                     sequenceDiagram: true,
                     toolbarIcons: function () {
-                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "friend-link", "image", "code", "code-block", "table", "more", "hide", "gallery", "rb-emoji","|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
+                        return ["undo", "redo", "|", "bold", "del", "italic", "quote", "h2", "h3", "h4", "h5", "|", "list-ul", "list-ol", "checkbox-checked", "checkbox", "hr", "|", "link", "reference-link", "friend-link", "image", "code", "code-block", "table", "more", "hide", "gallery", "rb-emoji", "mbti", "app", "|", "goto-line", "watch", "preview", "fullscreen", "clear", "|", "help", "info"]
                     },
                     toolbarIconsClass: {
                         more: "fa-depart",
@@ -38,7 +38,9 @@ class Editor
                         "friend-link": "fa-friend-link",
                         "hide": "fa-unlock",
                         "gallery": "fa-gallery",
-                        "rb-emoji": "fa-smile"
+                        "rb-emoji": "fa-smile",
+                        "mbti": "fa-mbti",
+                        "app": "fa-appstore"
                     },
                     // 自定义工具栏按钮的事件处理
                     toolbarHandlers: {
@@ -61,6 +63,9 @@ class Editor
                             // 插入包含换行符的 [hide][/hide] 标签
                             cm.replaceSelection('[farea][flink href="站点地址" name="站点名称" img="图片地址" description="站点描述" comment="我的印象"][/farea]');
                         },
+                        "mbti": function (cm) {
+                            cm.replaceSelection('[mbti="XXXX-X-X" per1="80" per2="44" per3="48" per4="20" per5="20" per6="100"]');
+                        }
                         "hide": function (cm) {
                             // 插入包含换行符的 [hide][/hide] 标签
                             cm.replaceSelection("[hide]\n\n[/hide]");
