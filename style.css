@@ -1103,7 +1103,6 @@ rb-theme-tabs .rb-tabs {
         font-size: 1.2em;
         font-weight: bold;
         display: table;
-        margin: 30px auto;
         padding: 0 0.2em;
         background: #0f4c81;
         color: #FFFFFF; }
@@ -1112,7 +1111,6 @@ rb-theme-tabs .rb-tabs {
         line-height: 1.2;
         font-size: 1.1em;
         font-weight: bold;
-        margin: 20px 0;
         padding-left: 8px;
         border-left: 3px solid #0f4c81; }
       .main-content .post-type .post-content h4:not([class]) {
@@ -1121,6 +1119,9 @@ rb-theme-tabs .rb-tabs {
         font-size: 1em;
         font-weight: bold;
         margin: 15px 0; }
+      .main-content .post-type .post-content h2:not([class]), .main-content .post-type .post-content h3:not([class]), .main-content .post-type .post-content h4:not([class]), .main-content .post-type .post-content h5:not([class]), .main-content .post-type .post-content h6:not([class]) {
+        margin-top: 2em;
+        margin-bottom: .5em; }
       .main-content .post-type .post-content a {
         color: var(--weui-LINK); }
       .main-content .post-type .post-content ul, .main-content .post-type .post-content ol {
@@ -1808,7 +1809,8 @@ rb-theme-tabs .rb-tabs {
 #footer {
   clear: both;
   text-align: center;
-  padding: 50px 10px 10px; }
+  padding: 50px 10px 10px;
+  color: var(--weui-FG-1); }
   #footer a {
     color: var(--weui-LINK); }
 

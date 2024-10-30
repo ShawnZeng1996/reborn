@@ -65,7 +65,7 @@ class Editor
                         },
                         "mbti": function (cm) {
                             cm.replaceSelection('[mbti="XXXX-X-X" per1="80" per2="44" per3="48" per4="20" per5="20" per6="100"]');
-                        }
+                        },
                         "hide": function (cm) {
                             // 插入包含换行符的 [hide][/hide] 标签
                             cm.replaceSelection("[hide]\n\n[/hide]");
