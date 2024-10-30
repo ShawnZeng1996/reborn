@@ -1,14 +1,7 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<article id="post" class="post post-type">
-    <div id="post-content" class="post-content">
-        <?php $this->need('/modules/content/content.php'); ?>
-    </div>
+<article id="post" class="post post-type" style="padding: 0;">
+    <?php $this->need('/modules/content/content.php'); ?>
 </article>
-<?php if($this->options->postAd) {
-    echo '<div class="post-adv">';
-    $this->options->postAd();
-    echo '</div>';
-} ?>
 <div id="comments" class="post post-comment-area-<?php echo $this->cid; ?>">
     <?php if (haveComments($this->cid)) { ?>
         <div class="has-comment flex">

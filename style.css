@@ -1285,13 +1285,6 @@ rb-theme-tabs .rb-tabs {
         .main-content .post-type .post-content .post-unit .post-title {
           font-weight: normal;
           font-size: var(--global-font-size); }
-      .main-content .post-type .post-content .movie-item, .main-content .post-type .post-content .book-item, .main-content .post-type .post-content .good-item {
-        background-color: var(--weui-FG-5);
-        color: var(--weui-FG-0); }
-      .main-content .post-type .post-content .good-brand {
-        color: var(--weui-FG-2); }
-      .main-content .post-type .post-content .good-meta {
-        color: var(--weui-FG-0); }
       .main-content .post-type .post-content .mbti {
         background-color: var(--weui-FG-5);
         padding: 10px;
@@ -1805,6 +1798,16 @@ rb-theme-tabs .rb-tabs {
 .rb-emoji-item {
   height: 20px;
   vertical-align: middle; }
+
+.movie-item, .book-item, .good-item {
+  background-color: var(--weui-FG-5);
+  color: var(--weui-FG-0); }
+
+.good-brand {
+  color: var(--weui-FG-2); }
+
+.good-meta {
+  color: var(--weui-FG-0); }
 
 #footer {
   clear: both;

@@ -593,16 +593,6 @@
                     font-size: var( --global-font-size);
                 }
             }
-            .movie-item, .book-item, .good-item {
-                background-color: var(--weui-FG-5);
-                color: var(--weui-FG-0);
-            }
-            .good-brand {
-                color: var(--weui-FG-2);
-            }
-            .good-meta{
-                color: var(--weui-FG-0);
-            }
             .mbti {
                 background-color: var(--weui-FG-5);
                 padding: 10px;
@@ -1261,6 +1251,17 @@
 .rb-emoji-item {
     height: 20px;
     vertical-align: middle;
+}
+
+.movie-item, .book-item, .good-item {
+    background-color: var(--weui-FG-5);
+    color: var(--weui-FG-0);
+}
+.good-brand {
+    color: var(--weui-FG-2);
+}
+.good-meta{
+    color: var(--weui-FG-0);
 }
 
 #footer {
