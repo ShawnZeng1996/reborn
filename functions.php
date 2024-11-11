@@ -1,6 +1,5 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
-
 const __THEME_NAME__ = 'reborn';
 const __THEME_VERSION__ = '1.0.2';
 

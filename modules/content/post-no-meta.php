@@ -1,5 +1,5 @@
 <?php if (!defined('__TYPECHO_ROOT_DIR__')) exit; ?>
-<article id="post" class="post post-type" style="padding: 0;">
+<article id="post" class="post post-type">
     <?php $this->need('/modules/content/content.php'); ?>
 </article>
 <div id="comments" class="post post-comment-area-<?php echo $this->cid; ?>">
