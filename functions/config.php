@@ -6,19 +6,19 @@ function themeConfig($form): void {
     $db = \Typecho\Db::get();
     $prefix = $db->getPrefix();
     try {
-        if (!array_key_exists('postType', $db->fetchRow($db->select()->from('table.contents')->page(1, 1)))) {
+        if (!in_array('postType', $db->fetchAll('SHOW COLUMNS FROM `' . $prefix . 'contents`'))) {
             $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `postType` varchar(16) NOT NULL DEFAULT "post";');
         }
-        if (!array_key_exists('likes', $db->fetchRow($db->select()->from('table.contents')->page(1, 1)))) {
+        if (!in_array('likes', $db->fetchAll('SHOW COLUMNS FROM `' . $prefix . 'contents`'))) {
             $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `likes` INT(10) NOT NULL DEFAULT 0;');
         }
-        if (!array_key_exists('likes', $db->fetchRow($db->select()->from('table.comments')->page(1, 1)))) {
+        if (!in_array('likes', $db->fetchAll('SHOW COLUMNS FROM `' . $prefix . 'comments`'))) {
             $db->query('ALTER TABLE `' . $prefix . 'comments` ADD `likes` INT(10) NOT NULL DEFAULT 0;');
         }
-        if (!array_key_exists('views', $db->fetchRow($db->select()->from('table.contents')->page(1, 1)))) {
+        if (!in_array('views', $db->fetchAll('SHOW COLUMNS FROM `' . $prefix . 'contents`'))) {
             $db->query('ALTER TABLE `' . $prefix . 'contents` ADD `views` INT(10) NOT NULL DEFAULT 0;');
         }
-        if (!array_key_exists('region', $db->fetchRow($db->select()->from('table.comments')->page(1, 1)))) {
+        if (!in_array('region', $db->fetchAll('SHOW COLUMNS FROM `' . $prefix . 'comments`'))) {
             $db->query('ALTER TABLE `' . $prefix . 'comments` ADD `region` varchar(50) NULL');
         }
         //updateOldCommentsRegion();
