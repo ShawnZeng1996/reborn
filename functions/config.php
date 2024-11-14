@@ -275,9 +275,9 @@ function themeConfig($form): void {
     $gravatarPrefix = new Typecho\Widget\Helper\Form\Element\Text(
         'gravatarPrefix',
         NULL,
-        'https://cravatar.cn/avatar/',
+        'https://weavatar.com/avatar/',
         _t('Gravatar头像源'),
-        _t('Gravatar头像源，默认使用Cravatar。')
+        _t('Gravatar头像源，默认使Weavatar。')
     );
     //$gravatarPrefix->setAttribute('class', 'reborn-content reborn-global');
     $form->addInput($gravatarPrefix);
