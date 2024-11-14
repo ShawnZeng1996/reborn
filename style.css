@@ -1021,7 +1021,7 @@ rb-theme-tabs .rb-tabs {
     .main-content .post-type .post-content {
       padding: 10px 0 10px 10px;
       line-height: 1.75em;
-      /*overflow: hidden;*/
+      overflow: hidden;
       flex: 1; }
       .main-content .post-type .post-content .shuoshuo-item .post-link {
         color: var(--weui-LINK);
@@ -1284,7 +1284,11 @@ rb-theme-tabs .rb-tabs {
           border-radius: 2px; }
         .main-content .post-type .post-content .post-unit .post-title {
           font-weight: normal;
-          font-size: var(--global-font-size); }
+          font-size: var(--global-font-size);
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          flex: 1; }
       .main-content .post-type .post-content .mbti {
         background-color: var(--weui-FG-5);
         padding: 10px;
