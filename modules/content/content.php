@@ -61,8 +61,7 @@ $content = preg_replace_callback($farea_pattern, function($matches) {
     $farea_content = str_replace(['<p>', '</p>', '<br>', '<br />'], '', $farea_content);
 
     // 处理farea内的flink短代码
-    $flink_pattern = '/\[flink\s+href="([^"]+)"\s+name="([^"]+)"\s+img="([^"]+)"\s+description="([^"]+)"\s+comment="([^"]*)"\]/';
-    $farea_content = preg_replace_callback($flink_pattern, function($flink_matches) {
+    $flink_pattern = '/\[flink\s+href="([^"]+)"\s+name="([^"]+)"\s+img="([^"]+?)"\s+description="([^"]+)"\s+comment="([^"]*)"\]/';$farea_content = preg_replace_callback($flink_pattern, function($flink_matches) {
         $href = $flink_matches[1];
         $name = $flink_matches[2];
         $img = $flink_matches[3];
