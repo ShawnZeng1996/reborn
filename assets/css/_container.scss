@@ -177,7 +177,7 @@
                     width: 50px;
                     height: 50px;
                     margin-left: 10px;
-                    border-radius: 2px;
+                    border-radius: 3px;
                 }
             }
             li {
@@ -296,6 +296,7 @@
             img:not([class]) {
                 display: block;
                 margin: 0 auto;
+                border-radius: 3px;
             }
             pre {
                 margin: 10px 0;
@@ -556,6 +557,7 @@
                     width: 100%;
                     aspect-ratio: 1 / 1;
                     object-fit: cover;
+                    border-radius: 3px;
                 }
                 .overlay {
                     position: absolute;
@@ -586,7 +588,7 @@
                     width: 50px;
                     height: 50px;
                     margin-right: 10px;
-                    border-radius: 2px;
+                    border-radius: 3px;
                 }
                 .post-title {
                     font-weight: normal;
@@ -854,6 +856,7 @@
             }
         }
         .post-content.shuoshuo-content {
+            overflow: visible;
             .post-meta-3 {
                 margin-left: -50px;
             }
@@ -893,9 +896,6 @@
                 color: var(--weui-FG-2);
                 margin-right: 10px;
             }
-        }
-        #post-content {
-            padding: 0;
         }
         .post-zan {
             text-align: center;
