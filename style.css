@@ -949,7 +949,7 @@ rb-theme-tabs .rb-tabs {
       width: 50px;
       height: 50px;
       margin-left: 10px;
-      border-radius: 2px; }
+      border-radius: 3px; }
   .sidebar #sidebar-post-list ul li {
     padding: 10px 0; }
   .sidebar #sidebar-post-list ul li + li {
@@ -1037,7 +1037,8 @@ rb-theme-tabs .rb-tabs {
         font-weight: bold; }
       .main-content .post-type .post-content img:not([class]) {
         display: block;
-        margin: 0 auto; }
+        margin: 0 auto;
+        border-radius: 3px; }
       .main-content .post-type .post-content pre {
         margin: 10px 0;
         position: relative; }
@@ -1253,7 +1254,8 @@ rb-theme-tabs .rb-tabs {
           vertical-align: middle;
           width: 100%;
           aspect-ratio: 1 / 1;
-          object-fit: cover; }
+          object-fit: cover;
+          border-radius: 3px; }
         .main-content .post-type .post-content .gallery-image-item .overlay {
           position: absolute;
           top: 0;
@@ -1281,7 +1283,7 @@ rb-theme-tabs .rb-tabs {
           width: 50px;
           height: 50px;
           margin-right: 10px;
-          border-radius: 2px; }
+          border-radius: 3px; }
         .main-content .post-type .post-content .post-unit .post-title {
           font-weight: normal;
           font-size: var(--global-font-size);
@@ -1485,8 +1487,10 @@ rb-theme-tabs .rb-tabs {
             .main-content .post-type .post-content .post-meta-3 .post-comment-area.shuoshuo .comment-area > ol > .comment-item:first-child {
               padding-top: 0;
               border-top: none; }
-    .main-content .post-type .post-content.shuoshuo-content .post-meta-3 {
-      margin-left: -50px; }
+    .main-content .post-type .post-content.shuoshuo-content {
+      overflow: visible; }
+      .main-content .post-type .post-content.shuoshuo-content .post-meta-3 {
+        margin-left: -50px; }
     .main-content .post-type #post-content {
       padding: 0; }
   .main-content .post-type:last-of-type {
@@ -1513,8 +1517,6 @@ rb-theme-tabs .rb-tabs {
     .main-content .post-type.post .post-meta .post-publish-time, .main-content .post-type.post .post-meta .post-location {
       color: var(--weui-FG-2);
       margin-right: 10px; }
-  .main-content .post-type.post #post-content {
-    padding: 0; }
   .main-content .post-type.post .post-zan {
     text-align: center;
     margin: 10px 0; }
